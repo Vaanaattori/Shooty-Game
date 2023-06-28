@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvepirpjtcf77"]
+
+[ext_resource type="PackedScene" uid="uid://ber2x57t71uoq" path="res://M4A1.blend" id="1_6p7cd"]
+
+[node name="M4A1" instance=ExtResource("1_6p7cd")]

@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://bx0kucpghk2dp"]
+
+[ext_resource type="PackedScene" uid="uid://bwavtub8bg7xu" path="res://Player.tscn" id="1_lkwq4"]
+[ext_resource type="Script" path="res://Ground.gd" id="2_4gpwm"]
+[ext_resource type="Texture2D" uid="uid://b7onuy3fl1edh" path="res://4k JPEG/Grass 03/Grass03_BaseColor.jpg" id="3_2nwnb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0m3r7"]
+albedo_texture = ExtResource("3_2nwnb")
+uv1_scale = Vector3(20.173, 20.173, 20.173)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0rexh"]
+material = SubResource("StandardMaterial3D_0m3r7")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vh16j"]
+
+[sub_resource type="Environment" id="Environment_67o5g"]
+
+[node name="World" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_lkwq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.03585, 0)
+
+[node name="M4A1" parent="Player/Camera3D" index="0"]
+transform = Transform3D(-0.590532, 0, 0.104127, 0, 0.599642, 0, -0.104127, 0, -0.590532, 0.511, -0.532, -0.672)
+
+[node name="Ground" type="StaticBody3D" parent="."]
+script = ExtResource("2_4gpwm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(71.1093, 0, 0, 0, 1, 0, 0, 0, 76.8439, 0, 0, 0)
+mesh = SubResource("PlaneMesh_0rexh")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_vh16j")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_67o5g")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.509071, 0.860724, 0, -0.860724, 0.509071, 0, 15.565, 15.7367)
+
+[editable path="Player"]

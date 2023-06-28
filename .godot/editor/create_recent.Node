@@ -1,0 +1,9 @@
+Node3D
+AnimationTree
+AnimationPlayer
+DirectionalLight3D
+WorldEnvironment
+StaticBody3D
+CollisionShape3D
+MeshInstance3D
+Area3D

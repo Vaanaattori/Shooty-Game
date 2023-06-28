@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://qwtv3xhefgx8"]
+
+[ext_resource type="Script" path="res://Scenes/Level/MainLevel.gd" id="1_6kt53"]
+[ext_resource type="Material" uid="uid://6a311l1ignor" path="res://Grass.tres" id="2_y1ed7"]
+[ext_resource type="PackedScene" uid="uid://bmqgkgj80igqm" path="res://BEARR.tscn" id="7_b31jc"]
+
+[sub_resource type="Environment" id="Environment_uyv64"]
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_waupj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yj17g"]
+diffuse_mode = 3
+roughness = 0.2
+rim_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_iagj4"]
+material = SubResource("StandardMaterial3D_yj17g")
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_w05yw"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gqkyp"]
+material = ExtResource("2_y1ed7")
+
+[node name="MainLevel" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0230389, 0, -0.062078)
+script = ExtResource("1_6kt53")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uyv64")
+camera_attributes = SubResource("CameraAttributesPhysical_waupj")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.737501, 0.675346, 2.99738e-07, 0.44479, -0.485726, 0.752484, 0.508187, -0.554957, -0.658611, 0, 12.9358, 9.21901)
+light_energy = 0.3
+shadow_enabled = true
+
+[node name="TestLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.737501, 0.675346, 7.6661e-07, 0.44479, -0.485726, 0.752484, 0.508187, -0.554957, -0.658611, 0, 12.9358, 9.21901)
+visible = false
+light_energy = 2.289
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999931, -0.0107198, 0.00484355, -0.0100751, -0.567933, 0.823013, -0.00607172, -0.823005, -0.568002, 0, 1, -2.4448)
+mesh = SubResource("BoxMesh_iagj4")
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("WorldBoundaryShape3D_w05yw")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(110, 0, 0, 0, 110, 0, 0, 0, 110, 0, 0, 0)
+gi_mode = 2
+mesh = SubResource("PlaneMesh_gqkyp")
+
+[node name="BearController" parent="." instance=ExtResource("7_b31jc")]
+transform = Transform3D(0.438215, 0, 0, 0, 0.438215, 0, 0, 0, 0.438215, 1.97323, 1.81561, -1.23622)
