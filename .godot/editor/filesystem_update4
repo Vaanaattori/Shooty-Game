@@ -1,5 +1,6 @@
-res://Player.tscn
 res://world.tscn
 res://M4A1.tscn
-res://Player.gd
-res://Ground.gd
+res://Player.tscn
+res://Zombie.tscn
+res://HUD.tscn
+res://Script/Enemy.gd

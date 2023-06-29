@@ -1,0 +1,72 @@
+[gd_scene load_steps=3 format=3 uid="uid://bp7a48krtn5wr"]
+
+[ext_resource type="Script" path="res://HUD.gd" id="1_u6ok0"]
+[ext_resource type="Texture2D" uid="uid://bgfgnjtof5gdj" path="res://Crosshair.png" id="1_w72py"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_u6ok0")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 342.0
+offset_top = -211.0
+offset_right = 418.0
+offset_bottom = -185.0
+grow_vertical = 0
+scale = Vector2(1.61985, 1.61985)
+text = "STAMINA:
+"
+
+[node name="ProgressBar" type="ProgressBar" parent="Label"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -2.26316
+anchor_top = 1.07692
+anchor_right = 3.27632
+anchor_bottom = 4.0
+grow_vertical = 0
+metadata/_edit_lock_ = true
+
+[node name="AmmoContainer" type="VBoxContainer" parent="."]
+offset_left = 838.0
+offset_top = 899.0
+offset_right = 928.0
+offset_bottom = 985.0
+scale = Vector2(1.70771, 1.70771)
+mouse_filter = 2
+
+[node name="AmmoLabel" type="Label" parent="AmmoContainer"]
+layout_mode = 2
+text = "Ammo Left:"
+
+[node name="AmmoNumber" type="Label" parent="AmmoContainer"]
+layout_mode = 2
+text = "50"
+horizontal_alignment = 1
+
+[node name="TotalAmmoLeft" type="Label" parent="AmmoContainer"]
+layout_mode = 2
+text = "50"
+horizontal_alignment = 1
+
+[node name="Crosshair" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Crosshair" type="Sprite2D" parent="Crosshair"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_w72py")

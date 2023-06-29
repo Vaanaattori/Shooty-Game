@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://cx6dl57vmw5d6"]
+
+[ext_resource type="Script" path="res://Script/Enemy.gd" id="1_cur1a"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jtti0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pkpwh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nkgid"]
+albedo_color = Color(0.133333, 0.470588, 0.184314, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_hvebw"]
+material = SubResource("StandardMaterial3D_nkgid")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n2456"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6j3pp"]
+material = SubResource("StandardMaterial3D_n2456")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3fani"]
+radius = 1.0
+
+[node name="Zombie" type="CharacterBody3D" groups=["Enemies"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_cur1a")
+
+[node name="HitBox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
+shape = SubResource("CapsuleShape3D_jtti0")
+
+[node name="Hitbox" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_pkpwh")
+
+[node name="BeanMesh" type="MeshInstance3D" parent="Hitbox"]
+layers = 16
+mesh = SubResource("CapsuleMesh_hvebw")
+
+[node name="BeanGoggles" type="MeshInstance3D" parent="Hitbox/BeanMesh"]
+transform = Transform3D(0.580903, 0, 0, 0, 0.217956, 0, 0, 0, 0.559805, 0, 0.514024, -0.25154)
+layers = 16
+mesh = SubResource("BoxMesh_6j3pp")
+
+[node name="DetectionArea" type="Area3D" parent="."]
+transform = Transform3D(17.0018, 0, 0, 0, 17.0018, 0, 0, 0, 17.0018, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
+shape = SubResource("SphereShape3D_3fani")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
