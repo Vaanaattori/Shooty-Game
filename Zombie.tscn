@@ -43,9 +43,10 @@ layers = 16
 mesh = SubResource("BoxMesh_6j3pp")
 
 [node name="DetectionArea" type="Area3D" parent="."]
-transform = Transform3D(17.0018, 0, 0, 0, 17.0018, 0, 0, 0, 17.0018, 0, 0, 0)
+transform = Transform3D(11.7049, 0, 0, 0, 11.7049, 0, 0, 0, 11.7049, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
 shape = SubResource("SphereShape3D_3fani")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true

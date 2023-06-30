@@ -1,6 +1,8 @@
+CollisionShape3D
+CSGBox3D
+PhysicalBone3D
 NavigationAgent3D
 NavigationRegion3D
-CollisionShape3D
 Area3D
 Control
 Container

@@ -3,4 +3,6 @@ res://M4A1.tscn
 res://Player.tscn
 res://Zombie.tscn
 res://HUD.tscn
+res://test.tscn
 res://Script/Enemy.gd
+res://Script/Ground.gd
