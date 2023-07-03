@@ -68,5 +68,6 @@ mouse_filter = 2
 metadata/_edit_lock_ = true
 
 [node name="Crosshair" type="Sprite2D" parent="Crosshair"]
+position = Vector2(19, 0)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_w72py")

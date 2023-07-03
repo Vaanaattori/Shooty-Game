@@ -3,6 +3,8 @@ var speed: float = 1
 
 @onready var detection_area = $DetectionArea
 @onready var navagent  = $NavigationAgent3D
+@onready var hitbox = $HitBox
+@onready var zombie = $"."
 
 func _physics_process(delta):
 	velocity = Vector3.ZERO
@@ -12,3 +14,7 @@ func _physics_process(delta):
 		var next_nav_point = navagent.get_next_path_position()
 		velocity = (next_nav_point - global_transform.origin) * speed
 	move_and_slide()
+	
+	if hitbox.overlaps_area(Player.hip_fire_laser):
+		print(hitbox.get_overlapping_bodies())
+		print("eat cheese")
