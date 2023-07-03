@@ -36,12 +36,10 @@ shape = SubResource("CapsuleShape3D_jtti0")
 shape = SubResource("CapsuleShape3D_pkpwh")
 
 [node name="BeanMesh" type="MeshInstance3D" parent="Hitbox"]
-layers = 16
 mesh = SubResource("CapsuleMesh_hvebw")
 
 [node name="BeanGoggles" type="MeshInstance3D" parent="Hitbox/BeanMesh"]
 transform = Transform3D(0.580903, 0, 0, 0, 0.217956, 0, 0, 0, 0.559805, 0, 0.514024, -0.25154)
-layers = 16
 mesh = SubResource("BoxMesh_6j3pp")
 
 [node name="DetectionArea" type="Area3D" parent="."]

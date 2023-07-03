@@ -16,5 +16,7 @@ func _process(delta):
 	StaminaBar.max_value = Player.MaxStamina
 	ammo_number.text = str(Player.ammoInMag) + " / " + str(Player.magSize)
 	total_ammo_left.text = "(" + str(Player.ammoCount) + ")"
-	if Player.ADS() and not Player.Reloading and not Player.isMoving == "Sprint": crosshair.visible = false
-	else: crosshair.visible = true
+	if Player.ADS(): 
+		crosshair.visible = false
+	else: 
+		crosshair.visible = true

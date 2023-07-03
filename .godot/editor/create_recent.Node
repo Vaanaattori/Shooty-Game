@@ -1,6 +1,8 @@
+Node3D
+Timer
+Marker3D
 Camera3D
 Node
-Timer
 RayCast3D
 MeshInstance3D
 CollisionShape3D
@@ -19,7 +21,6 @@ PanelContainer
 ProgressBar
 CharacterBody3D
 CanvasLayer
-Node3D
 AnimationTree
 AnimationPlayer
 DirectionalLight3D

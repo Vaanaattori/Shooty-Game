@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendSpace1D" load_steps=3 format=3 uid="uid://qwfocuox7idv"]
+[gd_resource type="AnimationNodeBlendSpace1D" load_steps=3 format=3 uid="uid://bvrmwpfefjkhb"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yqar1"]
 animation = &"Walk"
