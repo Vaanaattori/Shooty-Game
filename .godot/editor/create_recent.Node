@@ -1,7 +1,8 @@
+Camera3D
+AnimationPlayer
 HBoxContainer
 Label
 VBoxContainer
-Camera3D
 RigidBody3D
 Node3D
 CollisionShape3D
@@ -25,6 +26,5 @@ ProgressBar
 CharacterBody3D
 CanvasLayer
 AnimationTree
-AnimationPlayer
 DirectionalLight3D
 WorldEnvironment

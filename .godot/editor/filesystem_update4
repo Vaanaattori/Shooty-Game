@@ -1,13 +1,2 @@
-res://world.tscn
+res://testshit.tscn
 res://new_animation_node_blend_space_1d.tres
-res://Player.tscn
-res://Zombie.tscn
-res://HUD.tscn
-res://M4A1.tscn
-res://M4A1.gd
-res://Script/Player.gd
-res://Weapon.gd
-res://world.gd
-res://Guns/M4A1.tscn
-res://PlayerStats.gd
-res://HUD.gd
