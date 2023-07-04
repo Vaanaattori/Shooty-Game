@@ -68,3 +68,40 @@ mouse_filter = 2
 position = Vector2(19, 0)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_w72py")
+
+[node name="WeaponInfo" type="HBoxContainer" parent="."]
+offset_left = 1585.0
+offset_top = 951.0
+offset_right = 1831.0
+offset_bottom = 1033.0
+theme_override_constants/separation = 20
+
+[node name="PrimaryWeaponInfo" type="VBoxContainer" parent="WeaponInfo"]
+layout_mode = 2
+
+[node name="Weapon" type="Label" parent="WeaponInfo/PrimaryWeaponInfo"]
+layout_mode = 2
+text = "PRIMARY 
+WEAPON:"
+horizontal_alignment = 1
+
+[node name="WeaponName" type="Label" parent="WeaponInfo/PrimaryWeaponInfo"]
+layout_mode = 2
+text = "PLACEHOLDER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SecondaryWeaponInfo" type="VBoxContainer" parent="WeaponInfo"]
+layout_mode = 2
+
+[node name="Weapon" type="Label" parent="WeaponInfo/SecondaryWeaponInfo"]
+layout_mode = 2
+text = "SECONDARY
+WEAPON:"
+horizontal_alignment = 1
+
+[node name="WeaponName" type="Label" parent="WeaponInfo/SecondaryWeaponInfo"]
+layout_mode = 2
+text = "PLACEHOLDER"
+horizontal_alignment = 1
+vertical_alignment = 1

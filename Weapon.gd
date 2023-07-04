@@ -1,47 +1,33 @@
 extends Node3D
+@onready var body = $"."
+@onready var pick_up_range = $"../../../PickUpRange"
 
-@onready var Primary = get_child(0)
-@onready var Secondary = get_child(1)
+var weaponCount = get_child_count()
 
-@onready var weaponCount = get_child_count() 
-@export var M4A1: PackedScene
-var Weapon
-var gun
-var wepName
-var ammoCount
-var magSize
-var FireRate
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	if weaponCount > 0:
-		Primary = get_child(0)
-		wepName = Weapon.wepName
-		ammoCount = Weapon.ammoCount
-		magSize = Weapon.magSize
-		FireRate = Weapon.FireRate
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+	pass
+	
 func _process(delta):
-	weaponCount = get_child_count() 
-	if Player.weaponout == "primary":
-		Weapon = gun
-	elif Player.weaponout == "secondary":
-		Weapon = Secondary
-	if weaponCount > 0:
-		Primary = get_child(0)
-		if Player.weaponout == "primary":
-			Weapon = gun
-		elif Player.weaponout == "secondary":
-			Weapon = Secondary
-		wepName = Weapon.wepName
-		ammoCount = Weapon.ammoCount
-		magSize = Weapon.magSize
-		FireRate = Weapon.FireRate
-		print(Weapon)
-	if weaponCount == 0:
-		gun = M4A1.instantiate()
-		add_child(gun)
-	weaponCount = get_child_count() 
+	pass
 
-	print(weaponCount)
+func gunPickUp(Gun):
+	print("Picked up: ",Gun.name)
+	Gun = load("res://Guns/" + str(Gun.name) + ".tscn")
+	var Weapon = Gun.instantiate()
+	add_child(Weapon)
+	Weapon.pickedUp = true
+	Weapon.position = Vector3(0,0.006,0)
+	Weapon.rotation = Vector3.ZERO
+	Weapon.scale = Vector3(0.21,0.21,0.21)
+	Weapon.NoClip()
+	PlayerStats.PrimaryWeapon = Weapon.WeaponStats
+	PlayerStats.weaponout = "primary"
+
+	weaponCount = get_child_count()
+#@onready var wepName = "M4A1"
+#@onready var ammoCount = 999
+#@onready var magSize = 30
+#@onready var FireRate = 0.1
+#@onready var M4A1 = $"."
+#@onready var rigidbody = $RigidBody3D
+

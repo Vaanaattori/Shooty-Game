@@ -1,6 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://cvepirpjtcf77"]
+[gd_scene load_steps=22 format=3 uid="uid://cvepirpjtcf77"]
 
 [ext_resource type="Script" path="res://M4A1.gd" id="1_n734i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y61cd"]
+size = Vector3(1.01491, 3.74038, 10.1989)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6iiho"]
 resource_name = "Mat_Dark"
@@ -294,55 +297,63 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_fvf7n")
 
 [node name="M4A1" type="Node3D"]
-transform = Transform3D(1, 0, 2.27374e-13, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_n734i")
 
-[node name="Body" type="MeshInstance3D" parent="."]
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.54401e-13, 0.0989855, 0.57958)
+shape = SubResource("BoxShape3D_y61cd")
+
+[node name="Node3D" type="Node3D" parent="RigidBody3D"]
+
+[node name="Body" type="MeshInstance3D" parent="RigidBody3D/Node3D"]
 transform = Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, 4.54747e-13, 0, 1.66984)
 mesh = SubResource("ArrayMesh_wyngi")
 skeleton = NodePath("")
 
-[node name="Handguard" type="MeshInstance3D" parent="."]
+[node name="Handguard" type="MeshInstance3D" parent="RigidBody3D/Node3D"]
 transform = Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, -1.36424e-12, 1.1299, 2.5897)
 mesh = SubResource("ArrayMesh_skp1a")
 skeleton = NodePath("")
 
-[node name="Mag" type="MeshInstance3D" parent="."]
+[node name="Mag" type="MeshInstance3D" parent="RigidBody3D/Node3D"]
 transform = Transform3D(-0.000361998, 0, 99.9999, 0, 99.9998, 0, -99.9996, 0, -0.000361999, 4.54747e-13, 0, 1.66984)
 mesh = SubResource("ArrayMesh_hqyvb")
 skeleton = NodePath("")
 
-[node name="Barrel" type="MeshInstance3D" parent="."]
+[node name="Barrel" type="MeshInstance3D" parent="RigidBody3D/Node3D"]
 transform = Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, -9.09495e-13, 1.13566, 2.69328)
 mesh = SubResource("ArrayMesh_p3ead")
 skeleton = NodePath("")
 
-[node name="Stock" type="MeshInstance3D" parent="."]
+[node name="Stock" type="MeshInstance3D" parent="RigidBody3D/Node3D"]
 transform = Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, 4.54747e-13, 0, 1.66984)
 mesh = SubResource("ArrayMesh_v5n1j")
 skeleton = NodePath("")
 
-[node name="RearSight" type="MeshInstance3D" parent="."]
+[node name="RearSight" type="MeshInstance3D" parent="RigidBody3D/Node3D"]
 transform = Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, -0.00678778, 1.66213, -0.958928)
 mesh = SubResource("ArrayMesh_28owm")
 skeleton = NodePath("")
 
-[node name="RearSight001" type="MeshInstance3D" parent="."]
+[node name="RearSight001" type="MeshInstance3D" parent="RigidBody3D/Node3D"]
 transform = Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, -0.00678778, 1.66213, 4.03092)
 mesh = SubResource("ArrayMesh_kfuk4")
 skeleton = NodePath("")
 
-[node name="RearSight002" type="MeshInstance3D" parent="."]
+[node name="RearSight002" type="MeshInstance3D" parent="RigidBody3D/Node3D"]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0.253037, 1.67829, -1.08325)
 mesh = SubResource("ArrayMesh_tsmas")
 skeleton = NodePath("")
 
-[node name="RearSight003" type="MeshInstance3D" parent="."]
+[node name="RearSight003" type="MeshInstance3D" parent="RigidBody3D/Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.253038, 1.68174, 3.92876)
 mesh = SubResource("ArrayMesh_yiptb")
 skeleton = NodePath("")
 
-[node name="ADS-Laser" type="RayCast3D" parent="RearSight003"]
+[node name="ADS-Laser" type="RayCast3D" parent="RigidBody3D/Node3D/RearSight003"]
 transform = Transform3D(0.999922, 0.0121491, 0.00266869, -0.0026677, -9.76407e-05, 0.999996, 0.0121493, -0.999926, -6.52235e-05, -0.252928, 0.359312, -4.76837e-06)
 visible = false
 target_position = Vector3(0, -100, 0)

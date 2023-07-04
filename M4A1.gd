@@ -1,15 +1,34 @@
 extends Node3D
 
-@export var wepName = "M4A1"
-@export var ammoCount = 999
-@export var magSize = 30
-@export var FireRate = 0.1
+#@onready var wepName = "M4A1"
+#@onready var ammoCount = 999
+#@onready var magSize = 30
+#@onready var FireRate = 0.1
+#@onready var M4A1 = $"."
+@onready var rigidbody = $RigidBody3D
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
+var WeaponStats = {
+	wepName = "M4A1",
+	ammoCount = 999,
+	magSize = 30,
+	fireRate = 0.1,
+	ammoInMag = 30,
+}
 
+var pickedUp = false
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if pickedUp:
+		rigidbody.freeze = true
+	else:
+		rigidbody.freeze = false
+
+func Gun():
 	pass
+
+func NoClip():
+	rigidbody.collision_layer = 0
+	print("rigidbody.collision_layer  ",rigidbody.collision_layer)
+
+func PickUp():
+	queue_free()

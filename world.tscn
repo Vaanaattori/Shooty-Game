@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bx0kucpghk2dp"]
+[gd_scene load_steps=13 format=3 uid="uid://bx0kucpghk2dp"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_43ckk"]
 [ext_resource type="Script" path="res://Script/Ground.gd" id="2_feo37"]
 [ext_resource type="Texture2D" uid="uid://b7onuy3fl1edh" path="res://4k JPEG/Grass 03/Grass03_BaseColor.jpg" id="3_2nwnb"]
 [ext_resource type="PackedScene" uid="uid://cx6dl57vmw5d6" path="res://Zombie.tscn" id="4_uesh2"]
+[ext_resource type="PackedScene" uid="uid://cvepirpjtcf77" path="res://Guns/M4A1.tscn" id="5_qnhdf"]
 
 [sub_resource type="Environment" id="Environment_67o5g"]
 fog_light_color = Color(0.364706, 0.392157, 0.431373, 1)
@@ -72,8 +73,14 @@ shape = SubResource("BoxShape3D_djhoj")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Ramp2"]
 mesh = SubResource("BoxMesh_7bc8l")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 30.6942, 0)
-
 [node name="PlayerSpawn" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.2086, 1.5562, 28.7121)
+
+[node name="M4A1" parent="." instance=ExtResource("5_qnhdf")]
+transform = Transform3D(0.20133, -0.059717, 0, 0.059717, 0.20133, 0, 0, 0, 0.21, -22.0834, 2.90415, 17.7531)
+
+[node name="M4A2" parent="." instance=ExtResource("5_qnhdf")]
+transform = Transform3D(0.20133, -0.059717, 0, 0.059717, 0.20133, 0, 0, 0, 0.21, -31.763, 2.90415, 17.7531)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -25.164, 19.5198, 14.5943)
