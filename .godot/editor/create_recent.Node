@@ -1,11 +1,11 @@
 Camera3D
+CollisionShape3D
+RigidBody3D
 AnimationPlayer
 HBoxContainer
 Label
 VBoxContainer
-RigidBody3D
 Node3D
-CollisionShape3D
 Area3D
 ShapeCast3D
 Timer

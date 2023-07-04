@@ -1,4 +1,4 @@
-extends Node3D
+extends RigidBody3D
 
 #@onready var wepName = "M4A1"
 #@onready var ammoCount = 999
@@ -6,6 +6,11 @@ extends Node3D
 #@onready var FireRate = 0.1
 #@onready var M4A1 = $"."
 @onready var rigidbody = $RigidBody3D
+@onready var animation_tree = $AnimationTree
+@onready var Player = get_node("../Player")
+@onready var animation_player = $m4a1AnimationPlayer
+
+
 
 var WeaponStats = {
 	wepName = "M4A1",
@@ -17,18 +22,25 @@ var WeaponStats = {
 
 var pickedUp = false
 
+func _ready():
+	pass
+
 func _process(delta):
 	if pickedUp:
-		rigidbody.freeze = true
+		freeze = true
 	else:
-		rigidbody.freeze = false
+		freeze = false
+#	Player = get_node("../Player")
+
+func animations():
+	pass
 
 func Gun():
 	pass
 
 func NoClip():
-	rigidbody.collision_layer = 0
-	print("rigidbody.collision_layer  ",rigidbody.collision_layer)
+	collision_layer = 0
+	print("rigidbody.collision_layer  ", collision_layer)
 
-func PickUp():
-	queue_free()
+#func PickUp():
+#	queue_free()
