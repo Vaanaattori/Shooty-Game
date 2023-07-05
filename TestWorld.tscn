@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://uvc8ooisf5mr"]
+[gd_scene load_steps=14 format=3 uid="uid://uvc8ooisf5mr"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_4blt4"]
 [ext_resource type="Script" path="res://Script/Ground.gd" id="2_syqn2"]
@@ -21,6 +21,12 @@ material = SubResource("StandardMaterial3D_0m3r7")
 [sub_resource type="BoxShape3D" id="BoxShape3D_u3ytv"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_v2cjm"]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_mchfx"]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_n802h"]
+
+[sub_resource type="Environment" id="Environment_71pci"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_4blt4")
@@ -60,9 +66,25 @@ shape = SubResource("BoxShape3D_u3ytv")
 mesh = SubResource("BoxMesh_v2cjm")
 
 [node name="M4A1" parent="." instance=ExtResource("4_43jel")]
-transform = Transform3D(-1, 1.78233e-10, -2.53518e-06, 1.78233e-10, 1, 2.18525e-18, 2.53518e-06, -4.49668e-16, -1, 0, 0.760983, -7.66817)
+transform = Transform3D(-1, 1.78233e-10, -2.53518e-06, 1.78233e-10, 1, 2.18525e-18, 2.53518e-06, -4.49668e-16, -1, 0.5, -0.53, -0.67)
+
+[node name="CollisionShape3D" parent="M4A1" index="0"]
+transform = Transform3D(1, -2.27374e-13, 2.15485e-18, -1.13999e-21, -4.37114e-08, 1, -2.27374e-13, -1, -4.37114e-08, 7.7486e-07, 0.23583, 0.282099)
+
+[node name="Mag" parent="M4A1/Node3D" index="2"]
+transform = Transform3D(-0.000361998, 0, 99.9999, 0, 99.9998, 0, -99.9996, 0, -0.000361999, 4.54747e-13, 0, 1.66984)
+
+[node name="M4A1 Animation Tree" parent="M4A1" index="5"]
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_mchfx")
+parameters/M4A1States/playback = SubResource("AnimationNodeStateMachinePlayback_n802h")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10.1153, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_71pci")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.337917, 0.941176, 0, -0.941176, 0.337917, 0, 6.29193, 0)
 
 [editable path="M4A1"]

@@ -5,7 +5,7 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-#	camera_3d.queue_free()
+	camera_3d.queue_free()
 	add_child(Global.Player)
 #	Global.Player.global_transform.origin = player_spawn.global_transform.origin
 

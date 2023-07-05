@@ -1,34 +1,104 @@
-[gd_scene load_steps=6 format=3 uid="uid://buqo2ygtsm8p2"]
+[gd_scene load_steps=10 format=3 uid="uid://buqo2ygtsm8p2"]
 
 [ext_resource type="PackedScene" uid="uid://cvepirpjtcf77" path="res://Guns/M4A1.tscn" id="1_4gn2o"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://d1m8d1h2qnup2" path="res://M4A1StateMachine.tres" id="2_s33wa"]
+[ext_resource type="AnimationLibrary" uid="uid://pl6ay11hvmev" path="res://M4A1.res" id="3_xkxs1"]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_px8fy"]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_kwjdr"]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_2h1ji"]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_8um22"]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_iad8a"]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_ahqv3"]
+[sub_resource type="Animation" id="Animation_72aoe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D/Mag:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(4.54747e-13, 0, 1.66984)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node3D/Mag:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.5, -0.53, -0.67)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-2.18525e-18, -3.14159, 1.78233e-10)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cvm07"]
+_data = {
+"RESET": SubResource("Animation_72aoe")
+}
 
 [node name="Node3D" type="Node3D"]
 
 [node name="M4A1" parent="." instance=ExtResource("1_4gn2o")]
-transform = Transform3D(-1, 1.78233e-10, -2.53518e-06, 1.78233e-10, 1, 2.18525e-18, 2.53518e-06, -4.49668e-16, -1, 0.5, -0.53, -0.66)
+transform = Transform3D(-1, 1.78233e-10, -2.53518e-06, 1.78233e-10, 1, 2.18525e-18, 2.53518e-06, -4.49668e-16, -1, 0.5, -0.53, -0.67)
 
 [node name="Mag" parent="M4A1/Node3D" index="2"]
-transform = Transform3D(-0.000361999, 0, 100, 0, 99.9999, 0, -99.9999, 0, -0.000362, 4.54747e-13, 0, 1.66984)
+transform = Transform3D(-0.000361999, 0, 100, 0, 99.9999, 0, -99.9999, 0, -0.000361999, 4.54747e-13, 0, 1.66984)
+
+[node name="M4A1 Animation Tree" parent="M4A1" index="5"]
+parameters/playback = SubResource("AnimationNodeStateMachinePlayback_px8fy")
+parameters/M4A1States/playback = SubResource("AnimationNodeStateMachinePlayback_kwjdr")
+parameters/M4A1States/ADS/blend_position = 0
 
 [node name="AnimationTree2" type="AnimationTree" parent="M4A1"]
 tree_root = ExtResource("2_s33wa")
+anim_player = NodePath("../m4a1AnimationPlayer2")
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_2h1ji")
-parameters/M4A1States/playback = SubResource("AnimationNodeStateMachinePlayback_8um22")
+parameters/conditions/Swap-out = false
+parameters/M4A1States/playback = SubResource("AnimationNodeStateMachinePlayback_iad8a")
 parameters/M4A1States/conditions/ADS = false
 parameters/M4A1States/conditions/Moving = false
 parameters/M4A1States/conditions/Reload = false
-parameters/M4A1States/ADS/playback = SubResource("AnimationNodeStateMachinePlayback_ahqv3")
-parameters/M4A1States/ADS/conditions/ADS = false
-parameters/M4A1States/ADS/conditions/ADS_Firing = false
-parameters/M4A1States/ADS/conditions/ADS_Walking = false
-parameters/M4A1States/Movement/blend_position = 0.823632
+parameters/M4A1States/ADS/blend_position = 0
+parameters/M4A1States/Movement/blend_position = 0
+
+[node name="m4a1AnimationPlayer2" type="AnimationPlayer" parent="M4A1"]
+playback_default_blend_time = 0.2
+libraries = {
+"": SubResource("AnimationLibrary_cvm07"),
+"M4A1": ExtResource("3_xkxs1")
+}
 
 [node name="Camera3D" type="Camera3D" parent="."]
 

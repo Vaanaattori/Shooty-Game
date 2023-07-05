@@ -26,6 +26,7 @@ var currenct_animation_tree = M4A1_animation_tree
 #var wepName = Weapon.wepName
 signal playerADS(ads)
 
+var animationtoplay
 var weaponout = false
 var firing: bool = false
 var Reloading: bool = false
@@ -45,7 +46,7 @@ var slide_velocity = Vector3.ZERO
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
-	M4A1_animation_tree.active = true
+#	M4A1_animation_tree.active = true
 	slidetime.wait_time = PlayerStats.SlideLength
 
 func _unhandled_input(event):
@@ -68,10 +69,12 @@ func _process(delta):
 	else:
 		weaponout = false
 	if Weapons.weaponCount > 0:
-		print(PlayerStats.CurrentWeapon.wepName)
+#		print(PlayerStats.CurrentWeapon.wepName)
 		FireRateTimer.wait_time = PlayerStats.CurrentWeapon.fireRate
+		reload_animation_dur.wait_time = PlayerStats.CurrentWeapon.reloadLength
+		reload_time.wait_time = PlayerStats.CurrentWeapon.reloadTime
 	Exhausted()
-#	Animations()
+	Animations()
 	Shoot()
 #	print("ismoving ",isMoving)
 	Slide()
@@ -243,18 +246,10 @@ func Reload():
 	var onoff = true
 	
 	if reload_animation_dur.time_left == 0:
-#		print("reload")
 		Reloading = true
-
+		animationtoplay = "Reload"
 		reload_animation_dur.start()
 		reload_time.start()
-		# I HAVE 60 bullets left
-		# I have 29 in mag
-		# 30 - 29 = 1 reloadamount
-		# 60 - 1 = 59 bullets left
-		# If ammo left < mag size ( ammo left 15 )
-		# ammoinmag + 15
-		# 15
 
 func isRunning():
 	if Input.is_action_pressed("Sprint"):
@@ -275,115 +270,52 @@ func reload_animation_dur_timeout():
 #	animation_tree["parameters/conditions/Reload"] = false
 	Reloading = false
 
-
-
 func ThePlayer():
 	pass
 
 func _on_pick_up_range_body_entered(body):
 #	body = body.get_owner()
-	print(body)
+#	print(body)
 	if body.has_method("Gun"):
 		if Weapons.get_child_count() == 0:
-			print("picking up gun")
+#			print("picking up gun")
 			Weapons.gunPickUp(body)
-#		body.PickUp()
+		body.PickUp()
 
+func Animations():
+#	print("Pose: ", pose, "    IsmMoving: ", isMoving, "    isADS() ", ADS(), "    IsReloading ", Reloading)
 
+	#reload
+	if Input.is_action_just_pressed("Reload") and PlayerStats.CurrentWeapon.ammoCount != 0 and PlayerStats.CurrentWeapon.ammoInMag != PlayerStats.CurrentWeapon.magSize or Reloading: Reload()
+	elif Input.is_action_just_pressed("Reload") and PlayerStats.CurrentWeapon.ammoCount == 0: pass
 
+	if not Reloading and not pose == "prone":
+		# Idle
+		if isMoving == "Idle" and not ADS() and not firing or sliding and not ADS() and not firing:
+#			print("idle")
+			animationtoplay = "Idle"
+		# Walking
+		if isMoving == "Walking" and not ADS() and not firing and not sliding:
+#			print("walking")
+			animationtoplay = "Walking"
+			if pose == "crouch":
+				TweenFunc(-1, "Walk", .1)
+			else:
+				TweenFunc(1, "Walk", .1)
+		# ADS
+		if ADS() and not isRunning() or ADS() and sliding:
+			if not Reloading:
+				if firing:
+					animationtoplay = "ADS_Firing"
+				elif isMoving == "Walking":
+					animationtoplay = "ADS_Walking"
+				else:
+					animationtoplay = "ADS"
 
+		# Sprinting
+		if isRunning() and pose == "stand" and not sliding:
+			animationtoplay = "Sprinting"
 
-
-
-
-
-#func Animations():
-##	print("Pose: ", pose, "    IsmMoving: ", isMoving, "    isADS() ", ADS(), "    IsReloading ", Reloading)
-#
-#	#reload
-#	if Input.is_action_just_pressed("Reload") and PlayerStats.CurrentWeapon.ammoCount != 0 and PlayerStats.CurrentWeapon.ammoInMag != PlayerStats.CurrentWeapon.magSize or Reloading: Reload()
-#	elif Input.is_action_just_pressed("Reload") and PlayerStats.CurrentWeapon.ammoCount == 0: pass
-#
-#	if not Reloading and not pose == "prone":
-#		# Idle
-#		if isMoving == "Idle" and not ADS() and not firing or sliding and not ADS() and not firing:
-##			print("idle")
-##			animation_tree["parameters/conditions/HipFire"] = false
-##			animation_tree["parameters/conditions/ADS_Firing"] = false
-##			animation_tree["parameters/conditions/Idle"] = true
-##			animation_tree["parameters/conditions/Walking"] = false
-##			animation_tree["parameters/conditions/Sprint"] = false
-##			animation_tree["parameters/conditions/ADS"] = false
-##			animation_tree["parameters/conditions/Crawl"] = false
-#			pass
-#		# Walking
-#		if isMoving == "Walking" and not ADS() and not firing and not sliding:
-##			print("walking")
-##			animation_tree["parameters/conditions/HipFire"] = false
-##			animation_tree["parameters/conditions/ADS_Firing"] = false
-##			animation_tree["parameters/conditions/Idle"] = false
-##			animation_tree["parameters/conditions/Walking"] = true
-##			animation_tree["parameters/conditions/Sprint"] = false
-##			animation_tree["parameters/conditions/ADS"] = false
-##			animation_tree["parameters/conditions/Crawl"] = false
-#			if pose == "crouch":
-#				TweenFunc(-1, "Walk", .1)
-#			else:
-#				TweenFunc(1, "Walk", .1)
-#			pass
-#		# ADS
-#		if ADS() and not isRunning() or ADS() and sliding:
-##			print("ads")
-#			if firing:
-##				animation_tree["parameters/conditions/ADS_Firing"] = true
-##				animation_tree["parameters/conditions/ADS"] = false
-#				pass
-#			else:
-##				animation_tree["parameters/conditions/ADS_Firing"] = false
-##				animation_tree["parameters/conditions/ADS"] = true
-##			animation_tree["parameters/conditions/HipFire"] = false
-##			animation_tree["parameters/conditions/Idle"] = false
-##			animation_tree["parameters/conditions/Walking"] = false
-##			animation_tree["parameters/conditions/Sprint"] = false
-##			animation_tree["parameters/conditions/Crawl"] = false
-#				pass
-#			if isMovingcheck != isMoving:
-#				pass
-#				if isMoving == "Walking": 
-#					TweenFunc(10, "ADS", .1)
-#				elif isMoving == "Idle": 
-#					TweenFunc(0, "ADS", .1)
-#			isMovingcheck = isMoving
-#
-#		# Sprinting
-#		if isRunning() and pose == "stand" and not sliding:
-##				print("sprinting")
-##				animation_tree["parameters/conditions/HipFire"] = false
-##				animation_tree["parameters/conditions/ADS_Firing"] = false
-##				animation_tree["parameters/conditions/ADS"] = false
-##				animation_tree["parameters/conditions/Idle"] = false
-##				animation_tree["parameters/conditions/Walking"] = false
-##				animation_tree["parameters/conditions/Crawl"] = false
-##				animation_tree["parameters/conditions/Sprint"] = true
-#				pass
-#	# end of "if not Reloading and not pose == "prone"
-#	# Prone
-#	if pose == "prone" and not Reloading:
-##		print("prone")
-##		animation_tree["parameters/conditions/HipFire"] = false
-##		animation_tree["parameters/conditions/ADS_Firing"] = false
-##		animation_tree["parameters/conditions/ADS"] = false
-##		animation_tree["parameters/conditions/Idle"] = false
-##		animation_tree["parameters/conditions/Walking"] = false
-##		animation_tree["parameters/conditions/Sprint"] = false
-##		animation_tree["parameters/conditions/Crawl"] = true
-#		pass
-#	# Hipfire
-#	if firing and not ADS() and not Reloading:
-##		animation_tree["parameters/conditions/Sprint"] = false
-##		animation_tree["parameters/conditions/HipFire"] = true
-##		animation_tree["parameters/conditions/ADS_Firing"] = false
-##		animation_tree["parameters/conditions/ADS"] = false
-##		animation_tree["parameters/conditions/Idle"] = false
-##		animation_tree["parameters/conditions/Walking"] = false
-#		pass
+	if firing and not ADS() and not Reloading:
+#		animation_tree["parameters/conditions/HipFire"] = true
+		pass

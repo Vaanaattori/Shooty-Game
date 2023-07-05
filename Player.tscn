@@ -1,9 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://bwavtub8bg7xu"]
+[gd_scene load_steps=13 format=3 uid="uid://bwavtub8bg7xu"]
 
 [ext_resource type="Script" path="res://Script/Player.gd" id="1_4tllj"]
 [ext_resource type="PackedScene" uid="uid://bp7a48krtn5wr" path="res://HUD.tscn" id="2_2em46"]
 [ext_resource type="Shape3D" uid="uid://dw8ncesrcwvkc" path="res://PlayerCapsule.tres" id="3_4ajwy"]
-[ext_resource type="Script" path="res://Weapon.gd" id="5_sr8ya"]
+[ext_resource type="Script" path="res://WeaponHand.gd" id="4_lvyfy"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://d1m8d1h2qnup2" path="res://M4A1StateMachine.tres" id="6_nj4vs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sxin3"]
@@ -23,18 +23,9 @@ size = Vector3(1, 0.159349, 1)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_aaf83"]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_np3le"]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_jjl2i"]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_0sdcw"]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_5nofy"]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_wom2c"]
+[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_eyyam"]
 
 [node name="Player" type="CharacterBody3D" groups=["Persist"]]
-transform = Transform3D(-1, 1.78233e-10, -2.53518e-06, 1.78233e-10, 1, 2.18525e-18, 2.53518e-06, -4.49668e-16, -1, 0.5, -0.53, -0.66)
 script = ExtResource("1_4tllj")
 
 [node name="HUD" parent="." instance=ExtResource("2_2em46")]
@@ -77,7 +68,7 @@ debug_shape_custom_color = Color(1, 1, 0, 1)
 debug_shape_thickness = 1
 
 [node name="Weapons" type="Node3D" parent="Neck/Camera3D"]
-script = ExtResource("5_sr8ya")
+script = ExtResource("4_lvyfy")
 
 [node name="Timers" type="Node" parent="."]
 
@@ -122,27 +113,12 @@ shape = SubResource("BoxShape3D_25lq8")
 tree_root = ExtResource("6_nj4vs")
 anim_player = NodePath("../Neck/Camera3D/Weapons/M4A1/AnimationPlayer")
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_aaf83")
-parameters/M4A1States/playback = SubResource("AnimationNodeStateMachinePlayback_np3le")
+parameters/conditions/Swap-out = false
+parameters/M4A1States/playback = SubResource("AnimationNodeStateMachinePlayback_eyyam")
 parameters/M4A1States/conditions/ADS = false
 parameters/M4A1States/conditions/Moving = false
 parameters/M4A1States/conditions/Reload = false
-parameters/M4A1States/ADS/playback = SubResource("AnimationNodeStateMachinePlayback_jjl2i")
-parameters/M4A1States/ADS/conditions/ADS = false
-parameters/M4A1States/ADS/conditions/ADS_Firing = false
-parameters/M4A1States/ADS/conditions/ADS_Walking = false
-parameters/M4A1States/Movement/blend_position = 0
-
-[node name="M4A1 Animation Tree" type="AnimationTree" parent="."]
-tree_root = ExtResource("6_nj4vs")
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_0sdcw")
-parameters/M4A1States/playback = SubResource("AnimationNodeStateMachinePlayback_5nofy")
-parameters/M4A1States/conditions/ADS = false
-parameters/M4A1States/conditions/Moving = false
-parameters/M4A1States/conditions/Reload = false
-parameters/M4A1States/ADS/playback = SubResource("AnimationNodeStateMachinePlayback_wom2c")
-parameters/M4A1States/ADS/conditions/ADS = false
-parameters/M4A1States/ADS/conditions/ADS_Firing = false
-parameters/M4A1States/ADS/conditions/ADS_Walking = false
+parameters/M4A1States/ADS/blend_position = 0
 parameters/M4A1States/Movement/blend_position = 0
 
 [connection signal="playerADS" from="." to="HUD" method="_on_player_player_ads"]
