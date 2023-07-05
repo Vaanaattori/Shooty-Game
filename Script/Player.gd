@@ -16,6 +16,7 @@ extends CharacterBody3D
 @onready var slideCT = $Timers/SlideCT
 @onready var Weapons = $Neck/Camera3D/Weapons
 @onready var M4A1 = $Neck/Camera3D/Weapons/M4A1
+@onready var weaponswap_dur = $Timers/WeaponSwapDur
 
 
 @onready var M4A1_animation_tree = $"M4A1 Animation Tree"
@@ -27,7 +28,7 @@ var currenct_animation_tree = M4A1_animation_tree
 signal playerADS(ads)
 
 var animationtoplay
-var weaponout = false
+
 var firing: bool = false
 var Reloading: bool = false
 var exhausted: bool = false
@@ -64,12 +65,11 @@ func _unhandled_input(event):
 			neck.rotate_x(-event.relative.y * actualsens * delta)
 
 func _process(delta):
-	if PlayerStats.weaponout == "primary" or "secondary":
-		weaponout = true
-	else:
-		weaponout = false
+#	if PlayerStats.weaponout == "primary" or "secondary":
+#		weaponout = true
+#	else:
+#		weaponout = false
 	if Weapons.weaponCount > 0:
-#		print(PlayerStats.CurrentWeapon.wepName)
 		FireRateTimer.wait_time = PlayerStats.CurrentWeapon.fireRate
 		reload_animation_dur.wait_time = PlayerStats.CurrentWeapon.reloadLength
 		reload_time.wait_time = PlayerStats.CurrentWeapon.reloadTime
@@ -195,7 +195,7 @@ func ADS():
 func Slide():
 	var cancel = false
 	if slidetime.time_left > 0 and sliding:
-		if Input.is_action_just_pressed("Crouch") and slideCT.time_left == 0:
+		if Input.is_action_just_pressed("Crouch") or Input.is_action_just_pressed("Jump") and slideCT.time_left == 0:
 			on_slide_timeout()
 			slidetime.stop()
 			cancel = true
@@ -277,23 +277,35 @@ func _on_pick_up_range_body_entered(body):
 #	body = body.get_owner()
 #	print(body)
 	if body.has_method("Gun"):
-		if Weapons.get_child_count() == 0:
+		if Weapons.get_child_count() < 2:
 #			print("picking up gun")
 			Weapons.gunPickUp(body)
-		body.PickUp()
+			body.PickUp()
 
 func Animations():
-#	print("Pose: ", pose, "    IsmMoving: ", isMoving, "    isADS() ", ADS(), "    IsReloading ", Reloading)
+	print("Pose: ", pose, "    IsmMoving: ", isMoving, "    isADS(): ", ADS(), "    IsReloading: ", Reloading, "    AnimationPlaying: ", animationtoplay, "    WeaponOut: ", PlayerStats.weaponout)
 
 	#reload
 	if Input.is_action_just_pressed("Reload") and PlayerStats.CurrentWeapon.ammoCount != 0 and PlayerStats.CurrentWeapon.ammoInMag != PlayerStats.CurrentWeapon.magSize or Reloading: Reload()
 	elif Input.is_action_just_pressed("Reload") and PlayerStats.CurrentWeapon.ammoCount == 0: pass
+	
+	if not Reloading:
+		if ADS() and not isRunning() or ADS() and sliding:
+			if not Reloading:
+				if firing:
+					animationtoplay = "ADS_Firing"
+				elif isMoving == "Walking":
+					animationtoplay = "ADS_Walking"
+				else:
+					animationtoplay = "ADS"
+					
+		if isMoving == "Idle" or pose == "prone":
+			if not ADS() and not firing or sliding and not ADS() and not firing:
+				animationtoplay = "Idle"
 
 	if not Reloading and not pose == "prone":
 		# Idle
-		if isMoving == "Idle" and not ADS() and not firing or sliding and not ADS() and not firing:
-#			print("idle")
-			animationtoplay = "Idle"
+		
 		# Walking
 		if isMoving == "Walking" and not ADS() and not firing and not sliding:
 #			print("walking")
@@ -303,19 +315,12 @@ func Animations():
 			else:
 				TweenFunc(1, "Walk", .1)
 		# ADS
-		if ADS() and not isRunning() or ADS() and sliding:
-			if not Reloading:
-				if firing:
-					animationtoplay = "ADS_Firing"
-				elif isMoving == "Walking":
-					animationtoplay = "ADS_Walking"
-				else:
-					animationtoplay = "ADS"
+		
 
 		# Sprinting
-		if isRunning() and pose == "stand" and not sliding:
+		if isRunning() and pose == "stand" and not sliding and not exhausted:
 			animationtoplay = "Sprinting"
 
 	if firing and not ADS() and not Reloading:
-#		animation_tree["parameters/conditions/HipFire"] = true
-		pass
+		animationtoplay = "HipFire"
+

@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=24 format=3 uid="uid://d1m8d1h2qnup2"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=31 format=3 uid="uid://d1m8d1h2qnup2"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1uqyp"]
 animation = &"M4A1/ADS"
@@ -18,6 +18,9 @@ blend_point_2/node = SubResource("AnimationNodeAnimation_ylhnh")
 blend_point_2/pos = 2.0
 min_space = 0.0
 max_space = 2.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4x4jj"]
+animation = &"M4A1/HipFire"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s8bl2"]
 animation = &"M4A1/Idle"
@@ -76,14 +79,46 @@ xfade_time = 0.1
 advance_mode = 2
 advance_condition = &"Reload"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f27es"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"HipFire"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qaljp"]
+xfade_time = 0.13
+advance_mode = 2
+advance_condition = &"HipFire"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8m8hs"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"HipFire"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rn8wk"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"ADS"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hxsdh"]
+advance_mode = 2
+advance_condition = &"Moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_47s1v"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"Reload"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kq2hd"]
 states/ADS/node = SubResource("AnimationNodeBlendSpace1D_y4x0e")
-states/ADS/position = Vector2(524, 192)
+states/ADS/position = Vector2(370, 216)
+states/M4A1HipFire/node = SubResource("AnimationNodeAnimation_4x4jj")
+states/M4A1HipFire/position = Vector2(660, 216)
 states/Movement/node = SubResource("AnimationNodeBlendSpace1D_4n5od")
 states/Movement/position = Vector2(370, 100)
 states/Reload/node = SubResource("AnimationNodeAnimation_x4lvm")
 states/Reload/position = Vector2(660, 100)
-transitions = ["Start", "Movement", SubResource("AnimationNodeStateMachineTransition_ryppj"), "Movement", "Reload", SubResource("AnimationNodeStateMachineTransition_1c28w"), "Reload", "Movement", SubResource("AnimationNodeStateMachineTransition_jkbus"), "Movement", "ADS", SubResource("AnimationNodeStateMachineTransition_qfncn"), "Reload", "ADS", SubResource("AnimationNodeStateMachineTransition_eaat1"), "ADS", "Movement", SubResource("AnimationNodeStateMachineTransition_o77v4"), "ADS", "Reload", SubResource("AnimationNodeStateMachineTransition_8nu7x")]
+transitions = ["Start", "Movement", SubResource("AnimationNodeStateMachineTransition_ryppj"), "Movement", "Reload", SubResource("AnimationNodeStateMachineTransition_1c28w"), "Reload", "Movement", SubResource("AnimationNodeStateMachineTransition_jkbus"), "Movement", "ADS", SubResource("AnimationNodeStateMachineTransition_qfncn"), "Reload", "ADS", SubResource("AnimationNodeStateMachineTransition_eaat1"), "ADS", "Movement", SubResource("AnimationNodeStateMachineTransition_o77v4"), "ADS", "Reload", SubResource("AnimationNodeStateMachineTransition_8nu7x"), "ADS", "M4A1HipFire", SubResource("AnimationNodeStateMachineTransition_f27es"), "Movement", "M4A1HipFire", SubResource("AnimationNodeStateMachineTransition_qaljp"), "Reload", "M4A1HipFire", SubResource("AnimationNodeStateMachineTransition_8m8hs"), "M4A1HipFire", "ADS", SubResource("AnimationNodeStateMachineTransition_rn8wk"), "M4A1HipFire", "Movement", SubResource("AnimationNodeStateMachineTransition_hxsdh"), "M4A1HipFire", "Reload", SubResource("AnimationNodeStateMachineTransition_47s1v")]
 graph_offset = Vector2(68, 52)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gsxki"]
@@ -100,20 +135,22 @@ xfade_time = 0.5
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6u8f7"]
-switch_mode = 2
-advance_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m27oo"]
 advance_mode = 2
 advance_condition = &"Swap-out"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2y2q8"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"Swap-in"
+
 [resource]
 states/M4A1States/node = SubResource("AnimationNodeStateMachine_kq2hd")
-states/M4A1States/position = Vector2(558, 100)
+states/M4A1States/position = Vector2(538, 100)
 states/M4A1Swap_In/node = SubResource("AnimationNodeAnimation_gsxki")
-states/M4A1Swap_In/position = Vector2(353, 100)
+states/M4A1Swap_In/position = Vector2(346, 100)
 states/M4A1Swap_Out/node = SubResource("AnimationNodeAnimation_1s5ir")
-states/M4A1Swap_Out/position = Vector2(749, 100)
-transitions = ["Start", "M4A1Swap_In", SubResource("AnimationNodeStateMachineTransition_wueh4"), "M4A1Swap_In", "M4A1States", SubResource("AnimationNodeStateMachineTransition_by5qj"), "M4A1Swap_Out", "End", SubResource("AnimationNodeStateMachineTransition_6u8f7"), "M4A1States", "M4A1Swap_Out", SubResource("AnimationNodeStateMachineTransition_m27oo")]
+states/M4A1Swap_Out/position = Vector2(538, 201)
+transitions = ["Start", "M4A1Swap_In", SubResource("AnimationNodeStateMachineTransition_wueh4"), "M4A1Swap_In", "M4A1States", SubResource("AnimationNodeStateMachineTransition_by5qj"), "M4A1States", "M4A1Swap_Out", SubResource("AnimationNodeStateMachineTransition_m27oo"), "M4A1Swap_Out", "M4A1Swap_In", SubResource("AnimationNodeStateMachineTransition_2y2q8")]
 graph_offset = Vector2(8, 60)

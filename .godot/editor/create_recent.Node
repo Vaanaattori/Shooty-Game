@@ -1,3 +1,6 @@
+Node3D
+Timer
+Node
 DirectionalLight3D
 WorldEnvironment
 Camera3D
@@ -7,12 +10,9 @@ AnimationPlayer
 HBoxContainer
 Label
 VBoxContainer
-Node3D
 Area3D
 ShapeCast3D
-Timer
 Marker3D
-Node
 RayCast3D
 MeshInstance3D
 StaticBody3D

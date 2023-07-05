@@ -93,6 +93,14 @@ one_shot = true
 wait_time = 0.2
 one_shot = true
 
+[node name="WeaponSwapOutDur" type="Timer" parent="Timers"]
+wait_time = 0.6
+one_shot = true
+
+[node name="WeaponSwapInDur" type="Timer" parent="Timers"]
+wait_time = 0.6
+one_shot = true
+
 [node name="ADS-Laser" type="RayCast3D" parent="."]
 transform = Transform3D(-0.999999, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74227e-08, 1, 4.37114e-08, -0.252928, 0.359312, -4.76837e-06)
 target_position = Vector3(0, -100, 0)
@@ -113,9 +121,11 @@ shape = SubResource("BoxShape3D_25lq8")
 tree_root = ExtResource("6_nj4vs")
 anim_player = NodePath("../Neck/Camera3D/Weapons/M4A1/AnimationPlayer")
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_aaf83")
+parameters/conditions/Swap-in = false
 parameters/conditions/Swap-out = false
 parameters/M4A1States/playback = SubResource("AnimationNodeStateMachinePlayback_eyyam")
 parameters/M4A1States/conditions/ADS = false
+parameters/M4A1States/conditions/HipFire = false
 parameters/M4A1States/conditions/Moving = false
 parameters/M4A1States/conditions/Reload = false
 parameters/M4A1States/ADS/blend_position = 0
@@ -126,4 +136,6 @@ parameters/M4A1States/Movement/blend_position = 0
 [connection signal="timeout" from="Timers/ReloadAnimationDur" to="." method="reload_animation_dur_timeout"]
 [connection signal="timeout" from="Timers/FireRate" to="." method="Firing"]
 [connection signal="timeout" from="Timers/SlideTimer" to="." method="on_slide_timeout"]
+[connection signal="timeout" from="Timers/WeaponSwapOutDur" to="Neck/Camera3D/Weapons" method="weaponswap_out_timeout"]
+[connection signal="timeout" from="Timers/WeaponSwapInDur" to="Neck/Camera3D/Weapons" method="weaponswap_in_timeout"]
 [connection signal="body_entered" from="PickUpRange" to="." method="_on_pick_up_range_body_entered"]

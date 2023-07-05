@@ -17,7 +17,7 @@ extends Node
 @export_group("GunStats")
 
 var weaponout = ""
-#
+
 #var wepName
 #var ammoCount
 #var magSize
@@ -38,30 +38,38 @@ var CurrentWeapon = {
 	magSize = 0,
 	fireRate = 0,
 	ammoInMag = 0,
+	reloadLength = 0,
+	reloadTime = 0,
 }
 
 var PrimaryWeapon = {
 	wepName = "Empty",
 	ammoCount = 0,
 	magSize = 0,
-	FireRate = 0,
+	fireRate = 0,
 	ammoInMag = 0,
+	reloadLength = 0,
+	reloadTime = 0,
 }
 
 var SecondaryWeapon = {
 	wepName = "Empty",
-	ammoCount = 0,
-	magSize = 0,
-	FireRate = 0,
-	ammoInMag = 0,
+	ammoCount = 1,
+	magSize = 1,
+	fireRate = 1,
+	ammoInMag = 1,
+	reloadLength = 0,
+	reloadTime = 0,
 }
 
 var MeleeWeapon = {
 	wepName = "Fists",
 	ammoCount = 0,
 	magSize = 0,
-	FireRate = 1,
+	fireRate = 1,
 	ammoInMag = 0,
+	reloadLength = 0,
+	reloadTime = 0,
 }
 
 var Sec_wepName

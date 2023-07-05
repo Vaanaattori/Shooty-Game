@@ -433,7 +433,6 @@ skeleton = NodePath("")
 
 [node name="ADS-Laser" type="RayCast3D" parent="Node3D/RearSight003"]
 transform = Transform3D(0.999922, 0.0121491, 0.00266869, -0.0026677, -9.76407e-05, 0.999996, 0.0121493, -0.999926, -6.52235e-05, -0.252928, 0.359312, -4.76837e-06)
-visible = false
 target_position = Vector3(0, -100, 0)
 collision_mask = 12
 debug_shape_custom_color = Color(1, 0, 0, 1)
@@ -450,9 +449,11 @@ libraries = {
 tree_root = ExtResource("3_mdxg4")
 anim_player = NodePath("../m4a1AnimationPlayer")
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_4vdi0")
+parameters/conditions/Swap-in = false
 parameters/conditions/Swap-out = false
 parameters/M4A1States/playback = SubResource("AnimationNodeStateMachinePlayback_ptl4c")
 parameters/M4A1States/conditions/ADS = false
+parameters/M4A1States/conditions/HipFire = false
 parameters/M4A1States/conditions/Moving = false
 parameters/M4A1States/conditions/Reload = false
 parameters/M4A1States/ADS/blend_position = 1.99154

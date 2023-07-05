@@ -62,6 +62,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector3(-2.18525e-18, -3.14159, 1.78233e-10)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cvm07"]
 _data = {
@@ -84,10 +96,13 @@ parameters/M4A1States/ADS/blend_position = 0
 [node name="AnimationTree2" type="AnimationTree" parent="M4A1"]
 tree_root = ExtResource("2_s33wa")
 anim_player = NodePath("../m4a1AnimationPlayer2")
+active = true
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_2h1ji")
+parameters/conditions/Swap-in = false
 parameters/conditions/Swap-out = false
 parameters/M4A1States/playback = SubResource("AnimationNodeStateMachinePlayback_iad8a")
 parameters/M4A1States/conditions/ADS = false
+parameters/M4A1States/conditions/HipFire = false
 parameters/M4A1States/conditions/Moving = false
 parameters/M4A1States/conditions/Reload = false
 parameters/M4A1States/ADS/blend_position = 0
