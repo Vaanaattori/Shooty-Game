@@ -17,36 +17,49 @@ func _ready():
 	pass
 	
 func _process(delta):
-	selectWeapon()
+	selectWeapon("")
 	if not inanimation and WeaponSelected != null:
 		WeaponSelected.PlayerAnimation = Player.animationtoplay
-func selectWeapon():
+func selectWeapon(wep):
 	#when primary selected
-	if Input.is_action_just_pressed("PrimaryWep") and not PlayerStats.weaponout == "primary" and weaponCount > 1:
-#		WeaponSelected.PlayerAnimation = "Swap-out"
-		print("test")
+	if Input.is_action_just_pressed("PrimaryWep") and not WeaponSelected == PrimaryWeapon and weaponCount > 1 or wep == "primary":
 		inanimation = true
+		print(WeaponSelected)
+		WeaponSelected.PlayerAnimation = "Swap-out"
+		print(WeaponSelected.PlayerAnimation)
 		WeaponSelected = PrimaryWeapon
 		weaponswap_out_dur.start()
 
-	if Input.is_action_just_pressed("SecondaryWep") and not PlayerStats.weaponout == "secondary" and weaponCount > 1:
+	if Input.is_action_just_pressed("SecondaryWep") and not WeaponSelected == SecondaryWeapon and weaponCount > 1 or wep == "secondary":
 		inanimation = true
+		print(WeaponSelected)
 		WeaponSelected.PlayerAnimation = "Swap-out"
+		print(WeaponSelected.PlayerAnimation)
 		WeaponSelected = SecondaryWeapon
 		weaponswap_out_dur.start()
 
 func weaponswap_out_timeout():
 	if WeaponSelected == PrimaryWeapon:
-		WeaponSelected.PlayerAnimation = "Swap-in"
+		if WeaponSelected.animation_tree.active != true:
+			WeaponSelected.animation_tree.active = true
+		else:
+			WeaponSelected.PlayerAnimation = "Swap-in"
 		weaponswap_in_dur.start()
 	if WeaponSelected == SecondaryWeapon:
-		WeaponSelected.PlayerAnimation = "Swap-in"
+		if WeaponSelected.animation_tree.active != true:
+			WeaponSelected.animation_tree.active = true
+		else:
+			WeaponSelected.PlayerAnimation = "Swap-in"
 		weaponswap_in_dur.start()
 
 func weaponswap_in_timeout():
 	inanimation = false
 	if WeaponSelected == PrimaryWeapon:
 		WeaponSelected.weaponOut = true
+		PlayerStats.weaponout = "primary"
+	if WeaponSelected == SecondaryWeapon:
+		WeaponSelected.weaponOut = true
+		PlayerStats.weaponout = "secondary"
 
 func gunPickUp(Gun):
 	weaponCount = get_child_count()
@@ -58,10 +71,12 @@ func gunPickUp(Gun):
 		PrimaryWeapon.pickedUp = true
 		PrimaryWeapon.PickedUp()
 		PlayerStats.PrimaryWeapon = PrimaryWeapon.WeaponStats
-		PlayerStats.weaponout = "primary"
 		WeaponSelected = PrimaryWeapon
-		WeaponSelected.PlayerAnimation = Player.animationtoplay
-		print(get_child(0))
+		WeaponSelected.weaponOut = true
+		WeaponSelected.animation_tree.active = true
+		WeaponSelected.PlayerAnimation = "Swap-in"
+		print(WeaponSelected.PlayerAnimation)
+		weaponswap_in_dur.start()
 	
 	if weaponCount == 1:
 		print("Picked up: ",Gun.name)
@@ -71,9 +86,7 @@ func gunPickUp(Gun):
 		SecondaryWeapon.pickedUp = true
 		SecondaryWeapon.PickedUp()
 		PlayerStats.SecondaryWeapon = SecondaryWeapon.WeaponStats
-		PlayerStats.weaponout = "secondary"
-		WeaponSelected = SecondaryWeapon
-		print(get_child(1))
+		selectWeapon("secondary")
 	
 	weaponCount = get_child_count()
 

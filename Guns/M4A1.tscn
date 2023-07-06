@@ -365,8 +365,9 @@ _data = {
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_ptl4c"]
 
-[node name="RigidBody3D" type="RigidBody3D"]
+[node name="M4A1" type="RigidBody3D"]
 transform = Transform3D(-1, 1.78233e-10, -2.53518e-06, 1.78233e-10, 1, 2.18525e-18, 2.53518e-06, -4.49668e-16, -1, 0.5, -0.53, -0.67)
+visible = false
 collision_layer = 4
 mass = 3.4
 script = ExtResource("1_n734i")
@@ -457,4 +458,4 @@ parameters/M4A1States/conditions/HipFire = false
 parameters/M4A1States/conditions/Moving = false
 parameters/M4A1States/conditions/Reload = false
 parameters/M4A1States/ADS/blend_position = 1.99154
-parameters/M4A1States/Movement/blend_position = 2.0
+parameters/M4A1States/Movement/blend_position = 0.0

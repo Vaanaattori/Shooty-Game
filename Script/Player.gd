@@ -185,12 +185,8 @@ func Pose(value):
 	tween.tween_property(playercapsule, "height", value, .2)
 
 func ADS():
-	if Input.is_action_pressed("ADS") and not Reloading and not isRunning(): 
-#		print("ADS true") 
-		return true
-	else:
-#		print("ADS false") 
-		return false
+	if Input.is_action_pressed("ADS") and not Reloading and not isRunning(): return true
+	else: return false
 
 func Slide():
 	var cancel = false
@@ -278,12 +274,11 @@ func _on_pick_up_range_body_entered(body):
 #	print(body)
 	if body.has_method("Gun"):
 		if Weapons.get_child_count() < 2:
-#			print("picking up gun")
 			Weapons.gunPickUp(body)
 			body.PickUp()
 
 func Animations():
-	print("Pose: ", pose, "    IsmMoving: ", isMoving, "    isADS(): ", ADS(), "    IsReloading: ", Reloading, "    AnimationPlaying: ", animationtoplay, "    WeaponOut: ", PlayerStats.weaponout)
+
 
 	#reload
 	if Input.is_action_just_pressed("Reload") and PlayerStats.CurrentWeapon.ammoCount != 0 and PlayerStats.CurrentWeapon.ammoInMag != PlayerStats.CurrentWeapon.magSize or Reloading: Reload()

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bp7a48krtn5wr"]
+[gd_scene load_steps=4 format=3 uid="uid://bp7a48krtn5wr"]
 
 [ext_resource type="Script" path="res://HUD.gd" id="1_u6ok0"]
 [ext_resource type="Texture2D" uid="uid://bgfgnjtof5gdj" path="res://Crosshair.png" id="1_w72py"]
+[ext_resource type="Theme" uid="uid://clcl684ccf71p" path="res://HUD_Theme.tres" id="2_rkngl"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_u6ok0")
@@ -16,6 +17,7 @@ offset_right = 418.0
 offset_bottom = -185.0
 grow_vertical = 0
 scale = Vector2(1.61985, 1.61985)
+theme = ExtResource("2_rkngl")
 text = "STAMINA:
 "
 
@@ -39,15 +41,18 @@ mouse_filter = 2
 
 [node name="AmmoLabel" type="Label" parent="AmmoContainer"]
 layout_mode = 2
+theme = ExtResource("2_rkngl")
 text = "Ammo Left:"
 
 [node name="AmmoNumber" type="Label" parent="AmmoContainer"]
 layout_mode = 2
+theme = ExtResource("2_rkngl")
 text = "50"
 horizontal_alignment = 1
 
 [node name="TotalAmmoLeft" type="Label" parent="AmmoContainer"]
 layout_mode = 2
+theme = ExtResource("2_rkngl")
 text = "50"
 horizontal_alignment = 1
 
@@ -79,14 +84,21 @@ theme_override_constants/separation = 20
 [node name="PrimaryWeaponInfo" type="VBoxContainer" parent="WeaponInfo"]
 layout_mode = 2
 
+[node name="PriAnimation" type="Label" parent="WeaponInfo/PrimaryWeaponInfo"]
+layout_mode = 2
+text = "Animation"
+horizontal_alignment = 1
+
 [node name="Weapon" type="Label" parent="WeaponInfo/PrimaryWeaponInfo"]
 layout_mode = 2
+theme = ExtResource("2_rkngl")
 text = "PRIMARY 
 WEAPON:"
 horizontal_alignment = 1
 
 [node name="WeaponName" type="Label" parent="WeaponInfo/PrimaryWeaponInfo"]
 layout_mode = 2
+theme = ExtResource("2_rkngl")
 text = "PLACEHOLDER"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -94,14 +106,35 @@ vertical_alignment = 1
 [node name="SecondaryWeaponInfo" type="VBoxContainer" parent="WeaponInfo"]
 layout_mode = 2
 
+[node name="SecAnimation" type="Label" parent="WeaponInfo/SecondaryWeaponInfo"]
+layout_mode = 2
+text = "Animation"
+horizontal_alignment = 1
+
 [node name="Weapon" type="Label" parent="WeaponInfo/SecondaryWeaponInfo"]
 layout_mode = 2
+theme = ExtResource("2_rkngl")
 text = "SECONDARY
 WEAPON:"
 horizontal_alignment = 1
 
 [node name="WeaponName" type="Label" parent="WeaponInfo/SecondaryWeaponInfo"]
 layout_mode = 2
+theme = ExtResource("2_rkngl")
 text = "PLACEHOLDER"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Updatetimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="DebugLog" type="RichTextLabel" parent="."]
+offset_right = 648.0
+offset_bottom = 548.0
+theme = ExtResource("2_rkngl")
+theme_override_font_sizes/normal_font_size = 32
+text = "This is text"
+autowrap_mode = 0
+
+[connection signal="timeout" from="Updatetimer" to="." method="updatetimer_check"]

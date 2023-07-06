@@ -12,7 +12,7 @@ extends "res://Weapon.gd"
 var PlayerAnimation
 var Reloading = false
 var MoveBlend = 0
-var weaponOut:bool = true
+var weaponOut:bool = false
 
 var WeaponStats = {
 	wepName = "M4A1",
@@ -34,6 +34,7 @@ func TweenFunc(value, parameters, time):
 
 func animations():
 #	print(animation_tree.active)
+
 	if PlayerAnimation == "Reload":
 		animation_tree["parameters/M4A1States/conditions/Reload"] = true
 		animation_tree["parameters/M4A1States/conditions/Moving"] = false
@@ -83,40 +84,38 @@ func animations():
 		animation_tree["parameters/M4A1States/conditions/ADS"] = false
 
 func wepswap():
+	if PlayerAnimation == "Swap-out":
+		animation_tree["parameters/conditions/Swap-out"] = true
+		animation_tree["parameters/conditions/Swap-in"] = false
 		animation_tree["parameters/M4A1States/conditions/Moving"] = false
 		animation_tree["parameters/M4A1States/conditions/ADS"] = false
 		animation_tree["parameters/M4A1States/conditions/Reload"] = false
 		animation_tree["parameters/M4A1States/conditions/HipFire"] = false
+		weaponOut = false
+	elif PlayerAnimation == "Swap-in":
+		animation_tree["parameters/conditions/Swap-in"] = true
+		animation_tree["parameters/conditions/Swap-out"] = false
+		animation_tree["parameters/M4A1States/conditions/Moving"] = false
+		animation_tree["parameters/M4A1States/conditions/ADS"] = false
+		animation_tree["parameters/M4A1States/conditions/Reload"] = false
+		animation_tree["parameters/M4A1States/conditions/HipFire"] = false
+		weaponOut = true
 
-		if not Reloading and animation_tree["parameters/conditions/Swap-out"] == false or PlayerAnimation == "Swap-out":
-			animation_tree["parameters/conditions/Swap-out"] = true
-			animation_tree["parameters/conditions/Swap-in"] = false
-			weaponOut = false
-		elif not Reloading and animation_tree["parameters/conditions/Swap-out"] == true or PlayerAnimation == "Swap-in":
-			animation_tree["parameters/conditions/Swap-in"] = true
-			animation_tree["parameters/conditions/Swap-out"] = false
-			weaponOut = true
 
 func _ready():
 	pass
 
 func _process(delta):
+	wepswap()
 	if pickedUp:
-#		print(weaponOut)
 		if weaponOut:
-			print(PlayerAnimation)
+			visible = true
 			animations()
-#			if Input.is_action_just_pressed("SwapWep"):
-#				wepswap()
-#		elif not weaponOut:
-#			if Input.is_action_just_pressed("SwapWep"):
-#				wepswap()
 
 func PickedUp():
 	freeze = true
 	collision_layer = 0
 	collision_mask = 0
-	animation_tree.active = true
 
 func Gun():
 	pass
