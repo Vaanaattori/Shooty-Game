@@ -10,7 +10,7 @@ var WeaponSelected
 var PrimaryWeapon
 var SecondaryWeapon
 var MeleeWeapon
-var inanimation:bool = false
+var swapping:bool = false
 var weaponCount = get_child_count()
 
 func _ready():
@@ -18,25 +18,28 @@ func _ready():
 	
 func _process(delta):
 	selectWeapon("")
-	if not inanimation and WeaponSelected != null:
+	if not swapping and WeaponSelected != null:
 		WeaponSelected.PlayerAnimation = Player.animationtoplay
 func selectWeapon(wep):
 	#when primary selected
-	if Input.is_action_just_pressed("PrimaryWep") and not WeaponSelected == PrimaryWeapon and weaponCount > 1 or wep == "primary":
-		inanimation = true
-		print(WeaponSelected)
-		WeaponSelected.PlayerAnimation = "Swap-out"
-		print(WeaponSelected.PlayerAnimation)
-		WeaponSelected = PrimaryWeapon
-		weaponswap_out_dur.start()
+	if not Player.Reloading:
+		if Input.is_action_just_pressed("PrimaryWep") and not WeaponSelected == PrimaryWeapon and weaponCount > 1 or wep == "primary":
+			swapping = true
+			print(WeaponSelected)
+			WeaponSelected.PlayerAnimation = "Swap-out"
+			WeaponSelected.weaponOut = false
+			print(WeaponSelected.PlayerAnimation)
+			WeaponSelected = PrimaryWeapon
+			weaponswap_out_dur.start()
 
-	if Input.is_action_just_pressed("SecondaryWep") and not WeaponSelected == SecondaryWeapon and weaponCount > 1 or wep == "secondary":
-		inanimation = true
-		print(WeaponSelected)
-		WeaponSelected.PlayerAnimation = "Swap-out"
-		print(WeaponSelected.PlayerAnimation)
-		WeaponSelected = SecondaryWeapon
-		weaponswap_out_dur.start()
+		if Input.is_action_just_pressed("SecondaryWep") and not WeaponSelected == SecondaryWeapon and weaponCount > 1 or wep == "secondary":
+			swapping = true
+			print(WeaponSelected)
+			WeaponSelected.PlayerAnimation = "Swap-out"
+			WeaponSelected.weaponOut = false
+			print(WeaponSelected.PlayerAnimation)
+			WeaponSelected = SecondaryWeapon
+			weaponswap_out_dur.start()
 
 func weaponswap_out_timeout():
 	if WeaponSelected == PrimaryWeapon:
@@ -53,7 +56,7 @@ func weaponswap_out_timeout():
 		weaponswap_in_dur.start()
 
 func weaponswap_in_timeout():
-	inanimation = false
+	swapping = false
 	if WeaponSelected == PrimaryWeapon:
 		WeaponSelected.weaponOut = true
 		PlayerStats.weaponout = "primary"

@@ -91,7 +91,7 @@ func wepswap():
 		animation_tree["parameters/M4A1States/conditions/ADS"] = false
 		animation_tree["parameters/M4A1States/conditions/Reload"] = false
 		animation_tree["parameters/M4A1States/conditions/HipFire"] = false
-		weaponOut = false
+
 	elif PlayerAnimation == "Swap-in":
 		animation_tree["parameters/conditions/Swap-in"] = true
 		animation_tree["parameters/conditions/Swap-out"] = false
@@ -99,7 +99,7 @@ func wepswap():
 		animation_tree["parameters/M4A1States/conditions/ADS"] = false
 		animation_tree["parameters/M4A1States/conditions/Reload"] = false
 		animation_tree["parameters/M4A1States/conditions/HipFire"] = false
-		weaponOut = true
+
 
 
 func _ready():

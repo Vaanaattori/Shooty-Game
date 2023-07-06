@@ -11,6 +11,8 @@ extends CanvasLayer
 @onready var weapons = $"../Neck/Camera3D/Weapons"
 @onready var prianimation = $WeaponInfo/PrimaryWeaponInfo/PriAnimation
 @onready var secanimation = $WeaponInfo/SecondaryWeaponInfo/SecAnimation
+@onready var pri_animation_bool = $WeaponInfo/PrimaryWeaponInfo/PriAnimationBool
+@onready var sec_animation_bool = $WeaponInfo/SecondaryWeaponInfo/SecAnimationBool
 
 
 var PlayerADS = false
@@ -45,11 +47,14 @@ func updatetimer_check():
 	CurrentWeapon: {6}
 	PrimaryWeapon: {7}
 	SecondaryWeapon: {8}
-	""".format([Player.pose, Player.isMoving, Player.ADS(), Player.Reloading, Player.animationtoplay, weapons.WeaponSelected, PlayerStats.CurrentWeapon.wepName, PlayerStats.PrimaryWeapon.wepName, PlayerStats.SecondaryWeapon.wepName])
+	Swapping: {9}
+	""".format([Player.pose, Player.isMoving, Player.ADS(), Player.Reloading, Player.animationtoplay, weapons.WeaponSelected, PlayerStats.CurrentWeapon.wepName, PlayerStats.PrimaryWeapon.wepName, PlayerStats.SecondaryWeapon.wepName, weapons.swapping])
 	if weapons.PrimaryWeapon != null:
 		if weapons.PrimaryWeapon.PlayerAnimation != null:
+			pri_animation_bool.text = str(weapons.PrimaryWeapon.weaponOut)
 			prianimation.text = weapons.PrimaryWeapon.PlayerAnimation
 	if weapons.SecondaryWeapon != null:
 		if weapons.SecondaryWeapon.PlayerAnimation != null:
 			secanimation.text = weapons.SecondaryWeapon.PlayerAnimation
+			sec_animation_bool.text = str(weapons.SecondaryWeapon.weaponOut)
 #	print("Pose: ", pose, "    IsmMoving: ", isMoving, "    isADS(): ", ADS(), "    IsReloading: ", Reloading, "    AnimationPlaying: ", animationtoplay, "    WeaponOut: ", PlayerStats.weaponout)

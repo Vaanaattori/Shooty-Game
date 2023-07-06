@@ -80,19 +80,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.2086, 1.5562, 28.7121)
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -25.164, 19.5198, 14.5943)
 
 [node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.69844, 1.2917, -3.17581)
+transform = Transform3D(0.82374, 0.566967, 0, -0.566967, 0.82374, 0, 0, 0, 1, 0.69844, 1.2917, -3.17581)
 
 [node name="M4A1" parent="Node3D" instance=ExtResource("5_qnhdf")]
 transform = Transform3D(-1, 1.78233e-10, -2.53518e-06, 1.78233e-10, 1, 2.18525e-18, 2.53518e-06, -4.49668e-16, -1, 0.5, -0.53, -0.67)
+visible = true
 
 [node name="Node3D3" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.84501, 4.11121, -11.6897)
+transform = Transform3D(1, 0, 0, 0, -0.223335, -0.974742, 0, 0.974742, -0.223335, -8.84501, 4.11121, -11.6897)
 
 [node name="M4A1" parent="Node3D3" instance=ExtResource("5_qnhdf")]
 transform = Transform3D(-1, 1.78233e-10, -2.53518e-06, 1.78233e-10, 1, 2.18525e-18, 2.53518e-06, -4.49668e-16, -1, 0.5, -0.53, -0.67)
+visible = true
 
 [node name="Node3D2" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.42251, 2.0556, -5.84485)
+transform = Transform3D(1, 0, 0, 0, 0.98907, -0.147447, 0, 0.147447, 0.98907, -4.42251, 12.676, -5.78664)
 
 [node name="M4A1" parent="Node3D2" instance=ExtResource("5_qnhdf")]
 transform = Transform3D(-1, 1.78233e-10, -2.53518e-06, 1.78233e-10, 1, 2.18525e-18, 2.53518e-06, -4.49668e-16, -1, 0.5, -0.53, -0.67)
+visible = true

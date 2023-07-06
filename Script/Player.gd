@@ -221,7 +221,7 @@ func on_slide_timeout():
 
 func Shoot():
 	if Weapons.weaponCount > 0:
-		if Input.is_action_pressed("Primary Action") and PlayerStats.CurrentWeapon.ammoInMag > 0 and not Reloading:
+		if Input.is_action_pressed("Primary Action") and PlayerStats.CurrentWeapon.ammoInMag > 0 and not Reloading and not Weapons.swapping:
 			if Input.is_action_just_pressed("Primary Action"):
 				firing = true
 				PlayerStats.CurrentWeapon.ammoInMag -= 1

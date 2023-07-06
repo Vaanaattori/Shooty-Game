@@ -75,14 +75,19 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_w72py")
 
 [node name="WeaponInfo" type="HBoxContainer" parent="."]
-offset_left = 1585.0
-offset_top = 951.0
-offset_right = 1831.0
-offset_bottom = 1033.0
+offset_left = 1590.0
+offset_top = 917.0
+offset_right = 1836.0
+offset_bottom = 1059.0
 theme_override_constants/separation = 20
 
 [node name="PrimaryWeaponInfo" type="VBoxContainer" parent="WeaponInfo"]
 layout_mode = 2
+
+[node name="PriAnimationBool" type="Label" parent="WeaponInfo/PrimaryWeaponInfo"]
+layout_mode = 2
+text = "Animation"
+horizontal_alignment = 1
 
 [node name="PriAnimation" type="Label" parent="WeaponInfo/PrimaryWeaponInfo"]
 layout_mode = 2
@@ -105,6 +110,11 @@ vertical_alignment = 1
 
 [node name="SecondaryWeaponInfo" type="VBoxContainer" parent="WeaponInfo"]
 layout_mode = 2
+
+[node name="SecAnimationBool" type="Label" parent="WeaponInfo/SecondaryWeaponInfo"]
+layout_mode = 2
+text = "Animation"
+horizontal_alignment = 1
 
 [node name="SecAnimation" type="Label" parent="WeaponInfo/SecondaryWeaponInfo"]
 layout_mode = 2
