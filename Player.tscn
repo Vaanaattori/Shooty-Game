@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bwavtub8bg7xu"]
+[gd_scene load_steps=11 format=3 uid="uid://bwavtub8bg7xu"]
 
 [ext_resource type="Script" path="res://Script/Player.gd" id="1_4tllj"]
 [ext_resource type="PackedScene" uid="uid://bp7a48krtn5wr" path="res://HUD.tscn" id="2_2em46"]
@@ -20,10 +20,6 @@ material = SubResource("StandardMaterial3D_tex2x")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_25lq8"]
 size = Vector3(1, 0.159349, 1)
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_aaf83"]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_eyyam"]
 
 [node name="Player" type="CharacterBody3D" groups=["Persist"]]
 script = ExtResource("1_4tllj")
@@ -120,10 +116,8 @@ shape = SubResource("BoxShape3D_25lq8")
 [node name="Pistol Animation Tree" type="AnimationTree" parent="."]
 tree_root = ExtResource("6_nj4vs")
 anim_player = NodePath("../Neck/Camera3D/Weapons/M4A1/AnimationPlayer")
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_aaf83")
 parameters/conditions/Swap-in = false
 parameters/conditions/Swap-out = false
-parameters/M4A1States/playback = SubResource("AnimationNodeStateMachinePlayback_eyyam")
 parameters/M4A1States/conditions/ADS = false
 parameters/M4A1States/conditions/HipFire = false
 parameters/M4A1States/conditions/Moving = false

@@ -1,16 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://buqo2ygtsm8p2"]
+[gd_scene load_steps=6 format=3 uid="uid://buqo2ygtsm8p2"]
 
 [ext_resource type="PackedScene" uid="uid://cvepirpjtcf77" path="res://Guns/M4A1.tscn" id="1_4gn2o"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://d1m8d1h2qnup2" path="res://M4A1StateMachine.tres" id="2_s33wa"]
 [ext_resource type="AnimationLibrary" uid="uid://pl6ay11hvmev" path="res://M4A1.res" id="3_xkxs1"]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_px8fy"]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_kwjdr"]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_2h1ji"]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_iad8a"]
 
 [sub_resource type="Animation" id="Animation_72aoe"]
 length = 0.001
@@ -84,23 +76,20 @@ _data = {
 
 [node name="M4A1" parent="." instance=ExtResource("1_4gn2o")]
 transform = Transform3D(-1, 1.78233e-10, -2.53518e-06, 1.78233e-10, 1, 2.18525e-18, 2.53518e-06, -4.49668e-16, -1, 0.5, -0.53, -0.67)
+visible = true
 
 [node name="Mag" parent="M4A1/Node3D" index="2"]
 transform = Transform3D(-0.000361999, 0, 100, 0, 99.9999, 0, -99.9999, 0, -0.000361999, 4.54747e-13, 0, 1.66984)
 
 [node name="M4A1 Animation Tree" parent="M4A1" index="5"]
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_px8fy")
-parameters/M4A1States/playback = SubResource("AnimationNodeStateMachinePlayback_kwjdr")
 parameters/M4A1States/ADS/blend_position = 0
 
 [node name="AnimationTree2" type="AnimationTree" parent="M4A1"]
 tree_root = ExtResource("2_s33wa")
 anim_player = NodePath("../m4a1AnimationPlayer2")
 active = true
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_2h1ji")
 parameters/conditions/Swap-in = false
 parameters/conditions/Swap-out = false
-parameters/M4A1States/playback = SubResource("AnimationNodeStateMachinePlayback_iad8a")
 parameters/M4A1States/conditions/ADS = false
 parameters/M4A1States/conditions/HipFire = false
 parameters/M4A1States/conditions/Moving = false

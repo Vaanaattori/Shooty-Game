@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://bx0kucpghk2dp"]
+[gd_scene load_steps=14 format=3 uid="uid://bx0kucpghk2dp"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_43ckk"]
 [ext_resource type="Script" path="res://Script/Ground.gd" id="2_feo37"]
 [ext_resource type="Texture2D" uid="uid://b7onuy3fl1edh" path="res://4k JPEG/Grass 03/Grass03_BaseColor.jpg" id="3_2nwnb"]
 [ext_resource type="PackedScene" uid="uid://cx6dl57vmw5d6" path="res://Zombie.tscn" id="4_uesh2"]
 [ext_resource type="PackedScene" uid="uid://cvepirpjtcf77" path="res://Guns/M4A1.tscn" id="5_qnhdf"]
+[ext_resource type="PackedScene" uid="uid://brkwxrvqh4stt" path="res://Guns/Pistol.tscn" id="6_xssu0"]
 
 [sub_resource type="Environment" id="Environment_67o5g"]
 fog_light_color = Color(0.364706, 0.392157, 0.431373, 1)
@@ -83,19 +84,21 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -25.16
 transform = Transform3D(0.82374, 0.566967, 0, -0.566967, 0.82374, 0, 0, 0, 1, 0.69844, 1.2917, -3.17581)
 
 [node name="M4A1" parent="Node3D" instance=ExtResource("5_qnhdf")]
-transform = Transform3D(-1, 1.78233e-10, -2.53518e-06, 1.78233e-10, 1, 2.18525e-18, 2.53518e-06, -4.49668e-16, -1, 0.5, -0.53, -0.67)
 visible = true
 
 [node name="Node3D3" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.223335, -0.974742, 0, 0.974742, -0.223335, -8.84501, 4.11121, -11.6897)
 
 [node name="M4A1" parent="Node3D3" instance=ExtResource("5_qnhdf")]
-transform = Transform3D(-1, 1.78233e-10, -2.53518e-06, 1.78233e-10, 1, 2.18525e-18, 2.53518e-06, -4.49668e-16, -1, 0.5, -0.53, -0.67)
 visible = true
 
 [node name="Node3D2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.98907, -0.147447, 0, 0.147447, 0.98907, -4.42251, 12.676, -5.78664)
 
 [node name="M4A1" parent="Node3D2" instance=ExtResource("5_qnhdf")]
-transform = Transform3D(-1, 1.78233e-10, -2.53518e-06, 1.78233e-10, 1, 2.18525e-18, 2.53518e-06, -4.49668e-16, -1, 0.5, -0.53, -0.67)
 visible = true
+
+[node name="Node3D4" type="Node3D" parent="."]
+transform = Transform3D(0.342332, 0.939579, 0, -0.939579, 0.342332, 0, 0, 0, 1, -2.98299, 0.903527, -6.76015)
+
+[node name="Glock" parent="Node3D4" instance=ExtResource("6_xssu0")]

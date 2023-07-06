@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cvepirpjtcf77"]
+[gd_scene load_steps=28 format=3 uid="uid://cvepirpjtcf77"]
 
 [ext_resource type="Script" path="res://M4A1.gd" id="1_n734i"]
 [ext_resource type="AnimationLibrary" uid="uid://pl6ay11hvmev" path="res://M4A1.res" id="2_qm7un"]
@@ -361,10 +361,6 @@ _data = {
 "RESET": SubResource("Animation_72aoe")
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_4vdi0"]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_ptl4c"]
-
 [node name="M4A1" type="RigidBody3D"]
 transform = Transform3D(-1, 1.78233e-10, -2.53518e-06, 1.78233e-10, 1, 2.18525e-18, 2.53518e-06, -4.49668e-16, -1, 0.5, -0.53, -0.67)
 visible = false
@@ -449,10 +445,8 @@ libraries = {
 [node name="M4A1 Animation Tree" type="AnimationTree" parent="."]
 tree_root = ExtResource("3_mdxg4")
 anim_player = NodePath("../m4a1AnimationPlayer")
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_4vdi0")
 parameters/conditions/Swap-in = false
 parameters/conditions/Swap-out = false
-parameters/M4A1States/playback = SubResource("AnimationNodeStateMachinePlayback_ptl4c")
 parameters/M4A1States/conditions/ADS = false
 parameters/M4A1States/conditions/HipFire = false
 parameters/M4A1States/conditions/Moving = false

@@ -1,0 +1,93 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgg2eo4ugdnpe"]
+
+[ext_resource type="PackedScene" uid="uid://brkwxrvqh4stt" path="res://Guns/Pistol.tscn" id="1_ecuh0"]
+
+[sub_resource type="Animation" id="Animation_ygctp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.852157, -0.53, -0.900204)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.28419e-18, 2.97031, 1.78233e-10)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xr6da"]
+_data = {
+"RESET": SubResource("Animation_ygctp")
+}
+
+[sub_resource type="Animation" id="Animation_11a87"]
+resource_name = "Swap-In"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.852157, -1.16804, -0.900204), Vector3(0.852157, -0.53, -0.900204)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.925403, 2.85429, -0.2318), Vector3(1.28419e-18, 2.97031, 1.78233e-10)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dyonn"]
+_data = {
+"Swap-In": SubResource("Animation_11a87")
+}
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_d0gnu"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="Glock" parent="Camera3D" instance=ExtResource("1_ecuh0")]
+transform = Transform3D(-0.985367, 1.75625e-10, 0.170446, 1.78233e-10, 1, -1.28419e-18, -0.170446, 3.03792e-11, -0.985367, 0.852157, -0.53, -0.900204)
+
+[node name="Mag" parent="Camera3D/Glock/Node3D" index="1"]
+transform = Transform3D(-3.61999e-06, 0, 1, 0, 1, 0, -1, 0, -3.61999e-06, 4.54747e-13, 0, 1.66984)
+
+[node name="AnimationPlayer3" type="AnimationPlayer" parent="Camera3D/Glock"]
+root_node = NodePath("../AnimationTree")
+libraries = {
+"": SubResource("AnimationLibrary_xr6da"),
+"Glock": SubResource("AnimationLibrary_dyonn")
+}
+
+[node name="AnimationTree3" type="AnimationTree" parent="Camera3D/Glock"]
+tree_root = SubResource("AnimationNodeStateMachine_d0gnu")
+anim_player = NodePath("../AnimationPlayer2")
+
+[editable path="Camera3D/Glock"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://uvc8ooisf5mr"]
+[gd_scene load_steps=12 format=3 uid="uid://uvc8ooisf5mr"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_4blt4"]
 [ext_resource type="Script" path="res://Script/Ground.gd" id="2_syqn2"]
@@ -21,10 +21,6 @@ material = SubResource("StandardMaterial3D_0m3r7")
 [sub_resource type="BoxShape3D" id="BoxShape3D_u3ytv"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_v2cjm"]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_mchfx"]
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_n802h"]
 
 [sub_resource type="Environment" id="Environment_71pci"]
 
@@ -73,10 +69,6 @@ transform = Transform3D(1, -2.27374e-13, 2.15485e-18, -1.13999e-21, -4.37114e-08
 
 [node name="Mag" parent="M4A1/Node3D" index="2"]
 transform = Transform3D(-0.000361998, 0, 99.9999, 0, 99.9998, 0, -99.9996, 0, -0.000361999, 4.54747e-13, 0, 1.66984)
-
-[node name="M4A1 Animation Tree" parent="M4A1" index="5"]
-parameters/playback = SubResource("AnimationNodeStateMachinePlayback_mchfx")
-parameters/M4A1States/playback = SubResource("AnimationNodeStateMachinePlayback_n802h")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10.1153, 0)

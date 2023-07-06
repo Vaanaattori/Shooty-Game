@@ -1,13 +1,4 @@
-res://world.tscn
+res://Guns/Pistol.tscn
 res://M4A1StateMachine.tres
-res://Guns/M4A1.tscn
-res://Zombie.tscn
-res://HUD.tscn
-res://testshit.tscn
-res://Player.tscn
-res://TestWorld.tscn
-res://ammo_box.tscn
-res://M4A1.gd
-res://WeaponHand.gd
-res://HUD.gd
-res://Script/Player.gd
+res://M4A1.res
+res://testshitglock.tscn
