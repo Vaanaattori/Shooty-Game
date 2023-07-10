@@ -69,13 +69,13 @@ func _process(delta):
 #		weaponout = true
 #	else:
 #		weaponout = false
-	if Weapons.weaponCount > 0:
-		FireRateTimer.wait_time = PlayerStats.CurrentWeapon.fireRate
-		reload_animation_dur.wait_time = PlayerStats.CurrentWeapon.reloadLength
-		reload_time.wait_time = PlayerStats.CurrentWeapon.reloadTime
+#	if Weapons.weaponCount > 0:
+#		FireRateTimer.wait_time = PlayerStats.CurrentWeapon.fireRate
+#		reload_animation_dur.wait_time = PlayerStats.CurrentWeapon.reloadLength
+#		reload_time.wait_time = PlayerStats.CurrentWeapon.reloadTime
 	Exhausted()
 	Animations()
-	Shoot()
+#	Shoot()
 #	print("ismoving ",isMoving)
 	Slide()
 	if Input.is_action_just_pressed("ui_accept"):
@@ -210,28 +210,14 @@ func on_slide_timeout():
 	print("timeout")
 	neck.rotation.x += camera.rotation.x
 	camera.rotation = Vector3.ZERO
-	var oldneck = neck.rotation.y
+	var oldneckrotation = neck.rotation.y
 	rotation.y += neck.rotation.y
-	neck.rotation.y -= oldneck
+	neck.rotation.y -= oldneckrotation
 	Pose("stand")
 	isMoving == "Idle"
 	sliding = false
 	floor_max_angle = 45
 	slideCD.start()
-
-func Shoot():
-	if Weapons.weaponCount > 0:
-		if Input.is_action_pressed("Primary Action") and PlayerStats.CurrentWeapon.ammoInMag > 0 and not Reloading and not Weapons.swapping:
-			if Input.is_action_just_pressed("Primary Action"):
-				firing = true
-				PlayerStats.CurrentWeapon.ammoInMag -= 1
-				FireRateTimer.start()
-		else:
-			firing = false
-			FireRateTimer.stop()
-
-func Firing():
-	PlayerStats.CurrentWeapon.ammoInMag -= 1
 
 func TweenFunc(value, parameters, time):
 	var tween = create_tween()
@@ -248,23 +234,8 @@ func Reload():
 		reload_time.start()
 
 func isRunning():
-	if Input.is_action_pressed("Sprint"):
-		return true
-	else:
-		return false
-
-func reload_time_timeout():
-	var reloadAmo = PlayerStats.CurrentWeapon.magSize - PlayerStats.CurrentWeapon.ammoInMag
-	if reloadAmo >= PlayerStats.CurrentWeapon.ammoCount:
-		PlayerStats.CurrentWeapon.ammoInMag += PlayerStats.CurrentWeapon.ammoCount
-		PlayerStats.CurrentWeapon.ammoCount -= reloadAmo
-	else:
-		PlayerStats.CurrentWeapon.ammoInMag = PlayerStats.CurrentWeapon.magSize
-		PlayerStats.CurrentWeapon.ammoCount -= reloadAmo
-
-func reload_animation_dur_timeout():
-#	animation_tree["parameters/conditions/Reload"] = false
-	Reloading = false
+	if Input.is_action_pressed("Sprint"): return true
+	else: return false
 
 func ThePlayer():
 	pass
@@ -281,8 +252,8 @@ func Animations():
 
 
 	#reload
-	if Input.is_action_just_pressed("Reload") and PlayerStats.CurrentWeapon.ammoCount != 0 and PlayerStats.CurrentWeapon.ammoInMag != PlayerStats.CurrentWeapon.magSize or Reloading: Reload()
-	elif Input.is_action_just_pressed("Reload") and PlayerStats.CurrentWeapon.ammoCount == 0: pass
+#	if Input.is_action_just_pressed("Reload") and PlayerStats.CurrentWeapon.ammoCount != 0 and PlayerStats.CurrentWeapon.ammoInMag != PlayerStats.CurrentWeapon.magSize or Reloading: Reload()
+#	elif Input.is_action_just_pressed("Reload") and PlayerStats.CurrentWeapon.ammoCount == 0: pass
 	
 	if not Reloading:
 		if ADS() and not isRunning() or ADS() and sliding:

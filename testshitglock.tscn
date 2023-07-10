@@ -76,8 +76,8 @@ _data = {
 [node name="Glock" parent="Camera3D" instance=ExtResource("1_ecuh0")]
 transform = Transform3D(-0.985367, 1.75625e-10, 0.170446, 1.78233e-10, 1, -1.28419e-18, -0.170446, 3.03792e-11, -0.985367, 0.852157, -0.53, -0.900204)
 
-[node name="Mag" parent="Camera3D/Glock/Node3D" index="1"]
-transform = Transform3D(-3.61999e-06, 0, 1, 0, 1, 0, -1, 0, -3.61999e-06, 4.54747e-13, 0, 1.66984)
+[node name="Glock" parent="Camera3D/Glock" index="1"]
+transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 0.852157, -0.53, -0.900204)
 
 [node name="AnimationPlayer3" type="AnimationPlayer" parent="Camera3D/Glock"]
 root_node = NodePath("../AnimationTree")

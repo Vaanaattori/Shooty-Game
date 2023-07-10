@@ -452,3 +452,9 @@ parameters/M4A1States/conditions/Moving = false
 parameters/M4A1States/conditions/Reload = false
 parameters/M4A1States/ADS/blend_position = 1.99154
 parameters/M4A1States/Movement/blend_position = 0.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

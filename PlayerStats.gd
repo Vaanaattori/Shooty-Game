@@ -24,53 +24,53 @@ var weaponout = ""
 #var FireRate
 #var ammoInMag
 
-func _process(delta):
-	if weaponout == "primary":
-		CurrentWeapon = PrimaryWeapon
-	if weaponout == "secondary":
-		CurrentWeapon = SecondaryWeapon
-	if weaponout == "melee":
-		CurrentWeapon = MeleeWeapon
+#func _process(delta):
+#	if weaponout == "primary":
+#		CurrentWeapon = PrimaryWeapon
+#	if weaponout == "secondary":
+#		CurrentWeapon = SecondaryWeapon
+#	if weaponout == "melee":
+#		CurrentWeapon = MeleeWeapon
 
-var CurrentWeapon = {
-	wepName = "test",
-	ammoCount = 0,
-	magSize = 0,
-	fireRate = 0,
-	ammoInMag = 0,
-	reloadLength = 0,
-	reloadTime = 0,
-}
-
-var PrimaryWeapon = {
-	wepName = "Empty",
-	ammoCount = 0,
-	magSize = 0,
-	fireRate = 0,
-	ammoInMag = 0,
-	reloadLength = 0,
-	reloadTime = 0,
-}
-
-var SecondaryWeapon = {
-	wepName = "Empty",
-	ammoCount = 1,
-	magSize = 1,
-	fireRate = 1,
-	ammoInMag = 1,
-	reloadLength = 0,
-	reloadTime = 0,
-}
-
-var MeleeWeapon = {
-	wepName = "Fists",
-	ammoCount = 0,
-	magSize = 0,
-	fireRate = 1,
-	ammoInMag = 0,
-	reloadLength = 0,
-	reloadTime = 0,
-}
+#var CurrentWeapon = {
+#	wepName = "test",
+#	ammoCount = 0,
+#	magSize = 0,
+#	fireRate = 0,
+#	ammoInMag = 0,
+#	reloadLength = 0,
+#	reloadTime = 0,
+#}
+#
+#var PrimaryWeapon = {
+#	wepName = "Empty",
+#	ammoCount = 0,
+#	magSize = 0,
+#	fireRate = 0,
+#	ammoInMag = 0,
+#	reloadLength = 0,
+#	reloadTime = 0,
+#}
+#
+#var SecondaryWeapon = {
+#	wepName = "Empty",
+#	ammoCount = 1,
+#	magSize = 1,
+#	fireRate = 1,
+#	ammoInMag = 1,
+#	reloadLength = 0,
+#	reloadTime = 0,
+#}
+#
+#var MeleeWeapon = {
+#	wepName = "Fists",
+#	ammoCount = 0,
+#	magSize = 0,
+#	fireRate = 1,
+#	ammoInMag = 0,
+#	reloadLength = 0,
+#	reloadTime = 0,
+#}
 
 var Sec_wepName
 var Sec_ammoCount

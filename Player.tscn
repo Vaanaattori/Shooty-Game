@@ -68,16 +68,6 @@ script = ExtResource("4_lvyfy")
 
 [node name="Timers" type="Node" parent="."]
 
-[node name="ReloadTime" type="Timer" parent="Timers"]
-wait_time = 2.7
-one_shot = true
-
-[node name="ReloadAnimationDur" type="Timer" parent="Timers"]
-wait_time = 3.5
-one_shot = true
-
-[node name="FireRate" type="Timer" parent="Timers"]
-
 [node name="SlideTimer" type="Timer" parent="Timers"]
 one_shot = true
 
@@ -126,9 +116,6 @@ parameters/M4A1States/ADS/blend_position = 0
 parameters/M4A1States/Movement/blend_position = 0
 
 [connection signal="playerADS" from="." to="HUD" method="_on_player_player_ads"]
-[connection signal="timeout" from="Timers/ReloadTime" to="." method="reload_time_timeout"]
-[connection signal="timeout" from="Timers/ReloadAnimationDur" to="." method="reload_animation_dur_timeout"]
-[connection signal="timeout" from="Timers/FireRate" to="." method="Firing"]
 [connection signal="timeout" from="Timers/SlideTimer" to="." method="on_slide_timeout"]
 [connection signal="timeout" from="Timers/WeaponSwapOutDur" to="Neck/Camera3D/Weapons" method="weaponswap_out_timeout"]
 [connection signal="timeout" from="Timers/WeaponSwapInDur" to="Neck/Camera3D/Weapons" method="weaponswap_in_timeout"]

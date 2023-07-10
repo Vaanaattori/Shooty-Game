@@ -5,7 +5,6 @@ extends Node3D
 @onready var weaponswap_out_dur = $"../../../Timers/WeaponSwapOutDur"
 @onready var weaponswap_in_dur = $"../../../Timers/WeaponSwapInDur"
 
-
 var WeaponSelected
 var PrimaryWeapon
 var SecondaryWeapon
@@ -71,10 +70,11 @@ func gunPickUp(Gun):
 		Gun = load("res://Guns/" + str(Gun.name) + ".tscn")
 		PrimaryWeapon = Gun.instantiate()
 		add_child(PrimaryWeapon)
-		PrimaryWeapon.pickedUp = true
-		PrimaryWeapon.PickedUp()
-		PlayerStats.PrimaryWeapon = PrimaryWeapon.WeaponStats
 		WeaponSelected = PrimaryWeapon
+		WeaponSelected.pickedUp = true
+		WeaponSelected.PickedUp()
+#		PlayerStats.PrimaryWeapon = PrimaryWeapon.WeaponStats
+		WeaponSelected.Player = Player
 		WeaponSelected.weaponOut = true
 		WeaponSelected.animation_tree.active = true
 		WeaponSelected.PlayerAnimation = "Swap-in"
@@ -87,8 +87,9 @@ func gunPickUp(Gun):
 		SecondaryWeapon = Gun.instantiate()
 		add_child(SecondaryWeapon)
 		SecondaryWeapon.pickedUp = true
+		SecondaryWeapon.Player = Player
 		SecondaryWeapon.PickedUp()
-		PlayerStats.SecondaryWeapon = SecondaryWeapon.WeaponStats
+#		PlayerStats.SecondaryWeapon = SecondaryWeapon.WeaponStats
 		selectWeapon("secondary")
 	
 	weaponCount = get_child_count()
