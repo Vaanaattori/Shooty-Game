@@ -69,17 +69,16 @@ func _process(delta):
 #		weaponout = true
 #	else:
 #		weaponout = false
-	if Weapons.weaponCount > 0:
-		FireRateTimer.wait_time = PlayerStats.CurrentWeapon.fireRate
-		reload_animation_dur.wait_time = PlayerStats.CurrentWeapon.reloadLength
-		reload_time.wait_time = PlayerStats.CurrentWeapon.reloadTime
+#	if Weapons.weaponCount > 0:
+#		FireRateTimer.wait_time = PlayerStats.CurrentWeapon.fireRate
+#		reload_animation_dur.wait_time = PlayerStats.CurrentWeapon.reloadLength
+#		reload_time.wait_time = PlayerStats.CurrentWeapon.reloadTime
 	Exhausted()
-	Animations()
-	Shoot()
+#	Animations()
+#	Shoot()
 #	print("ismoving ",isMoving)
 	Slide()
-	if Input.is_action_just_pressed("ui_accept"):
-		print(Weapons.get_child_count())
+
 #		Weapon.add_child(M4A1)
 	
 
@@ -203,6 +202,7 @@ func Slide():
 			PlayerStats.stamina -= 1
 			slide_velocity = velocity
 			sliding = true
+			isMoving = "Idle"
 			slidetime.start()
 			slideCT.start()
 	
@@ -219,33 +219,39 @@ func on_slide_timeout():
 	floor_max_angle = 45
 	slideCD.start()
 
-func Shoot():
-	if Weapons.weaponCount > 0:
-		if Input.is_action_pressed("Primary Action") and PlayerStats.CurrentWeapon.ammoInMag > 0 and not Reloading and not Weapons.swapping:
-			if Input.is_action_just_pressed("Primary Action"):
-				firing = true
-				PlayerStats.CurrentWeapon.ammoInMag -= 1
-				FireRateTimer.start()
-		else:
-			firing = false
-			FireRateTimer.stop()
+#func Shoot():
+#	if Weapons.weaponCount > 0:
+#		if PlayerStats.CurrentWeapon.FiringMode == "auto":
+#			if Input.is_action_pressed("Primary Action") and PlayerStats.CurrentWeapon.ammoInMag > 0 and not Reloading and not Weapons.swapping:
+#				if Input.is_action_just_pressed("Primary Action"):
+#					firing = true
+#					PlayerStats.CurrentWeapon.ammoInMag -= 1
+#					FireRateTimer.start()
+#			else:
+#				firing = false
+#				FireRateTimer.stop()
+#		elif PlayerStats.CurrentWeapon.FiringMode == "semi":
+#			if Input.is_action_just_pressed("Primary Action") and PlayerStats.CurrentWeapon.ammoInMag > 0 and not Reloading and not Weapons.swapping:
+#				firing = true
+#				PlayerStats.CurrentWeapon.ammoInMag -= 1
 
-func Firing():
-	PlayerStats.CurrentWeapon.ammoInMag -= 1
+#func Firing():
+#	if PlayerStats.CurrentWeapon.FiringMode == "auto":
+#		PlayerStats.CurrentWeapon.ammoInMag -= 1
 
 func TweenFunc(value, parameters, time):
 	var tween = create_tween()
 	parameters = "parameters/" + parameters + "/blend_position"
 	tween.tween_property(currenct_animation_tree, parameters, value, time)
 
-func Reload():
-	var onoff = true
-	
-	if reload_animation_dur.time_left == 0:
-		Reloading = true
-		animationtoplay = "Reload"
-		reload_animation_dur.start()
-		reload_time.start()
+#func Reload():
+#	var onoff = true
+#
+#	if reload_animation_dur.time_left == 0:
+#		Reloading = true
+#		animationtoplay = "Reload"
+#		reload_animation_dur.start()
+#		reload_time.start()
 
 func isRunning():
 	if Input.is_action_pressed("Sprint"):
@@ -253,18 +259,6 @@ func isRunning():
 	else:
 		return false
 
-func reload_time_timeout():
-	var reloadAmo = PlayerStats.CurrentWeapon.magSize - PlayerStats.CurrentWeapon.ammoInMag
-	if reloadAmo >= PlayerStats.CurrentWeapon.ammoCount:
-		PlayerStats.CurrentWeapon.ammoInMag += PlayerStats.CurrentWeapon.ammoCount
-		PlayerStats.CurrentWeapon.ammoCount -= reloadAmo
-	else:
-		PlayerStats.CurrentWeapon.ammoInMag = PlayerStats.CurrentWeapon.magSize
-		PlayerStats.CurrentWeapon.ammoCount -= reloadAmo
-
-func reload_animation_dur_timeout():
-#	animation_tree["parameters/conditions/Reload"] = false
-	Reloading = false
 
 func ThePlayer():
 	pass
@@ -277,45 +271,45 @@ func _on_pick_up_range_body_entered(body):
 			Weapons.gunPickUp(body)
 			body.PickUp()
 
-func Animations():
-
-
-	#reload
-	if Input.is_action_just_pressed("Reload") and PlayerStats.CurrentWeapon.ammoCount != 0 and PlayerStats.CurrentWeapon.ammoInMag != PlayerStats.CurrentWeapon.magSize or Reloading: Reload()
-	elif Input.is_action_just_pressed("Reload") and PlayerStats.CurrentWeapon.ammoCount == 0: pass
-	
-	if not Reloading:
-		if ADS() and not isRunning() or ADS() and sliding:
-			if not Reloading:
-				if firing:
-					animationtoplay = "ADS_Firing"
-				elif isMoving == "Walking":
-					animationtoplay = "ADS_Walking"
-				else:
-					animationtoplay = "ADS"
-					
-		if isMoving == "Idle" or pose == "prone":
-			if not ADS() and not firing or sliding and not ADS() and not firing:
-				animationtoplay = "Idle"
-
-	if not Reloading and not pose == "prone":
-		# Idle
-		
-		# Walking
-		if isMoving == "Walking" and not ADS() and not firing and not sliding:
-#			print("walking")
-			animationtoplay = "Walking"
-			if pose == "crouch":
-				TweenFunc(-1, "Walk", .1)
-			else:
-				TweenFunc(1, "Walk", .1)
-		# ADS
-		
-
-		# Sprinting
-		if isRunning() and pose == "stand" and not sliding and not exhausted:
-			animationtoplay = "Sprinting"
-
-	if firing and not ADS() and not Reloading:
-		animationtoplay = "HipFire"
-
+#func Animations():
+#	#reload
+##	if Input.is_action_just_pressed("Reload") and PlayerStats.CurrentWeapon.ammoCount != 0 and PlayerStats.CurrentWeapon.ammoInMag != PlayerStats.CurrentWeapon.magSize or Reloading: Reload()
+##	elif Input.is_action_just_pressed("Reload") and PlayerStats.CurrentWeapon.ammoCount == 0: pass
+#
+#	if not Reloading:
+#		if ADS() and not isRunning() or ADS() and sliding:
+#			if not Reloading:
+#				if firing:
+#					animationtoplay = "ADS_Firing"
+#					if PlayerStats.CurrentWeapon.FiringMode == "semi":
+#						firing = false
+#				elif isMoving == "Walking":
+#					animationtoplay = "ADS_Walking"
+#				else:
+#					animationtoplay = "ADS"
+#
+#		if isMoving == "Idle" or pose == "prone":
+#			if not ADS() and not firing or sliding and not ADS() and not firing:
+#				animationtoplay = "Idle"
+#
+#	if not Reloading and not pose == "prone":
+#		# Idle
+#
+#		# Walking
+#		if isMoving == "Walking" and not ADS() and not firing and not sliding:
+##			print("walking")
+#			animationtoplay = "Walking"
+#			if pose == "crouch":
+#				TweenFunc(-1, "Walk", .1)
+#			else:
+#				TweenFunc(1, "Walk", .1)
+#		# Sprinting
+#		if isRunning() and pose == "stand" and not exhausted:
+#			animationtoplay = "Sprinting"
+#
+#	if firing and not ADS() and not Reloading:
+#		animationtoplay = "HipFire"
+#		if PlayerStats.CurrentWeapon.FiringMode == "semi":
+#			firing = false
+#	elif sliding and not ADS() and not Reloading:
+#		animationtoplay = "Idle"

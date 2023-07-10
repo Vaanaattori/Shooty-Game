@@ -111,7 +111,7 @@ advance_condition = &"Reload"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kq2hd"]
 states/ADS/node = SubResource("AnimationNodeBlendSpace1D_y4x0e")
-states/ADS/position = Vector2(370, 216)
+states/ADS/position = Vector2(364, 216)
 states/M4A1HipFire/node = SubResource("AnimationNodeAnimation_4x4jj")
 states/M4A1HipFire/position = Vector2(660, 216)
 states/Movement/node = SubResource("AnimationNodeBlendSpace1D_4n5od")

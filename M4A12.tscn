@@ -363,11 +363,9 @@ _data = {
 
 [node name="M4A1" type="RigidBody3D"]
 transform = Transform3D(-1, 1.78233e-10, -2.53518e-06, 1.78233e-10, 1, 2.18525e-18, 2.53518e-06, -4.49668e-16, -1, 0.5, -0.53, -0.67)
-visible = false
 collision_layer = 4
 mass = 3.4
 script = ExtResource("1_n734i")
-Reloading = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 7.7486e-07, 0.23583, 0.282099)
@@ -454,7 +452,3 @@ parameters/M4A1States/conditions/Moving = false
 parameters/M4A1States/conditions/Reload = false
 parameters/M4A1States/ADS/blend_position = 1.99154
 parameters/M4A1States/Movement/blend_position = 0.0
-
-[node name="Timer" type="Timer" parent="."]
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

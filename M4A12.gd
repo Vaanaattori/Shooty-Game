@@ -13,8 +13,6 @@ var PlayerAnimation
 var MoveBlend = 0
 var weaponOut:bool = false
 var Player
-var rotate
-var shooting: bool = false
 
 var WeaponStats = {
 	wepName = "M4A1",
@@ -26,11 +24,10 @@ var WeaponStats = {
 
 var pickedUp = false
 
-func TweenFunc(object, value, parameters, time):
+func TweenFunc(value, parameters, time):
 	var tween = create_tween()
-	if object == animation_tree:
-		parameters = "parameters/" + parameters + "/blend_position"
-	tween.tween_property(object, parameters, value, time)
+	parameters = "parameters/" + parameters + "/blend_position"
+	tween.tween_property(animation_tree, parameters, value, time)
 
 func animations():
 	if Input.is_action_just_pressed("Reload") and not Reloading and WeaponStats.ammoInMag < WeaponStats.magSize:
@@ -43,37 +40,37 @@ func animations():
 	if not Reloading:
 		if Player.isMoving == "Idle" and not Player.ADS():
 			animation_tree["parameters/M4A1States/conditions/Moving"] = true
-			TweenFunc(animation_tree, 0, "M4A1States/Movement", .1)
+			TweenFunc(0, "M4A1States/Movement", .1)
 			animation_tree["parameters/M4A1States/conditions/Reload"] = false
 			animation_tree["parameters/M4A1States/conditions/ADS"] = false
 			animation_tree["parameters/M4A1States/conditions/HipFire"] = false
 		elif Player.isMoving == "Walking" and not Player.ADS():
 			animation_tree["parameters/M4A1States/conditions/Moving"] = true
-			TweenFunc(animation_tree, 1, "M4A1States/Movement", .1)
+			TweenFunc(1, "M4A1States/Movement", .1)
 			animation_tree["parameters/M4A1States/conditions/Reload"] = false
 			animation_tree["parameters/M4A1States/conditions/ADS"] = false
 			animation_tree["parameters/M4A1States/conditions/HipFire"] = false
-		elif Player.isMoving == "Sprint" and not Player.ADS() and not Player.sliding:
+		elif Player.isMoving == "Sprint" and not Player.ADS():
 			animation_tree["parameters/M4A1States/conditions/Moving"] = true
-			TweenFunc(animation_tree, 2, "M4A1States/Movement", .1)
+			TweenFunc(2, "M4A1States/Movement", .1)
 			animation_tree["parameters/M4A1States/conditions/Reload"] = false
 			animation_tree["parameters/M4A1States/conditions/ADS"] = false
 			animation_tree["parameters/M4A1States/conditions/HipFire"] = false
-		if Player.ADS() and Player.isMoving == "Idle" or Player.ADS() and Player.sliding:
+		elif Player.ADS() and Player.isMoving == "Idle":
 			animation_tree["parameters/M4A1States/conditions/ADS"] = true
-			TweenFunc(animation_tree, 0, "M4A1States/ADS", .1)
+			TweenFunc(0, "M4A1States/ADS", .1)
 			animation_tree["parameters/M4A1States/conditions/Moving"] = false
 			animation_tree["parameters/M4A1States/conditions/Reload"] = false
 			animation_tree["parameters/M4A1States/conditions/HipFire"] = false
 		elif Player.ADS() and Player.isMoving == "Walking":
 			animation_tree["parameters/M4A1States/conditions/ADS"] = true
-			TweenFunc(animation_tree, 1, "M4A1States/ADS", .1)
+			TweenFunc(1, "M4A1States/ADS", .1)
 			animation_tree["parameters/M4A1States/conditions/Moving"] = false
 			animation_tree["parameters/M4A1States/conditions/Reload"] = false
 			animation_tree["parameters/M4A1States/conditions/HipFire"] = false
 		if shooting() and Player.ADS():
 			animation_tree["parameters/M4A1States/conditions/ADS"] = true
-			TweenFunc(animation_tree, 2, "M4A1States/ADS", .1)
+			TweenFunc(2, "M4A1States/ADS", .1)
 			animation_tree["parameters/M4A1States/conditions/Moving"] = false
 			animation_tree["parameters/M4A1States/conditions/Reload"] = false
 			animation_tree["parameters/M4A1States/conditions/HipFire"] = false
@@ -114,14 +111,10 @@ func _ready():
 
 func shoot():
 	WeaponStats.ammoInMag -= 1
-	print(Player.neck.rotation.y)
-	Player.neck.rotation.x += .01
-	
 
 func shooting():
 	if Input.is_action_pressed("Primary Action") and not WeaponStats.ammoInMag <= 0: return true
 	else: return false
-
 func _process(delta):
 	wepswap()
 	if pickedUp:
@@ -140,7 +133,3 @@ func Gun():
 
 func PickUp():
 	queue_free()
-
-func _on_timer_timeout():
-	shooting = false
-	TweenFunc(Player.neck, oldposition, "rotation:x", .1)

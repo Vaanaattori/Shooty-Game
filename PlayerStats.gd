@@ -40,6 +40,7 @@ var CurrentWeapon = {
 	ammoInMag = 0,
 	reloadLength = 0,
 	reloadTime = 0,
+	FiringMode = "",
 }
 
 var PrimaryWeapon = {
@@ -50,6 +51,7 @@ var PrimaryWeapon = {
 	ammoInMag = 0,
 	reloadLength = 0,
 	reloadTime = 0,
+	FiringMode = "",
 }
 
 var SecondaryWeapon = {
@@ -60,6 +62,7 @@ var SecondaryWeapon = {
 	ammoInMag = 1,
 	reloadLength = 0,
 	reloadTime = 0,
+	FiringMode = "",
 }
 
 var MeleeWeapon = {
@@ -70,6 +73,7 @@ var MeleeWeapon = {
 	ammoInMag = 0,
 	reloadLength = 0,
 	reloadTime = 0,
+	FiringMode = "",
 }
 
 var Sec_wepName
