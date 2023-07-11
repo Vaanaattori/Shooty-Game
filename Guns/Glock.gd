@@ -127,7 +127,7 @@ func shoot():
 	WeaponStats.ammoInMag -= 1
 	if Player.ADS():
 		$Timer.start()
-		Player.neck.rotation.x += .15
+		Player.neck.rotation.x += .025
 
 func _process(delta):
 	wepswap()
@@ -148,5 +148,8 @@ func PickUp():
 	queue_free()
 
 func _on_timer_timeout():
-	shooting = false
+	print("return")
 	TweenFunc(Player.neck, oldposition, "rotation:x", .1)
+	shooting = false
+	animation_tree["parameters/GlockStates/ADS/blend_position"] = 0
+

@@ -17,6 +17,7 @@ extends CharacterBody3D
 @onready var Weapons = $Neck/Camera3D/Weapons
 @onready var M4A1 = $Neck/Camera3D/Weapons/M4A1
 @onready var weaponswap_dur = $Timers/WeaponSwapDur
+@onready var gunCamera = $CanvasLayer/SubViewportContainer/SubViewport/Camera3D
 
 
 @onready var M4A1_animation_tree = $"M4A1 Animation Tree"
@@ -60,10 +61,13 @@ func _unhandled_input(event):
 		if sliding:
 			neck.rotate_y(-event.relative.x * actualsens * delta)
 			camera.rotate_x(-event.relative.y * actualsens * delta)
+			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-30), deg_to_rad(90))
+			neck.rotation.y = clamp(neck.rotation.y, deg_to_rad(-120), deg_to_rad(120))
 		else:
 			rotate_y(-event.relative.x * actualsens * delta)
 			neck.rotate_x(-event.relative.y * actualsens * delta)
-
+			neck.rotation.x = clamp(neck.rotation.x, deg_to_rad(-90), deg_to_rad(90))
+			
 func _process(delta):
 #	if PlayerStats.weaponout == "primary" or "secondary":
 #		weaponout = true
@@ -74,6 +78,7 @@ func _process(delta):
 #		reload_animation_dur.wait_time = PlayerStats.CurrentWeapon.reloadLength
 #		reload_time.wait_time = PlayerStats.CurrentWeapon.reloadTime
 	Exhausted()
+	gunCamera.global_transform = camera.global_transform
 #	Animations()
 #	Shoot()
 #	print("ismoving ",isMoving)

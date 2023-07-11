@@ -25,6 +25,7 @@ size = Vector3(1, 0.159349, 1)
 script = ExtResource("1_4tllj")
 
 [node name="HUD" parent="." instance=ExtResource("2_2em46")]
+layer = 2
 
 [node name="Hitbox" type="CollisionShape3D" parent="."]
 shape = ExtResource("3_4ajwy")
@@ -42,7 +43,7 @@ mesh = SubResource("BoxMesh_1elus")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.533457, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Neck"]
-cull_mask = 1048559
+cull_mask = 1048557
 current = true
 
 [node name="Flashlight" type="SpotLight3D" parent="Neck/Camera3D"]
@@ -107,6 +108,25 @@ parameters/M4A1States/conditions/Moving = false
 parameters/M4A1States/conditions/Reload = false
 parameters/M4A1States/ADS/blend_position = 0
 parameters/M4A1States/Movement/blend_position = 0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46443, 0)
+cull_mask = 1047554
 
 [connection signal="playerADS" from="." to="HUD" method="_on_player_player_ads"]
 [connection signal="timeout" from="Timers/SlideTimer" to="." method="on_slide_timeout"]

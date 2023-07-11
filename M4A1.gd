@@ -7,6 +7,7 @@ extends "res://Weapon.gd"
 @onready var rigidbody = $RigidBody3D
 @onready var animation_player = $m4a1AnimationPlayer
 @onready var animation_tree = $"M4A1 Animation Tree"
+@onready var ads_laser = $"Node3D/RearSight003/ADS-Laser"
 
 var PlayerAnimation
 @export var Reloading = false
@@ -14,10 +15,11 @@ var MoveBlend = 0
 var weaponOut:bool = false
 var Player
 var rotate
-var shooting: bool = false
-
+var FiringGun:bool = false
+var oldposition
 var WeaponStats = {
 	wepName = "M4A1",
+	damage = 1,
 	ammoCount = 999,
 	magSize = 30,
 	fireRate = 0.1,
@@ -67,13 +69,16 @@ func animations():
 			animation_tree["parameters/M4A1States/conditions/HipFire"] = false
 		elif Player.ADS() and Player.isMoving == "Walking":
 			animation_tree["parameters/M4A1States/conditions/ADS"] = true
-			TweenFunc(animation_tree, 1, "M4A1States/ADS", .1)
+			animation_tree["parameters/M4A1States/ADS/blend_position"] = 1
+#			TweenFunc(animation_tree, 1, "M4A1States/ADS", .1)
 			animation_tree["parameters/M4A1States/conditions/Moving"] = false
 			animation_tree["parameters/M4A1States/conditions/Reload"] = false
 			animation_tree["parameters/M4A1States/conditions/HipFire"] = false
 		if shooting() and Player.ADS():
+			if FiringGun == false:
+				shoot()
 			animation_tree["parameters/M4A1States/conditions/ADS"] = true
-			TweenFunc(animation_tree, 2, "M4A1States/ADS", .1)
+			animation_tree["parameters/M4A1States/ADS/blend_position"] = 2
 			animation_tree["parameters/M4A1States/conditions/Moving"] = false
 			animation_tree["parameters/M4A1States/conditions/Reload"] = false
 			animation_tree["parameters/M4A1States/conditions/HipFire"] = false
@@ -113,9 +118,17 @@ func _ready():
 	pass
 
 func shoot():
-	WeaponStats.ammoInMag -= 1
-	print(Player.neck.rotation.y)
-	Player.neck.rotation.x += .01
+	if WeaponStats.ammoInMag != 0:
+		if FiringGun == false:
+			FiringGun = true
+			oldposition = Player.neck.rotation.x
+		WeaponStats.ammoInMag -= 1
+		if ads_laser.is_colliding():
+			var ObjectHit = ads_laser.get_collider()
+			if ObjectHit.is_in_group("canTakeDamage"):
+				ObjectHit.TakeDamage(WeaponStats.damage)
+		if Player.ADS():
+			Player.neck.rotation.x += .02
 	
 
 func shooting():
@@ -125,10 +138,11 @@ func shooting():
 func _process(delta):
 	wepswap()
 	if pickedUp:
-#		Player = get_node("../Player")
-		if weaponOut:			
+		if weaponOut:	
 			visible = true
 			animations()
+	if Input.is_action_just_released("Primary Action") and FiringGun and Player.ADS():
+		$Timer.start()
 
 func PickedUp():
 	freeze = true
@@ -142,5 +156,7 @@ func PickUp():
 	queue_free()
 
 func _on_timer_timeout():
-	shooting = false
+	print("return")
 	TweenFunc(Player.neck, oldposition, "rotation:x", .1)
+	FiringGun = false
+	animation_tree["parameters/M4A1States/ADS/blend_position"] = 0
