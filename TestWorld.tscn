@@ -62,13 +62,9 @@ shape = SubResource("BoxShape3D_u3ytv")
 mesh = SubResource("BoxMesh_v2cjm")
 
 [node name="M4A1" parent="." instance=ExtResource("4_43jel")]
-transform = Transform3D(-1, 1.78233e-10, -2.53518e-06, 1.78233e-10, 1, 2.18525e-18, 2.53518e-06, -4.49668e-16, -1, 0.5, -0.53, -0.67)
 
 [node name="CollisionShape3D" parent="M4A1" index="0"]
 transform = Transform3D(1, -2.27374e-13, 2.15485e-18, -1.13999e-21, -4.37114e-08, 1, -2.27374e-13, -1, -4.37114e-08, 7.7486e-07, 0.23583, 0.282099)
-
-[node name="Mag" parent="M4A1/Node3D" index="2"]
-transform = Transform3D(-0.000361998, 0, 99.9999, 0, 99.9998, 0, -99.9996, 0, -0.000361999, 4.54747e-13, 0, 1.66984)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10.1153, 0)

@@ -363,6 +363,7 @@ _data = {
 
 [node name="M4A1" type="RigidBody3D"]
 transform = Transform3D(-1, 1.78233e-10, -2.53518e-06, 1.78233e-10, 1, 2.18525e-18, 2.53518e-06, -4.49668e-16, -1, 0.5, -0.53, -0.67)
+visible = false
 collision_layer = 4
 mass = 3.4
 script = ExtResource("1_n734i")

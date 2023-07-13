@@ -47,6 +47,7 @@ size = Vector3(1, 50, 1)
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_43ckk")
+EnemiesToggle = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_67o5g")
@@ -97,13 +98,11 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -25.16
 transform = Transform3D(0.82374, 0.566967, 0, -0.566967, 0.82374, 0, 0, 0, 1, 0.69844, 2.32603, -3.17581)
 
 [node name="M4A1" parent="Node3D" instance=ExtResource("5_h7owa")]
-transform = Transform3D(-1, 1.78233e-10, -2.53518e-06, 1.78233e-10, 1, 2.18525e-18, 2.53518e-06, -4.49668e-16, -1, 0.5, -0.53, -0.67)
 
 [node name="Node3D4" type="Node3D" parent="."]
 transform = Transform3D(0.342332, 0.939579, 0, -0.939579, 0.342332, 0, 0, 0, 1, -2.98299, 1.87731, -6.76015)
 
 [node name="Glock" parent="Node3D4" instance=ExtResource("6_e28sn")]
-transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 0.852157, -0.53, -0.900204)
 visible = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

@@ -172,6 +172,7 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="PopUp"]
+visible = false
 layout_mode = 2
 theme = ExtResource("2_rkngl")
 text = "Placeholder"

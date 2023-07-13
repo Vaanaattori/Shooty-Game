@@ -22,10 +22,11 @@ var oldposition
 var WeaponStats = {
 	wepName = "M4A1",
 	damage = 1,
-	ammoCount = 999,
+	ammoCount = 120,
 	magSize = 30,
 	fireRate = 0.1,
 	ammoInMag = 30,
+	maxAmmo = 120,
 }
 
 var pickedUp = false
@@ -134,20 +135,22 @@ func shoot():
 	
 
 func shooting():
-	if Input.is_action_pressed("Primary Action") and not WeaponStats.ammoInMag <= 0: return true
+	if Input.is_action_pressed("Shoot") and not WeaponStats.ammoInMag <= 0: return true
 	else: return false
 
 func _process(delta):
 	wepswap()
 	if pickedUp:
-		if weaponOut:	
+		if weaponOut:
 			visible = true
 			animations()
-			
-	if Input.is_action_just_released("Primary Action") and FiringGun and Player.ADS():
+	if Input.is_action_just_released("Shoot") and FiringGun and Player.ADS():
 		$Timer.start()
 
-func PickedUp():
+func PickedUp(player):
+	Player = player
+	pickedUp = true
+	animation_tree.active = true
 	freeze = true
 	collision_layer = 0
 	collision_mask = 0

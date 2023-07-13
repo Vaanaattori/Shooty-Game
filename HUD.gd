@@ -26,14 +26,14 @@ func _ready():
 func _process(delta):
 	StaminaBar.value = PlayerStats.stamina
 	StaminaBar.max_value = PlayerStats.MaxStamina
-	if weapons.WeaponSelected != null:
-		ammo_number.text = str(weapons.WeaponSelected.WeaponStats.ammoInMag) + " / " + str(weapons.WeaponSelected.WeaponStats.magSize)
-		total_ammo_left.text = "(" + str(weapons.WeaponSelected.WeaponStats.ammoCount) + ")"
+	if weapons.CurrentWeapon != null:
+		ammo_number.text = str(weapons.CurrentWeapon.WeaponStats.ammoInMag) + " / " + str(weapons.CurrentWeapon.WeaponStats.magSize)
+		total_ammo_left.text = "(" + str(weapons.CurrentWeapon.WeaponStats.ammoCount) + ")"
 		if Global.Player.ADS():
 			crosshair.visible = false
 		else: 
 			crosshair.visible = true
-		PrimaryWepName.text = weapons.WeaponSelected.WeaponStats.wepName
+		PrimaryWepName.text = weapons.CurrentWeapon.WeaponStats.wepName
 
 
 func updatetimer_check():
@@ -52,16 +52,16 @@ func updatetimer_check():
 		SecondaryWeapon: {8}
 		Swapping: {9}
 		isFiring: {10}
-		""".format([Player.pose, Player.isMoving, Player.ADS(), Player.Reloading, Player.animationtoplay, weapons.WeaponSelected, weapons.WeaponSelected.WeaponStats.wepName, weapons.PrimaryWeapon.WeaponStats.wepName, weapons.SecondaryWeapon.WeaponStats.wepName, weapons.swapping, Player.firing])
-	if weapons.PrimaryWeapon != null:
-		if weapons.PrimaryWeapon.PlayerAnimation != null:
-			pri_animation_bool.text = str(weapons.PrimaryWeapon.weaponOut)
-			prianimation.text = weapons.PrimaryWeapon.PlayerAnimation
-	if weapons.SecondaryWeapon != null:
-		if weapons.SecondaryWeapon.PlayerAnimation != null:
-			secanimation.text = weapons.SecondaryWeapon.PlayerAnimation
-			sec_animation_bool.text = str(weapons.SecondaryWeapon.weaponOut)
+		""".format([Player.pose, Player.isMoving, Player.ADS(), Player.Reloading, Player.animationtoplay, weapons.CurrentWeapon, weapons.CurrentWeapon.WeaponStats.wepName, weapons.WeaponList.PrimaryWeapon.WeaponStats.wepName, weapons.WeaponList.SecondaryWeapon.WeaponStats.wepName, weapons.swapping, Player.firing])
+		if weapons.WeaponList.PrimaryWeapon != null:
+			if weapons.WeaponList.PrimaryWeapon.PlayerAnimation != null:
+				pri_animation_bool.text = str(weapons.WeaponList.PrimaryWeapon.weaponOut)
+				prianimation.text = weapons.WeaponList.PrimaryWeapon.PlayerAnimation
+		if weapons.WeaponList.SecondaryWeapon != null:
+			if weapons.WeaponList.SecondaryWeapon.PlayerAnimation != null:
+				secanimation.text = weapons.WeaponList.SecondaryWeapon.PlayerAnimation
+				sec_animation_bool.text = str(weapons.WeaponList.SecondaryWeapon.weaponOut)
 #	print("Pose: ", pose, "    IsmMoving: ", isMoving, "    isADS(): ", ADS(), "    IsReloading: ", Reloading, "    AnimationPlaying: ", animationtoplay, "    WeaponOut: ", PlayerStats.weaponout)
 
 #func PopUp(Item, Cost):
-	
+

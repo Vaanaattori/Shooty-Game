@@ -1,3 +1,4 @@
+Timer
 MeshInstance3D
 CollisionShape3D
 StaticBody3D
@@ -14,7 +15,6 @@ SubViewport
 SubViewportContainer
 CanvasLayer
 TextureRect
-Timer
 Node3D
 RichTextLabel
 Panel

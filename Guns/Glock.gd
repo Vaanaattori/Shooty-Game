@@ -77,13 +77,13 @@ func animations():
 			animation_tree["parameters/GlockStates/conditions/Reload"] = false
 			animation_tree["parameters/GlockStates/conditions/HipFire"] = false
 			animation_tree["parameters/GlockStates/conditions/Shoot"] = false
-		if Input.is_action_just_pressed("Primary Action") and Player.ADS() and not WeaponStats.ammoInMag == 0:
+		if Input.is_action_just_pressed("Shoot") and Player.ADS() and not WeaponStats.ammoInMag == 0:
 			animation_tree["parameters/GlockStates/conditions/Shoot"] = true
 			animation_tree["parameters/GlockStates/conditions/ADS"] = false
 			animation_tree["parameters/GlockStates/conditions/Moving"] = false
 			animation_tree["parameters/GlockStates/conditions/Reload"] = false
 			animation_tree["parameters/GlockStates/conditions/HipFire"] = false
-		elif Input.is_action_just_pressed("Primary Action") and not Player.ADS():
+		elif Input.is_action_just_pressed("Shoot") and not Player.ADS():
 			animation_tree["parameters/GlockStates/conditions/HipFire"] = true
 			animation_tree["parameters/GlockStates/conditions/Moving"] = false
 			animation_tree["parameters/GlockStates/conditions/Reload"] = false
@@ -137,7 +137,10 @@ func _process(delta):
 			visible = true
 			animations()
 
-func PickedUp():
+func PickedUp(player):
+	Player = player
+	pickedUp = true
+	animation_tree.active = true
 	freeze = true
 	collision_layer = 0
 	collision_mask = 0
