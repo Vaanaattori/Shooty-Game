@@ -3,6 +3,7 @@ extends "res://Weapon.gd"
 @onready var Player = get_node("../Player")
 @onready var animation_tree = $GlockAnimationTree
 @onready var animation_player = $GlockAnimationPlayer
+@onready var node_3d = $Node3D
 
 
 var PlayerAnimation
@@ -140,7 +141,18 @@ func PickedUp():
 	freeze = true
 	collision_layer = 0
 	collision_mask = 0
-
+	$"Node3D/Chamber/Back Sights/Sights".set_layer_mask_value(1, false)
+	$"Node3D/Chamber/Back Sights/Sights".set_layer_mask_value(2, true)
+	for child in node_3d.get_children():
+			if child is MeshInstance3D:
+				child.set_layer_mask_value(1, false)
+				child.set_layer_mask_value(2, true)
+				var childcount = child.get_child_count()
+				if childcount > 0:
+					for child2 in child.get_children():
+						if child2 is MeshInstance3D:
+							child2.set_layer_mask_value(1, false)
+							child2.set_layer_mask_value(2, true)
 func Gun():
 	pass
 

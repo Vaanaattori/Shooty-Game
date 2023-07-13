@@ -13,6 +13,7 @@ extends CanvasLayer
 @onready var secanimation = $WeaponInfo/SecondaryWeaponInfo/SecAnimation
 @onready var pri_animation_bool = $WeaponInfo/PrimaryWeaponInfo/PriAnimationBool
 @onready var sec_animation_bool = $WeaponInfo/SecondaryWeaponInfo/SecAnimationBool
+@onready var popuplabel = $PopUp/Label
 
 
 var PlayerADS = false
@@ -61,3 +62,6 @@ func updatetimer_check():
 			secanimation.text = weapons.SecondaryWeapon.PlayerAnimation
 			sec_animation_bool.text = str(weapons.SecondaryWeapon.weaponOut)
 #	print("Pose: ", pose, "    IsmMoving: ", isMoving, "    isADS(): ", ADS(), "    IsReloading: ", Reloading, "    AnimationPlaying: ", animationtoplay, "    WeaponOut: ", PlayerStats.weaponout)
+
+#func PopUp(Item, Cost):
+	

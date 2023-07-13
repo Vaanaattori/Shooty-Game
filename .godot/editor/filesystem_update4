@@ -13,4 +13,4 @@ res://Guns/Pistol.tscn
 res://testshitglock.tscn
 res://Guns/BackupM4A1.tscn
 res://M4A12.tscn
-res://Script/Enemy.gd
+res://ammo_box.gd

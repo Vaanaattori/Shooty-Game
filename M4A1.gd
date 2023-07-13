@@ -8,6 +8,8 @@ extends "res://Weapon.gd"
 @onready var animation_player = $m4a1AnimationPlayer
 @onready var animation_tree = $"M4A1 Animation Tree"
 @onready var ads_laser = $"Node3D/RearSight003/ADS-Laser"
+@onready var node_3d = $Node3D
+@onready var body = $Node3D/Body
 
 var PlayerAnimation
 @export var Reloading = false
@@ -141,6 +143,7 @@ func _process(delta):
 		if weaponOut:	
 			visible = true
 			animations()
+			
 	if Input.is_action_just_released("Primary Action") and FiringGun and Player.ADS():
 		$Timer.start()
 
@@ -148,7 +151,10 @@ func PickedUp():
 	freeze = true
 	collision_layer = 0
 	collision_mask = 0
-
+	for child in node_3d.get_children():
+					if child is MeshInstance3D:
+						child.set_layer_mask_value(1, false)
+						child.set_layer_mask_value(2, true)
 func Gun():
 	pass
 

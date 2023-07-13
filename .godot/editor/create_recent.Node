@@ -1,6 +1,9 @@
-CollisionShape3D
 MeshInstance3D
+CollisionShape3D
 StaticBody3D
+Label
+VBoxContainer
+Area3D
 Marker3D
 AnimationPlayer
 AnimationTree
@@ -13,15 +16,12 @@ CanvasLayer
 TextureRect
 Timer
 Node3D
-Label
 RichTextLabel
 Panel
 Node
 DirectionalLight3D
 WorldEnvironment
 HBoxContainer
-VBoxContainer
-Area3D
 ShapeCast3D
 RayCast3D
 CSGBox3D

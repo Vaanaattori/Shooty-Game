@@ -363,7 +363,6 @@ _data = {
 
 [node name="M4A1" type="RigidBody3D"]
 transform = Transform3D(-1, 1.78233e-10, -2.53518e-06, 1.78233e-10, 1, 2.18525e-18, 2.53518e-06, -4.49668e-16, -1, 0.5, -0.53, -0.67)
-visible = false
 collision_layer = 4
 mass = 3.4
 script = ExtResource("1_n734i")
@@ -385,55 +384,46 @@ transform = Transform3D(0.21, 0, 0, 0, 0.21, 0, 0, 0, 0.21, 0, 0, 0)
 
 [node name="Body" type="MeshInstance3D" parent="Node3D"]
 transform = Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, 4.54747e-13, 0, 1.66984)
-layers = 2
 mesh = SubResource("ArrayMesh_wyngi")
 skeleton = NodePath("")
 
 [node name="Handguard" type="MeshInstance3D" parent="Node3D"]
 transform = Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, -1.36424e-12, 1.1299, 2.5897)
-layers = 2
 mesh = SubResource("ArrayMesh_skp1a")
 skeleton = NodePath("")
 
 [node name="Mag" type="MeshInstance3D" parent="Node3D"]
 transform = Transform3D(-0.000361998, 0, 99.9999, 0, 99.9998, 0, -99.9996, 0, -0.000361999, 4.54747e-13, 0, 1.66984)
-layers = 2
 mesh = SubResource("ArrayMesh_hqyvb")
 skeleton = NodePath("")
 
 [node name="Barrel" type="MeshInstance3D" parent="Node3D"]
 transform = Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, -9.09495e-13, 1.13566, 2.69328)
-layers = 2
 mesh = SubResource("ArrayMesh_p3ead")
 skeleton = NodePath("")
 
 [node name="Stock" type="MeshInstance3D" parent="Node3D"]
 transform = Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, 4.54747e-13, 0, 1.66984)
-layers = 2
 mesh = SubResource("ArrayMesh_v5n1j")
 skeleton = NodePath("")
 
 [node name="RearSight" type="MeshInstance3D" parent="Node3D"]
 transform = Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, -0.00678778, 1.66213, -0.958928)
-layers = 2
 mesh = SubResource("ArrayMesh_28owm")
 skeleton = NodePath("")
 
 [node name="RearSight001" type="MeshInstance3D" parent="Node3D"]
 transform = Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, -0.00678778, 1.66213, 4.03092)
-layers = 2
 mesh = SubResource("ArrayMesh_kfuk4")
 skeleton = NodePath("")
 
 [node name="RearSight002" type="MeshInstance3D" parent="Node3D"]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0.253037, 1.67829, -1.08325)
-layers = 2
 mesh = SubResource("ArrayMesh_tsmas")
 skeleton = NodePath("")
 
 [node name="RearSight003" type="MeshInstance3D" parent="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.253038, 1.68174, 3.92876)
-layers = 2
 mesh = SubResource("ArrayMesh_yiptb")
 skeleton = NodePath("")
 

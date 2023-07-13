@@ -18,6 +18,7 @@ extends CharacterBody3D
 @onready var M4A1 = $Neck/Camera3D/Weapons/M4A1
 @onready var weaponswap_dur = $Timers/WeaponSwapDur
 @onready var gunCamera = $CanvasLayer/SubViewportContainer/SubViewport/Camera3D
+@onready var HUD = $HUD
 
 
 @onready var M4A1_animation_tree = $"M4A1 Animation Tree"
@@ -83,8 +84,8 @@ func _process(delta):
 #	Shoot()
 #	print("ismoving ",isMoving)
 	Slide()
-
-#		Weapon.add_child(M4A1)
+	if Input.is_action_just_pressed("Flashlight"):
+		flashlightFunc()
 	
 
 func _physics_process(delta):
@@ -173,7 +174,6 @@ func save():
 	return save_dict
 
 func flashlightFunc():
-	if Input.is_action_just_pressed("Flashlight"):
 		flashlight_click.play()
 		flashlight.visible = not flashlight.visible
 
