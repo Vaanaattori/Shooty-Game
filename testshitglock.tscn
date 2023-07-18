@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgg2eo4ugdnpe"]
+[gd_scene load_steps=7 format=3 uid="uid://c6xvgdv2wqh0t"]
 
-[ext_resource type="PackedScene" uid="uid://brkwxrvqh4stt" path="res://Guns/Pistol.tscn" id="1_ecuh0"]
+[ext_resource type="PackedScene" uid="uid://brkwxrvqh4stt" path="res://Entities/Guns/Pistol.tscn" id="1_ecuh0"]
 
 [sub_resource type="Animation" id="Animation_ygctp"]
 length = 0.001

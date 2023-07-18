@@ -1,0 +1,166 @@
+[gd_scene load_steps=12 format=3 uid="uid://cx6dl57vmw5d6"]
+
+[ext_resource type="Script" path="res://Entities/Mobs/Enemy.gd" id="1_qpra7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jtti0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pkpwh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nkgid"]
+albedo_color = Color(0.133333, 0.470588, 0.184314, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_hvebw"]
+material = SubResource("StandardMaterial3D_nkgid")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n2456"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6j3pp"]
+material = SubResource("StandardMaterial3D_n2456")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3fani"]
+radius = 0.619554
+
+[sub_resource type="Animation" id="Animation_unnc4"]
+resource_name = "Death"
+length = 2.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/BeanMesh:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -1.5708)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/BeanMesh:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1, -0.5, 0), Vector3(1, -0.9, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox/BeanMesh:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(0.1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_82u6f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox/BeanMesh:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/BeanMesh:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/BeanMesh:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_focjm"]
+_data = {
+"Death": SubResource("Animation_unnc4"),
+"RESET": SubResource("Animation_82u6f")
+}
+
+[node name="Zombie" type="CharacterBody3D" groups=["canTakeDamage"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 13
+script = ExtResource("1_qpra7")
+
+[node name="HitBox" type="Area3D" parent="."]
+collision_layer = 12
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
+shape = SubResource("CapsuleShape3D_jtti0")
+
+[node name="Hitbox" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_pkpwh")
+
+[node name="BeanMesh" type="MeshInstance3D" parent="Hitbox"]
+mesh = SubResource("CapsuleMesh_hvebw")
+
+[node name="Marker3D" type="Marker3D" parent="Hitbox/BeanMesh"]
+
+[node name="Eyes" type="Marker3D" parent="Hitbox/BeanMesh/Marker3D"]
+transform = Transform3D(1, -9.31323e-10, 0, 9.31323e-10, 1, 0, -3.72529e-09, 1.49012e-08, 1, -3.72529e-09, 0.492334, 1.49012e-08)
+
+[node name="BeanGoggles" type="MeshInstance3D" parent="Hitbox/BeanMesh/Marker3D/Eyes"]
+transform = Transform3D(0.580903, 0, 0, 0, 0.217956, 0, 0, 0, 0.559805, 2.22045e-16, 0.0216897, -0.279756)
+mesh = SubResource("BoxMesh_6j3pp")
+skeleton = NodePath("../../..")
+
+[node name="DetectionArea" type="Area3D" parent="."]
+transform = Transform3D(11.7049, 0, 0, 0, 11.7049, 0, 0, 0, 11.7049, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
+shape = SubResource("SphereShape3D_3fani")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_focjm")
+}
+
+[connection signal="body_entered" from="DetectionArea" to="." method="detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="detection_area_body_exited"]

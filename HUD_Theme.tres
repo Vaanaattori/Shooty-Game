@@ -1,5 +1,0 @@
-[gd_resource type="Theme" format=3 uid="uid://clcl684ccf71p"]
-
-[resource]
-default_font_size = 16
-Label/colors/font_shadow_color = Color(0, 0, 0, 1)

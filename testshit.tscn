@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://buqo2ygtsm8p2"]
+[gd_scene load_steps=6 format=3 uid="uid://cbx403umfl52m"]
 
-[ext_resource type="PackedScene" uid="uid://cvepirpjtcf77" path="res://M4A12.tscn" id="1_4gn2o"]
-[ext_resource type="AnimationNodeStateMachine" uid="uid://d1m8d1h2qnup2" path="res://M4A1StateMachine.tres" id="2_s33wa"]
-[ext_resource type="AnimationLibrary" uid="uid://pl6ay11hvmev" path="res://M4A1.res" id="3_xkxs1"]
+[ext_resource type="PackedScene" uid="uid://cvepirpjtcf77" path="res://Entities/Guns/M4A1OLD.tscn" id="1_4gn2o"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://d1m8d1h2qnup2" path="res://Entities/Guns/M4A1StateMachine.tres" id="2_s33wa"]
+[ext_resource type="AnimationLibrary" uid="uid://pl6ay11hvmev" path="res://Entities/Guns/M4A1.res" id="3_xkxs1"]
 
 [sub_resource type="Animation" id="Animation_72aoe"]
 length = 0.001

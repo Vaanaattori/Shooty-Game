@@ -1,0 +1,229 @@
+[gd_scene load_steps=6 format=3 uid="uid://bp7a48krtn5wr"]
+
+[ext_resource type="Script" path="res://UI/HUD.gd" id="1_4m8kx"]
+[ext_resource type="Theme" uid="uid://clcl684ccf71p" path="res://UI/HUD_Theme.tres" id="2_g6q3x"]
+[ext_resource type="Texture2D" uid="uid://bgfgnjtof5gdj" path="res://UI/Crosshair.png" id="3_h3u10"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xuumk"]
+bg_color = Color(0.8, 0, 0.0133331, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sjhhx"]
+bg_color = Color(0.0666666, 0.8, 0, 1)
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_4m8kx")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+metadata/_edit_lock_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 24
+
+[node name="MoneyCount" type="Label" parent="Control/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_g6q3x")
+text = "0$"
+horizontal_alignment = 1
+
+[node name="HealthContainer" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HealthLabel" type="Label" parent="Control/MarginContainer/HBoxContainer/VBoxContainer/HealthContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_g6q3x")
+text = "HEALTH:
+"
+
+[node name="HealthBar" type="ProgressBar" parent="Control/MarginContainer/HBoxContainer/VBoxContainer/HealthContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("2_g6q3x")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xuumk")
+step = 1.0
+value = 100.0
+
+[node name="StaminaContainer" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+alignment = 1
+
+[node name="StaminaLabel" type="Label" parent="Control/MarginContainer/HBoxContainer/VBoxContainer/StaminaContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme = ExtResource("2_g6q3x")
+text = "STAMINA:
+"
+
+[node name="StaminaBar" type="ProgressBar" parent="Control/MarginContainer/HBoxContainer/VBoxContainer/StaminaContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+mouse_filter = 2
+theme = ExtResource("2_g6q3x")
+theme_override_styles/fill = SubResource("StyleBoxFlat_sjhhx")
+value = 100.0
+
+[node name="AmmoContainer" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+mouse_filter = 2
+
+[node name="AmmoLabel" type="Label" parent="Control/MarginContainer/HBoxContainer/AmmoContainer"]
+layout_mode = 2
+theme = ExtResource("2_g6q3x")
+text = "Ammo Left:"
+
+[node name="AmmoNumber" type="Label" parent="Control/MarginContainer/HBoxContainer/AmmoContainer"]
+layout_mode = 2
+theme = ExtResource("2_g6q3x")
+horizontal_alignment = 1
+
+[node name="TotalAmmoLeft" type="Label" parent="Control/MarginContainer/HBoxContainer/AmmoContainer"]
+layout_mode = 2
+theme = ExtResource("2_g6q3x")
+horizontal_alignment = 1
+
+[node name="WeaponInfo" type="HBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/separation = 20
+
+[node name="PrimaryWeaponInfo" type="VBoxContainer" parent="Control/MarginContainer/WeaponInfo"]
+layout_mode = 2
+
+[node name="PriAnimationBool" type="Label" parent="Control/MarginContainer/WeaponInfo/PrimaryWeaponInfo"]
+layout_mode = 2
+text = "Animation"
+horizontal_alignment = 1
+
+[node name="PriAnimation" type="Label" parent="Control/MarginContainer/WeaponInfo/PrimaryWeaponInfo"]
+layout_mode = 2
+text = "Animation"
+horizontal_alignment = 1
+
+[node name="Weapon" type="Label" parent="Control/MarginContainer/WeaponInfo/PrimaryWeaponInfo"]
+layout_mode = 2
+theme = ExtResource("2_g6q3x")
+text = "PRIMARY 
+WEAPON:"
+horizontal_alignment = 1
+
+[node name="PrimaryWeaponName" type="Label" parent="Control/MarginContainer/WeaponInfo/PrimaryWeaponInfo"]
+layout_mode = 2
+theme = ExtResource("2_g6q3x")
+text = "PLACEHOLDER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SecondaryWeaponInfo" type="VBoxContainer" parent="Control/MarginContainer/WeaponInfo"]
+layout_mode = 2
+
+[node name="SecAnimationBool" type="Label" parent="Control/MarginContainer/WeaponInfo/SecondaryWeaponInfo"]
+layout_mode = 2
+text = "Animation"
+horizontal_alignment = 1
+
+[node name="SecAnimation" type="Label" parent="Control/MarginContainer/WeaponInfo/SecondaryWeaponInfo"]
+layout_mode = 2
+text = "Animation"
+horizontal_alignment = 1
+
+[node name="Weapon" type="Label" parent="Control/MarginContainer/WeaponInfo/SecondaryWeaponInfo"]
+layout_mode = 2
+theme = ExtResource("2_g6q3x")
+text = "SECONDARY
+WEAPON:"
+horizontal_alignment = 1
+
+[node name="SecondaryWeaponName" type="Label" parent="Control/MarginContainer/WeaponInfo/SecondaryWeaponInfo"]
+layout_mode = 2
+theme = ExtResource("2_g6q3x")
+text = "PLACEHOLDER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Updatetimer" type="Timer" parent="Control/MarginContainer"]
+wait_time = 0.1
+autostart = true
+
+[node name="DebugLog" type="RichTextLabel" parent="Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+theme = ExtResource("2_g6q3x")
+theme_override_font_sizes/normal_font_size = 32
+autowrap_mode = 0
+
+[node name="Crosshair" type="Control" parent="Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="CrosshairSprite" type="Sprite2D" parent="Control/MarginContainer/Crosshair"]
+texture = ExtResource("3_h3u10")
+
+[node name="PopUp" type="VBoxContainer" parent="Control/MarginContainer/Crosshair"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -62.0
+offset_right = 62.0
+offset_bottom = 256.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/Crosshair/PopUp"]
+layout_mode = 2
+theme_override_constants/margin_top = 35
+
+[node name="InteractLabel" type="Label" parent="Control/MarginContainer/Crosshair/PopUp"]
+layout_mode = 2
+theme = ExtResource("2_g6q3x")
+horizontal_alignment = 1
+
+[node name="StartWaveLabel" type="Label" parent="Control/MarginContainer/Crosshair/PopUp"]
+layout_mode = 2
+theme = ExtResource("2_g6q3x")
+horizontal_alignment = 1
+
+[connection signal="timeout" from="Control/MarginContainer/Updatetimer" to="." method="updatetimer_check"]

@@ -1,0 +1,93 @@
+[gd_scene load_steps=10 format=3 uid="uid://bgd41arhv6756"]
+
+[ext_resource type="Script" path="res://UI/MainMenu.gd" id="1_67j81"]
+[ext_resource type="Script" path="res://Scripts/Ground.gd" id="2_q2m8l"]
+[ext_resource type="Texture2D" uid="uid://b7onuy3fl1edh" path="res://4k JPEG/Grass 03/Grass03_BaseColor.jpg" id="3_5lmun"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pgvpj"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_umqja"]
+sky_material = SubResource("ProceduralSkyMaterial_pgvpj")
+
+[sub_resource type="Environment" id="Environment_a70c2"]
+background_mode = 2
+sky = SubResource("Sky_umqja")
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 0.2
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0m3r7"]
+albedo_texture = ExtResource("3_5lmun")
+uv1_scale = Vector3(20.173, 20.173, 20.173)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pw0co"]
+material = SubResource("StandardMaterial3D_0m3r7")
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_i3lg4"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_67j81")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_a70c2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(0.247059, 0.25098, 0.2, 1)
+shadow_enabled = true
+
+[node name="Ground" type="StaticBody3D" parent="."]
+script = ExtResource("2_q2m8l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(71.1093, 0, 0, 0, 1, 0, 0, 0, 76.8439, 0, 0, 0)
+mesh = SubResource("PlaneMesh_pw0co")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("WorldBoundaryShape3D_i3lg4")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+light_energy = 5.995
+light_size = 0.315
+spot_range = 10.6813
+spot_angle = 33.5931
+
+[node name="MainMenu" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -463.0
+offset_top = -117.5
+offset_right = 463.0
+offset_bottom = 117.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 170
+text = "Main Menu"
+
+[node name="Button" type="Button" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 59
+text = "Play"
+flat = true
+
+[connection signal="pressed" from="MainMenu/VBoxContainer/Button" to="." method="_on_button_pressed"]

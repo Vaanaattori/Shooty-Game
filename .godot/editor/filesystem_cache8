@@ -1,35 +1,12 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1689232984
-ammo_box.gd::GDScript::-1::1689230402::0::1::::<>Area3D<>::
-ammo_box.tscn::PackedScene::6316472929572274869::1689230402::0::1::::<><>::res://ammo_box.gd
-Connorscript.gd::GDScript::-1::1689019235::0::1::::<>Node<>::
-Crosshair.png::CompressedTexture2D::2818263654274355655::1689019235::1689019235::1::::<><>::
-Global.gd::GDScript::-1::1689019235::0::1::::<>Node<>::
-HUD.gd::GDScript::-1::1689229441::0::1::::<>CanvasLayer<>::
-HUD.tscn::PackedScene::3505366963933679533::1689230301::0::1::::<><>::res://HUD.gd<>uid://bgfgnjtof5gdj::::res://Crosshair.png<>uid://clcl684ccf71p::::res://HUD_Theme.tres
-HUD_Theme.tres::Theme::5549772427607821515::1689229441::0::1::::<><>::
+::res://::1689678816
+Global.gd::GDScript::-1::1689668410::0::1::::<>Node<>::
 icon.svg::CompressedTexture2D::1826199082837518549::1689019235::1689019235::1::::<><>::
-M4A1.gd::GDScript::-1::1689229926::0::1::::<>RigidBody3D<>::
-M4A1.res::AnimationLibrary::1077424338557736741::1689077075::0::1::::<><>::
-M4A1StateMachine.tres::AnimationNodeStateMachine::9010954914529277553::1689229790::0::1::::<><>::
-M4A12.gd::GDScript::-1::1689019235::0::1::::<>RigidBody3D<>::
-M4A12.tscn::PackedScene::6255990552547270804::1689230302::0::1::::<><>::res://M4A1.gd<>uid://pl6ay11hvmev::::res://M4A1.res<>uid://d1m8d1h2qnup2::::res://M4A1StateMachine.tres
-MainLevel.tscn::PackedScene::1169630439840302031::1689019235::0::1::::<><>::res://Scenes/Level/MainLevel.gd<>uid://6a311l1ignor::::res://Grass.tres<>uid://bmqgkgj80igqm::::res://BEARR.tscn
-Player.tscn::PackedScene::3931885284174888514::1689232984::0::1::::<><>::res://Script/Player.gd<>uid://bp7a48krtn5wr::::res://HUD.tscn<>uid://dw8ncesrcwvkc::::res://PlayerCapsule.tres<>res://WeaponHand.gd<>uid://d1m8d1h2qnup2::::res://M4A1StateMachine.tres
-PlayerCapsule.tres::CapsuleShape3D::8772334208169606298::1689019235::0::1::::<><>::
-PlayerStats.gd::GDScript::-1::1689019235::0::1::::<>Node<>::
-Slime.gd::GDScript::-1::1689019235::0::1::::<>CharacterBody2D<>::
-test.tscn::PackedScene::2584410598829406965::1689019235::0::1::::<><>::
-testshit.tscn::PackedScene::3824127125569935229::1689230301::0::1::::<><>::uid://cvepirpjtcf77::::res://M4A12.tscn<>uid://d1m8d1h2qnup2::::res://M4A1StateMachine.tres<>uid://pl6ay11hvmev::::res://M4A1.res
-testshitglock.tscn::PackedScene::2821587295069058158::1689230302::0::1::::<><>::uid://brkwxrvqh4stt::::res://Guns/Pistol.tscn
-TestWorld.tscn::PackedScene::1447309928122230377::1689230301::0::1::::<><>::res://world.gd<>res://Script/Ground.gd<>uid://b7onuy3fl1edh::::res://4k JPEG/Grass 03/Grass03_BaseColor.jpg<>uid://cvepirpjtcf77::::res://M4A12.tscn
-theworld.gd::GDScript::-1::1689019235::0::1::::<>Node2D<>::
-Weapon.gd::GDScript::-1::1689019235::0::1::::<>RigidBody3D<>::
-WeaponHand.gd::GDScript::-1::1689232984::0::1::::<>Node3D<>::
-world.gd::GDScript::-1::1689229441::0::1::::<>Node3D<>::
-world.gdshader::Shader::-1::1689232984::0::1::::<><>::
-world.tscn::PackedScene::4053016545526260641::1689230300::0::1::::<><>::res://world.gd<>uid://cv80nethatnrh::::res://ammo_box.tscn<>uid://cvepirpjtcf77::::res://M4A12.tscn<>uid://dp1b2cr4awrn4::::res://Guns/Glock.tscn
-Zombie.tscn::PackedScene::6451383902253378317::1689230300::0::1::::<><>::res://Script/Enemy.gd
+test.tscn::PackedScene::7437978321319169787::1689678558::0::1::::<><>::
+testshit.tscn::PackedScene::4892317839107726274::1689678124::0::1::::<><>::uid://cvepirpjtcf77::::res://Entities/Guns/M4A12.tscn<>uid://d1m8d1h2qnup2::::res://Entities/Guns/M4A1StateMachine.tres<>uid://pl6ay11hvmev::::res://Entities/Guns/M4A1.res
+testshitglock.tscn::PackedScene::6997462171387842817::1689678558::0::1::::<><>::uid://brkwxrvqh4stt::::res://Entities/Guns/Pistol.tscn
+TestWorld.tscn::PackedScene::1606640250106644060::1689678124::0::1::::<><>::res://World/Levels/world.gd<>res://Scripts/Ground.gd<>uid://b7onuy3fl1edh::::res://4k JPEG/Grass 03/Grass03_BaseColor.jpg<>uid://cvepirpjtcf77::::res://Entities/Guns/M4A12.tscn
+Zombie_Body Base Color.png::CompressedTexture2D::3636464826372271556::1689590231::1689590232::1::::<><>::
 ::res://4k JPEG/::1687960470
 ::res://4k JPEG/Grass 03/::1687949765
 Grass03_Ambient Occlusion.jpg::CompressedTexture2D::8798018683048111941::1689019235::1689019235::1::::<><>::
@@ -40,19 +17,57 @@ Grass03_Normal.jpg::CompressedTexture2D::2819533576978347637::1689019235::168901
 Grass03_Opacity.jpg::CompressedTexture2D::1181533176309859606::1689019235::1689019235::1::::<><>::
 Grass03_Roughness.jpg::CompressedTexture2D::6073027085059261308::1689019235::1689019235::1::::<><>::
 Grass03_Specular Level.jpg::CompressedTexture2D::4317766202827097441::1689019235::1689019235::1::::<><>::
-::res://Blender/::1688387472
-MyFirstHumanBody.fbx::PackedScene::4267099161711893786::1689019235::1689019235::1::::<><>::
-::res://Guns/::1689230302
-BackupM4A1.tscn::PackedScene::6181494068424242870::1689230302::0::1::::<><>::res://M4A1.gd
-Glock.gd::GDScript::-1::1689229948::0::1::::<>RigidBody3D<>::
-Glock.tscn::PackedScene::8265877593310429227::1689230302::0::1::::<><>::res://Guns/Glock.gd
-M4A1.tscn::PackedScene::6255990552547270804::1689230302::0::1::::<><>::res://M4A1.gd<>uid://pl6ay11hvmev::::res://M4A1.res<>uid://d1m8d1h2qnup2::::res://M4A1StateMachine.tres
-Pistol.tscn::PackedScene::3601652576256251769::1689230302::0::1::::<><>::uid://dp1b2cr4awrn4::::res://Guns/Glock.tscn
-::res://Script/::1689229441
-Enemy.gd::GDScript::-1::1689084034::0::1::::<>CharacterBody3D<>::
-Ground.gd::GDScript::-1::1689019235::0::1::::<>StaticBody3D<>::
-Level.gd::GDScript::-1::1689019235::0::1::::<>Node3D<>::
-MainLevel.gd::GDScript::-1::1689019235::0::1::::<><>::
-Player.gd::GDScript::-1::1689229441::0::1::::<>CharacterBody3D<>::
-PlayerStats.gd::GDScript::-1::1689019235::0::1::::<>Node<>::
+::res://Blender/::1689590129
+MyFirstHumanBody.fbx::PackedScene::4267099161711893786::1689587414::1689590129::1::::<><>::
+::res://Blender/textures/::1689590128
+Body Base Color.png::CompressedTexture2D::8044748960508120928::1689587872::1689590128::1::::<><>::
+::res://Entities/::1689668522
+::res://Entities/Guns/::1689678657
+BackupM4A1.tscn::PackedScene::6181494068424242870::1689668328::0::1::::<><>::res://Entities/Guns/M4A1.gd
+Glock.gd::GDScript::-1::1689678643::0::1::::<>RigidBody3D<>::
+Glock.tscn::PackedScene::8265877593310429227::1689678559::0::1::::<><>::res://Entities/Guns/Glock.gd
+M4A1.gd::GDScript::-1::1689678657::0::1::::<>RigidBody3D<>::
+M4A1.res::AnimationLibrary::1077424338557736741::1689077075::0::1::::<><>::
+M4A1.tscn::PackedScene::6255990552547270804::1689678558::0::1::::<><>::res://Entities/Guns/M4A1.gd<>uid://pl6ay11hvmev::::res://Entities/Guns/M4A1.res<>uid://d1m8d1h2qnup2::::res://Entities/Guns/M4A1StateMachine.tres
+M4A1OLD.tscn::PackedScene::6255990552547270804::1689678559::0::1::::<><>::res://Entities/Guns/M4A1.gd<>uid://pl6ay11hvmev::::res://Entities/Guns/M4A1.res<>uid://d1m8d1h2qnup2::::res://Entities/Guns/M4A1StateMachine.tres
+M4A1StateMachine.tres::AnimationNodeStateMachine::9010954914529277553::1689678121::0::1::::<><>::
+Pistol.tscn::PackedScene::3601652576256251769::1689678558::0::1::::<><>::uid://dp1b2cr4awrn4::::res://Entities/Guns/Glock.tscn
+::res://Entities/Mobs/::1689676839
+Enemy.gd::GDScript::-1::1689676839::0::1::::<>CharacterBody3D<>::
+::res://Entities/Mobs/ShadowFigure/::1689678558
+NewZombie.tscn::PackedScene::7040362428502653738::1689678558::0::1::::<><>::res://Entities/Mobs/Enemy.gd<>uid://br2sbrk7h07tg::::res://Zombie_Body Base Color.png
+Zombie.glb::PackedScene::4046414624437455580::1689595516::1689668567::1::::<><>::
+ZombieModel.tscn::PackedScene::3017199862616089054::1689597509::0::1::::<><>::uid://br2sbrk7h07tg
+Zombie_Body Base Color.png::CompressedTexture2D::7634007326793556989::1689668567::1689668568::1::::<><>::
+::res://Entities/Mobs/Zombean/::1689678558
+Zombie.tscn::PackedScene::6451383902253378317::1689678558::0::1::::<><>::res://Entities/Mobs/Enemy.gd
+::res://Entities/Player/::1689678656
+HUD.tscn::PackedScene::3505366963933679533::1689678558::0::1::::<><>::res://UI/HUD.gd<>uid://clcl684ccf71p::::res://UI/HUD_Theme.tres<>uid://bgfgnjtof5gdj::::res://UI/Crosshair.png
+Player.gd::GDScript::-1::1689678602::0::1::::<>CharacterBody3D<>::
+Player.tscn::PackedScene::3931885284174888514::1689678656::0::1::::<><>::res://Entities/Player/Player.gd<>uid://bp7a48krtn5wr::::res://Entities/Player/HUD.tscn<>uid://dw8ncesrcwvkc::::res://Entities/Player/PlayerCapsule.tres<>res://Entities/Player/WeaponHand2.gd<>uid://lhwpp33lafwn::::res://UI/pause_menu.tscn
+PlayerCapsule.tres::CapsuleShape3D::8772334208169606298::1689019235::0::1::::<><>::
+PlayerStats.gd::GDScript::-1::1689677614::0::1::::<>Node<>::
+Weapon.gd::GDScript::-1::1689667158::0::1::::<>RigidBody3D<>::
+WeaponHand2.gd::GDScript::-1::1689675677::0::1::::<>Node3D<>::
+WeaponHand.gd::GDScript::-1::1689667158::0::1::::<>Node3D<>::
+::res://Scripts/::1689668682
+Connorscript.gd::GDScript::-1::1689667157::0::1::::<>Node<>::
+Ground.gd::GDScript::-1::1689667158::0::1::::<>StaticBody3D<>::
 Slime.gd::GDScript::-1::1689019235::0::1::::<>CharacterBody2D<>::
+::res://UI/::1689678558
+Crosshair.png::CompressedTexture2D::2818263654274355655::1689019235::1689668703::1::::<><>::
+HUD.gd::GDScript::-1::1689676276::0::1::::<>CanvasLayer<>::
+HUD_Theme.tres::Theme::5549772427607821515::1689668095::0::1::::<><>::
+MainMenu.gd::GDScript::-1::1689673231::0::1::::<>Node3D<>::
+MainMenu.tscn::PackedScene::2815554128824272003::1689678558::0::1::::<><>::res://UI/MainMenu.gd<>res://Scripts/Ground.gd<>uid://b7onuy3fl1edh::::res://4k JPEG/Grass 03/Grass03_BaseColor.jpg
+pause_menu.tscn::PackedScene::787891317437884221::1689678558::0::1::::<><>::
+::res://World/::1689668720
+::res://World/Levels/::1689678560
+Level.gd::GDScript::-1::1689019235::0::1::::<>Node3D<>::
+theworld.gd::GDScript::-1::1689667158::0::1::::<>Node2D<>::
+world.gd::GDScript::-1::1689676501::0::1::::<>Node3D<>::
+world.tscn::PackedScene::4046414624437455580::1689678560::0::1::::<><>::res://World/Levels/world.gd<>uid://c7kn0geb5j34y::::res://Entities/Mobs/ShadowFigure/NewZombie.tscn<>uid://cvepirpjtcf77::::res://Entities/Guns/M4A1.tscn<>uid://dp1b2cr4awrn4::::res://Entities/Guns/Glock.tscn<>res://World/Objects/EnemySpawn.gd<>uid://cv80nethatnrh::::res://World/Objects/Shop.tscn
+::res://World/Objects/::1689678558
+EnemySpawn.gd::GDScript::-1::1689676766::0::1::::<>Marker3D<>::
+Shop.gd::GDScript::-1::1689677654::0::1::::<>Area3D<>::
+Shop.tscn::PackedScene::6316472929572274869::1689678558::0::1::::<><>::res://World/Objects/Shop.gd
