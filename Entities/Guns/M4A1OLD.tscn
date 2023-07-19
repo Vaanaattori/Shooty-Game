@@ -444,7 +444,6 @@ libraries = {
 [node name="M4A1 Animation Tree" type="AnimationTree" parent="."]
 tree_root = ExtResource("3_mdxg4")
 anim_player = NodePath("../m4a1AnimationPlayer")
-active = true
 parameters/conditions/Swap-in = false
 parameters/conditions/Swap-out = false
 parameters/M4A1States/conditions/ADS = false

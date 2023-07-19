@@ -1095,6 +1095,7 @@ transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 
 [node name="Camera3D" type="Camera3D" parent="."]
 
 [node name="Glock" parent="." instance=ExtResource("1_hx8f2")]
+transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 0.852157, -0.53, -0.900204)
 visible = true
 
 [node name="Cylinder" parent="Glock/Node3D" index="0"]

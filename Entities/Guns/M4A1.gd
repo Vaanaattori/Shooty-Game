@@ -123,7 +123,7 @@ func shoot():
 	if WeaponStats.ammoInMag != 0:
 		if FiringGun == false:
 			FiringGun = true
-			oldposition = Player.neck.rotation.x
+			oldposition = Player.Neck.rotation.x
 		WeaponStats.ammoInMag -= 1
 		if ads_laser.is_colliding():
 			var ObjectHit = ads_laser.get_collider()
@@ -131,7 +131,7 @@ func shoot():
 				if ObjectHit.is_in_group("canTakeDamage"):
 					ObjectHit.TakeDamage(WeaponStats.damage)
 #		if Player.ADS():
-		Player.neck.rotation.x += .02
+		Player.Neck.rotation.x += .02
 	
 
 func shooting():
@@ -166,7 +166,7 @@ func PickUp():
 
 func _on_timer_timeout():
 	print("return")
-	if oldposition < Player.neck.rotation.x:
-		TweenFunc(Player.neck, oldposition, "rotation:x", .1)
+	if oldposition < Player.Neck.rotation.x:
+		TweenFunc(Player.Neck, oldposition, "rotation:x", .1)
 	FiringGun = false
 	animation_tree["parameters/M4A1States/ADS/blend_position"] = 0

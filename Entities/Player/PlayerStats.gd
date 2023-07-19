@@ -8,7 +8,7 @@ extends Node
 @export var StaminaRecovery = 10
 @export var BaseSpeed = 4
 @export var SprintMultiplier = 2
-@export var money: int = 999
+@export var money: int = 149
 @export_group("Weapon Stats")
 @export var SlideLength = 1.25
 

@@ -47,6 +47,7 @@ func spawnEnemy():
 				var enemy = zombie.instantiate()
 				enemy.position = spawnArea.global_position# + Vector2(randf_range(-spawnArea.spawnRadius.x, spawnArea.spawnRadius.x), randf_range(-spawnArea.spawnRadius.z, spawnArea.spawnRadius.z))
 				add_child(enemy)
+				enemy.look_at(Global.Player.global_position)
 				spawnedEnemies += 1
 			else:
 				print("All Spawns Are Occupied")

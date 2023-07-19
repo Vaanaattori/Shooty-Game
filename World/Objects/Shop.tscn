@@ -21,10 +21,5 @@ shape = SubResource("BoxShape3D_p6vio")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
 mesh = SubResource("BoxMesh_tk54g")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
 [connection signal="body_entered" from="." to="." method="ammobox_entered"]
 [connection signal="body_exited" from="." to="." method="itembox_exited"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

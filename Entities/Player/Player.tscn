@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://bwavtub8bg7xu"]
+[gd_scene load_steps=17 format=3 uid="uid://bwavtub8bg7xu"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_jpnf2"]
 [ext_resource type="PackedScene" uid="uid://bp7a48krtn5wr" path="res://Entities/Player/HUD.tscn" id="2_ohixm"]
 [ext_resource type="Shape3D" uid="uid://dw8ncesrcwvkc" path="res://Entities/Player/PlayerCapsule.tres" id="3_n2idg"]
+[ext_resource type="Shader" path="res://Entities/Player/PS1.gdshader" id="4_6o3su"]
 [ext_resource type="Script" path="res://Entities/Player/WeaponHand2.gd" id="4_763rh"]
 [ext_resource type="PackedScene" uid="uid://lhwpp33lafwn" path="res://UI/pause_menu.tscn" id="5_b2vlg"]
 
@@ -17,6 +18,16 @@ albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_1elus"]
 material = SubResource("StandardMaterial3D_tex2x")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ttlk5"]
+render_priority = -1
+shader = ExtResource("4_6o3su")
+shader_parameter/color_depth = 5
+shader_parameter/dithering = true
+shader_parameter/resolution_scale = 4
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7nstv"]
+material = SubResource("ShaderMaterial_ttlk5")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d1rgm"]
 radius = 0.799345
@@ -131,6 +142,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.533457, 0)
 cull_mask = 1048557
 current = true
 
+[node name="PixelMesh" type="MeshInstance3D" parent="Neck/Camera3D"]
+transform = Transform3D(1.72, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.0793609, -0.796186)
+mesh = SubResource("PlaneMesh_7nstv")
+skeleton = NodePath("../../..")
+
 [node name="Flashlight" type="SpotLight3D" parent="Neck/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.468178, -0.944195)
 light_energy = 5.0
@@ -149,8 +165,10 @@ collision_mask = 12
 debug_shape_custom_color = Color(1, 1, 0, 1)
 debug_shape_thickness = 1
 
-[node name="Weapons" type="Node3D" parent="Neck/Camera3D"]
+[node name="Hands" type="Node3D" parent="Neck/Camera3D"]
 script = ExtResource("4_763rh")
+wep_sway = 0.2
+ads_sway = 0.2
 
 [node name="Timers" type="Node" parent="."]
 
@@ -176,8 +194,9 @@ one_shot = true
 [node name="TakeDamageCD" type="Timer" parent="Timers"]
 one_shot = true
 
-[node name="PickUpTime" type="Timer" parent="Timers"]
+[node name="InteractTime" type="Timer" parent="Timers"]
 wait_time = 0.5
+one_shot = true
 
 [node name="PickUpRange" type="Area3D" parent="."]
 transform = Transform3D(1.98457, 0, 0, 0, 1.98457, 0, 0, 0, 1.98457, 0, 0, 0)
@@ -185,22 +204,24 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PickUpRange"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_d1rgm")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
+texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+stretch = true
+stretch_shrink = 4
 
 [node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(1920, 1080)
+size = Vector2i(480, 270)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="CanvasLayer/SubViewportContainer/SubViewport"]
@@ -214,10 +235,9 @@ libraries = {
 
 [node name="PauseMenu" parent="." instance=ExtResource("5_b2vlg")]
 
-[connection signal="playerADS" from="." to="HUD" method="_on_player_player_ads"]
 [connection signal="timeout" from="Timers/SlideTimer" to="." method="on_slide_timeout"]
-[connection signal="timeout" from="Timers/WeaponSwapOutDur" to="Neck/Camera3D/Weapons" method="weaponswap_out_timeout"]
-[connection signal="timeout" from="Timers/WeaponSwapInDur" to="Neck/Camera3D/Weapons" method="weaponswap_in_timeout"]
-[connection signal="timeout" from="Timers/PickUpTime" to="." method="_on_pick_up_timeout"]
+[connection signal="timeout" from="Timers/WeaponSwapOutDur" to="Neck/Camera3D/Hands" method="weaponswap_out_timeout"]
+[connection signal="timeout" from="Timers/WeaponSwapInDur" to="Neck/Camera3D/Hands" method="weaponswap_in_timeout"]
+[connection signal="timeout" from="Timers/InteractTime" to="." method="InteractTime_Timeout"]
 [connection signal="body_entered" from="PickUpRange" to="." method="_on_pick_up_range_body_entered"]
 [connection signal="body_exited" from="PickUpRange" to="." method="_on_pick_up_range_body_exited"]

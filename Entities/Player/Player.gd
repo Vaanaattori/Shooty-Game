@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@onready var neck = $Neck
+@onready var Neck = $Neck
 @onready var camera = $Neck/Camera3D
 @onready var flashlight = $Neck/Camera3D/Flashlight
 @onready var flashlight_click = $Neck/Camera3D/Flashlight/FlashlightClick
@@ -8,21 +8,23 @@ extends CharacterBody3D
 @onready var reload_animation_dur = $Timers/ReloadAnimationDur
 @onready var reload_time = $Timers/ReloadTime
 @onready var ads_laser = $"Neck/Camera3D/M4A1/RearSight003/ADS-Laser"
-@onready var hip_fire_laser = $"Neck/Camera3D/HipFire-Laser"
+@onready var hip_fire_laser = $"/Camera3D/HipFire-Laser"
 @onready var playercapsule = preload("res://Entities/Player/PlayerCapsule.tres")
 @onready var slidetime = $Timers/SlideTimer
 @onready var slideCD = $Timers/SlideCD
 @onready var slideCT = $Timers/SlideCT
-@onready var Weapons = $Neck/Camera3D/Weapons
-@onready var M4A1 = $Neck/Camera3D/Weapons/M4A1
+@onready var Weapons = $Neck/Camera3D/Hands
 @onready var weaponswap_dur = $Timers/WeaponSwapDur
 @onready var gunCamera = $CanvasLayer/SubViewportContainer/SubViewport/Camera3D
 @onready var HUD = $HUD
-@onready var pick_up_time = $Timers/PickUpTime
+@onready var InteractTime = $Timers/InteractTime
+
+
+
 
 #var wepName = Weapon.wepName
 signal playerADS(ads)
-
+signal Interact
 var animationtoplay
 
 var weaponOnGround
@@ -55,14 +57,14 @@ func _unhandled_input(event):
 	var delta = get_physics_process_delta_time()
 	if event is InputEventMouseMotion:
 		if sliding:
-			neck.rotate_y(-event.relative.x * actualsens * delta)
+			Neck.rotate_y(-event.relative.x * actualsens * delta)
 			camera.rotate_x(-event.relative.y * actualsens * delta)
 			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-30), deg_to_rad(90))
-			neck.rotation.y = clamp(neck.rotation.y, deg_to_rad(-120), deg_to_rad(120))
+			Neck.rotation.y = clamp(Neck.rotation.y, deg_to_rad(-120), deg_to_rad(120))
 		else:
 			rotate_y(-event.relative.x * actualsens * delta)
-			neck.rotate_x(-event.relative.y * actualsens * delta)
-			neck.rotation.x = clamp(neck.rotation.x, deg_to_rad(-90), deg_to_rad(90))
+			Neck.rotate_x(-event.relative.y * actualsens * delta)
+			Neck.rotation.x = clamp(Neck.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 			
 func _process(delta):
 	Exhausted()
@@ -75,9 +77,9 @@ func _process(delta):
 #	if Input.is_action_just_pressed("Interact"):
 #		groundPickUp()
 	if Input.is_action_just_pressed("Interact"):
-		pick_up_time.start()
+		InteractTime.start()
 	if not Input.is_action_pressed("Interact"):
-		pick_up_time.stop()
+		InteractTime.stop()
 func _physics_process(delta):
 	
 	if not is_on_floor():
@@ -203,11 +205,11 @@ func Slide():
 	
 func on_slide_timeout():
 	print("timeout")
-	neck.rotation.x += camera.rotation.x
+	Neck.rotation.x += camera.rotation.x
 	camera.rotation = Vector3.ZERO
-	var oldneck = neck.rotation.y
-	rotation.y += neck.rotation.y
-	neck.rotation.y -= oldneck
+	var old = Neck.rotation.y
+	rotation.y += Neck.rotation.y
+	Neck.rotation.y -= old
 	Pose("stand")
 	isMoving == "Idle"
 	sliding = false
@@ -238,14 +240,14 @@ func _on_pick_up_range_body_entered(body):
 		HUD.InteractLabel.text = "(E) Pick Up {0}".format([body.name])
 		weaponOnGround = body
 
-
 func _on_pick_up_range_body_exited(body):
 	if body.has_method("Gun"):
 		HUD.InteractLabel.text = ""
 		weaponOnGround = null
 
-
-func _on_pick_up_timeout():
+func InteractTime_Timeout():
 	if weaponOnGround != null:
 		Weapons.gunPickUp(weaponOnGround)
 		weaponOnGround.PickUp()
+	else:
+		emit_signal("Interact")

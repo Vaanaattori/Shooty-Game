@@ -4,29 +4,36 @@ extends Area3D
 var Cost = InitialCost
 var Weapon
 var bodyentered:bool = false
-var Player
+var Player = Global.Player
 var action
 @onready var timer = $Timer
+var Interact = Callable(self, "Action")
 
 func _ready():
 	Weapon = Item.instantiate()
+	Player.connect("Interact", Interact)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if bodyentered:
 		if Player.Weapons.CurrentWeapon != null:
 			if Player.Weapons.CurrentWeapon.name == Weapon.name:
-				Refill()
+				Cost = InitialCost / 2
+				Player.HUD.InteractLabel.text = "(E) Refill {0}'s ammo for {1}$".format([Weapon.name, Cost])
+				action = "refill"
 			else:
-				Purchase()
+				Cost = InitialCost
+				Player.HUD.InteractLabel.text = "(E) Buy {0} for {1}$".format([Weapon.name, Cost])
+				action = "purchase"
 		else: 
-			Purchase()
-	elif Player != null:
-		timer.stop()
+			Cost = InitialCost
+			Player.HUD.InteractLabel.text = "(E) Buy {0} for {1}$".format([Weapon.name, Cost])
+			action = "purchase"
 
 func ammobox_entered(body):
 	if body.has_method("ThePlayer"):
 		body.HUD.InteractLabel.text = ""
+		Player.HUD.Error.text = ""
 		print("emter")
 		Player = body
 		bodyentered = true
@@ -34,32 +41,20 @@ func ammobox_entered(body):
 func itembox_exited(body):
 	if body.has_method("ThePlayer"):
 		body.HUD.InteractLabel.text = ""
+		Player.HUD.Error.text = ""
 		print("left")
 		Player = body
 		bodyentered = false
 
-func Purchase():
-	Cost = InitialCost
-	Player.HUD.InteractLabel.text = "(E) Buy {0} for {1}$".format([Weapon.name, Cost])
-	if Input.is_action_just_pressed("Interact") and PlayerStats.money > Cost:
-		timer.start()
-		action = "purchase"
-	if  not Input.is_action_pressed("Interact"):
-		timer.stop()
-
-func Refill():
-	Cost = InitialCost / 2
-	Player.HUD.InteractLabel.text = "(E) Refill {0}'s ammo for {1}$".format([Weapon.name, Cost])
-	if Input.is_action_just_pressed("Interact") and PlayerStats.money > Cost and not Player.Weapons.CurrentWeapon.WeaponStats.ammoCount == Player.Weapons.CurrentWeapon.WeaponStats.maxAmmo:
-		timer.start()
-		action = "refill"
-	if  not Input.is_action_pressed("Interact"):
-		timer.stop()
-
-func _on_timer_timeout():
-	if action == "purchase":
-		PlayerStats.money -= Cost
-		Player.Weapons.gunPickUp(Weapon)
-	elif action == "refill":
-		PlayerStats.money -= Cost
-		Player.Weapons.CurrentWeapon.WeaponStats.ammoCount = Player.Weapons.CurrentWeapon.WeaponStats.maxAmmo
+func Action():
+	if bodyentered:
+		if action == "purchase" and PlayerStats.money > Cost:
+			PlayerStats.money -= Cost
+			Player.Weapons.gunPickUp(Weapon)
+		elif action == "refill" and PlayerStats.money > Cost and not Player.Weapons.CurrentWeapon.WeaponStats.ammoCount == Player.Weapons.CurrentWeapon.WeaponStats.maxAmmo:
+			PlayerStats.money -= Cost
+			Player.Weapons.CurrentWeapon.WeaponStats.ammoCount = Player.Weapons.CurrentWeapon.WeaponStats.maxAmmo
+		elif action == "refill" and Player.Weapons.CurrentWeapon != null and Player.Weapons.CurrentWeapon.WeaponStats.ammoCount == Player.Weapons.CurrentWeapon.WeaponStats.maxAmmo:
+			Player.HUD.Error.text = "Already Max Ammo!"
+		elif PlayerStats.money < Cost:
+			Player.HUD.Error.text = "Not Enough Backaroos!"

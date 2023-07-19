@@ -27,7 +27,7 @@ var WeaponStats = {
 var pickedUp = false
 
 func TweenFunc(object, value, parameters, time):
-	if object == Player.neck:
+	if object == Player.Neck:
 		print(object)
 	var tween = create_tween()
 	if object == animation_tree:
@@ -126,11 +126,11 @@ func _ready():
 func shoot():
 	if shooting == false:
 		shooting = true
-		oldposition = Player.neck.rotation.x
+		oldposition = Player.Neck.rotation.x
 	WeaponStats.ammoInMag -= 1
 	if Player.ADS():
 		$Timer.start()
-		Player.neck.rotation.x += .025
+		Player.Neck.rotation.x += .025
 
 func _process(delta):
 	wepswap()
@@ -166,7 +166,7 @@ func PickUp():
 
 func _on_timer_timeout():
 	print("return")
-	TweenFunc(Player.neck, oldposition, "rotation:x", .1)
+	TweenFunc(Player.Neck, oldposition, "rotation:x", .1)
 	shooting = false
 	animation_tree["parameters/GlockStates/ADS/blend_position"] = 0
 

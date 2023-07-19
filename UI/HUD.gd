@@ -9,28 +9,35 @@ extends CanvasLayer
 @onready var Player = $"../"
 @onready var updatetimer = $Control/MarginContainer/Updatetimer
 @onready var debuglog = $Control/MarginContainer/DebugLog
-@onready var weapons = $"../Neck/Camera3D/Weapons"
+@onready var weapons = $"../Neck/Camera3D/Hands"
 @onready var prianimation = $Control/MarginContainer/WeaponInfo/PrimaryWeaponInfo/PriAnimation
 @onready var secanimation = $Control/MarginContainer/WeaponInfo/SecondaryWeaponInfo/SecAnimation
 @onready var pri_animation_bool = $Control/MarginContainer/WeaponInfo/PrimaryWeaponInfo/PriAnimationBool
 @onready var sec_animation_bool = $Control/MarginContainer/WeaponInfo/SecondaryWeaponInfo/SecAnimationBool
 @onready var InteractLabel = $Control/MarginContainer/Crosshair/PopUp/InteractLabel
 @onready var money_count = $Control/MarginContainer/HBoxContainer/VBoxContainer/MoneyCount
-
+@onready var interact_progress_bar = $Control/MarginContainer/Crosshair/PopUp/InteractProgressBar
+@onready var Error = $Control/MarginContainer/Crosshair/PopUp/InteractError
 
 var PlayerADS = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	
+	StaminaBar.max_value = PlayerStats.MaxStamina
+	health_bar.max_value = PlayerStats.HPMax
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	var interacttimer = Player.InteractTime.wait_time - Player.InteractTime.time_left
+	if Player.InteractTime.time_left != 0:
+		interact_progress_bar.visible = true
+	else:
+		interact_progress_bar.visible = false
+	interact_progress_bar.max_value = Player.InteractTime.wait_time
+	interact_progress_bar.value = interacttimer
 	money_count.text = str(PlayerStats.money) + "$"
 	StaminaBar.value = PlayerStats.stamina
-	StaminaBar.max_value = PlayerStats.MaxStamina
 	health_bar.value = PlayerStats.HP
-	health_bar.max_value = PlayerStats.HPMax
+
 	if weapons.CurrentWeapon != null:
 		ammo_number.text = str(weapons.CurrentWeapon.WeaponStats.ammoInMag) + " / " + str(weapons.CurrentWeapon.WeaponStats.magSize)
 		total_ammo_left.text = "(" + str(weapons.CurrentWeapon.WeaponStats.ammoCount) + ")"
