@@ -1,17 +1,19 @@
 extends Node
 
 @export_group("Stats")
-@export var HPMax = 100
-@export var HP = 100
-@export var MaxStamina = 25
-@export var stamina = 200
-@export var StaminaRecovery = 10
-@export var BaseSpeed = 4
-@export var SprintMultiplier = 2
-@export var money: int = 149
+@export var HPMax:float = 100
+var HP:float = HPMax
+@export var MaxStamina:float = 100
+var stamina:float = MaxStamina
+@export var StaminaRecovery:float
+@export var StaminaRecoveryCooldown:float
+@export var BaseSpeed:float = 4
+@export var SprintMultiplier:float = 2
+@export var StartingMoney:float = 150
+var money: float = StartingMoney
 @export_group("Weapon Stats")
-@export var SlideLength = 1.25
+@export var SlideLength:float = 1.25
 
 @export_group("Settings")
-@export var sensitivity = 10
+@export_range(5,20) var sensitivity:float = 10
 

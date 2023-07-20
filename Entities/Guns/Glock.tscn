@@ -974,7 +974,8 @@ _data = {
 [node name="Glock" type="RigidBody3D"]
 transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 0.852157, -0.53, -0.900204)
 visible = false
-collision_layer = 4
+collision_layer = 0
+collision_mask = 17
 script = ExtResource("1_3lsi2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -998,7 +999,7 @@ mesh = SubResource("ArrayMesh_qn1n4")
 skeleton = NodePath("")
 
 [node name="Chamber" type="MeshInstance3D" parent="Node3D"]
-transform = Transform3D(1, -2.94903e-17, -4.0926e-34, 2.94903e-17, 1, 1.38778e-17, 0, -1.38778e-17, 1, -0.0117104, 0, 0)
+transform = Transform3D(1, -2.94903e-17, -4.0926e-34, 2.94903e-17, 1, 1.38778e-17, -4.1326e-40, -1.38778e-17, 1, -0.0117104, 0, 0)
 mesh = SubResource("ArrayMesh_wmjti")
 skeleton = NodePath("")
 

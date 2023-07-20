@@ -2,8 +2,6 @@ extends CharacterBody3D
 
 @onready var Neck = $Neck
 @onready var camera = $Neck/Camera3D
-@onready var flashlight = $Neck/Camera3D/Flashlight
-@onready var flashlight_click = $Neck/Camera3D/Flashlight/FlashlightClick
 @onready var Gun = $Neck/Camera3D/M4A1
 @onready var reload_animation_dur = $Timers/ReloadAnimationDur
 @onready var reload_time = $Timers/ReloadTime
@@ -18,34 +16,38 @@ extends CharacterBody3D
 @onready var gunCamera = $CanvasLayer/SubViewportContainer/SubViewport/Camera3D
 @onready var HUD = $HUD
 @onready var InteractTime = $Timers/InteractTime
-
-
-
+@onready var stamina_recovery_cd = $Timers/StaminaRecoveryCD
 
 #var wepName = Weapon.wepName
 signal playerADS(ads)
 signal Interact
-var animationtoplay
 
+var animationtoplay
+var direction = Vector3()
 var weaponOnGround
 var firing: bool = false
 var Reloading: bool = false
 var exhausted: bool = false
 var sliding: bool = false
 var isMoving = false
-var Speed = PlayerStats.BaseSpeed
-var Sprint = Speed * PlayerStats.SprintMultiplier
-var actualsens = PlayerStats.sensitivity  * 0.01
+var Speed
+var Sprint
+var actualsens
 var isMovingcheck
 var pose: String = "stand"
 var JUMP_VELOCITY = 4.5
 var slide_velocity = Vector3.ZERO
+var Dead:bool = false
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
+	Speed = PlayerStats.BaseSpeed
+	Sprint = Speed * PlayerStats.SprintMultiplier
+	actualsens = PlayerStats.sensitivity  * 0.01
+	stamina_recovery_cd.wait_time = PlayerStats.StaminaRecoveryCooldown
 #	M4A1_animation_tree.active = true
 	slidetime.wait_time = PlayerStats.SlideLength
 
@@ -65,21 +67,7 @@ func _unhandled_input(event):
 			rotate_y(-event.relative.x * actualsens * delta)
 			Neck.rotate_x(-event.relative.y * actualsens * delta)
 			Neck.rotation.x = clamp(Neck.rotation.x, deg_to_rad(-90), deg_to_rad(90))
-			
-func _process(delta):
-	Exhausted()
-	gunCamera.global_transform = camera.global_transform
-	Slide()
-	if Input.is_action_just_pressed("Flashlight"):
-		flashlightFunc()
-	if PlayerStats.HP <= 0:
-		Die()
-#	if Input.is_action_just_pressed("Interact"):
-#		groundPickUp()
-	if Input.is_action_just_pressed("Interact"):
-		InteractTime.start()
-	if not Input.is_action_pressed("Interact"):
-		InteractTime.stop()
+
 func _physics_process(delta):
 	
 	if not is_on_floor():
@@ -90,11 +78,12 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 
 	var input_dir = Input.get_vector("Left", "Right", "Forwards", "Backwards")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction and not sliding:
 		if Input.is_action_pressed("Sprint") and not exhausted and not Reloading:
 			Pose("stand")
-			PlayerStats.stamina -= delta * 5
+			stamina_recovery_cd.start()
+			PlayerStats.stamina -= 1
 			isMoving = "Sprint"
 			Speed = Sprint
 		elif pose == "stand":
@@ -131,6 +120,23 @@ func _physics_process(delta):
 		
 	move_and_slide()
 
+func _process(delta):
+	if $Timers/RegenerationCD.time_left == 0:
+		if PlayerStats.HP != PlayerStats.HPMax:
+			PlayerStats.HP += .05
+	Exhausted()
+	gunCamera.global_transform = camera.global_transform
+	Slide()
+	if PlayerStats.HP <= 0:
+		Dead = true
+#		Die()
+#	if Input.is_action_just_pressed("Interact"):
+#		groundPickUp()
+	if Input.is_action_just_pressed("Interact"):
+		InteractTime.start()
+	if not Input.is_action_pressed("Interact"):
+		InteractTime.stop()
+
 func Exhausted():
 	if PlayerStats.stamina <= 0:
 		exhausted = true
@@ -138,11 +144,12 @@ func Exhausted():
 		exhausted = false
 
 func recoverStamina(amount : int):
-	var delta = get_process_delta_time()
-	if PlayerStats.stamina < PlayerStats.MaxStamina:
-		PlayerStats.stamina += amount * delta * PlayerStats.StaminaRecovery
-	elif PlayerStats.stamina > PlayerStats.MaxStamina:
-		PlayerStats.stamina = PlayerStats.MaxStamina
+#	print(stamina_recovery_cd.time_left)
+	if stamina_recovery_cd.time_left == 0:
+		if PlayerStats.stamina < PlayerStats.MaxStamina:
+			PlayerStats.stamina += (amount * PlayerStats.StaminaRecovery) / 2
+		elif PlayerStats.stamina > PlayerStats.MaxStamina:
+			PlayerStats.stamina = PlayerStats.MaxStamina
 
 func save():
 	var save_dict = {
@@ -164,10 +171,6 @@ func save():
 		"Speed": PlayerStats.Speed
 	}
 	return save_dict
-
-func flashlightFunc():
-		flashlight_click.play()
-		flashlight.visible = not flashlight.visible
 
 func Pose(value):
 	pose = value
@@ -230,10 +233,9 @@ func ThePlayer():
 	pass
 
 func TakeDamage(amount):
-	if $Timers/TakeDamageCD.time_left == 0:
-		$Timers/TakeDamageCD.start()
-		PlayerStats.HP -= amount
-		print(PlayerStats.HP)
+	$Timers/RegenerationCD.start()
+	PlayerStats.HP -= amount
+	print(PlayerStats.HP)
 
 func _on_pick_up_range_body_entered(body):
 	if body.has_method("Gun"):

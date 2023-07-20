@@ -13,13 +13,13 @@ config_version=5
 config/name="Shooty pooty Copy"
 run/main_scene="res://World/Levels/world.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
-run/max_fps=30
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
 
-PlayerStats="*res://Entities/Player/PlayerStats.gd"
 Global="*res://Global.gd"
+PlayerStats="*res://Entities/Player/PlayerStats.tscn"
 
 [display]
 
@@ -143,7 +143,10 @@ Interact={
 [layer_names]
 
 3d_render/layer_2="Hands"
-3d_physics/layer_3="Item"
+3d_physics/layer_1="Player"
+3d_physics/layer_2="Enemy"
+3d_physics/layer_3="FloorItem"
+3d_physics/layer_5="Enviorment"
 
 [physics]
 

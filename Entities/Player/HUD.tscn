@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://UI/HUD.gd" id="1_4m8kx"]
 [ext_resource type="Theme" uid="uid://clcl684ccf71p" path="res://UI/HUD_Theme.tres" id="2_g6q3x"]
-[ext_resource type="Texture2D" uid="uid://bgfgnjtof5gdj" path="res://UI/Crosshair.png" id="3_h3u10"]
+[ext_resource type="Texture2D" uid="uid://cb4nv7k3h1pa4" path="res://UI/CrosshairWhite.png" id="3_3qeni"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xuumk"]
 bg_color = Color(0.8, 0, 0.0133331, 1)
@@ -109,11 +109,13 @@ text = "Ammo Left:"
 [node name="AmmoNumber" type="Label" parent="Control/MarginContainer/HBoxContainer/AmmoContainer"]
 layout_mode = 2
 theme = ExtResource("2_g6q3x")
+text = "0/0"
 horizontal_alignment = 1
 
 [node name="TotalAmmoLeft" type="Label" parent="Control/MarginContainer/HBoxContainer/AmmoContainer"]
 layout_mode = 2
 theme = ExtResource("2_g6q3x")
+text = "(0)"
 horizontal_alignment = 1
 
 [node name="WeaponInfo" type="HBoxContainer" parent="Control/MarginContainer"]
@@ -186,7 +188,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
 theme = ExtResource("2_g6q3x")
-theme_override_font_sizes/normal_font_size = 32
+fit_content = true
 autowrap_mode = 0
 
 [node name="Crosshair" type="Control" parent="Control/MarginContainer"]
@@ -195,9 +197,21 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
 
-[node name="CrosshairSprite" type="Sprite2D" parent="Control/MarginContainer/Crosshair"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_h3u10")
+[node name="CrosshairTexture" type="TextureRect" parent="Control/MarginContainer/Crosshair"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_3qeni")
+stretch_mode = 3
 
 [node name="PopUp" type="VBoxContainer" parent="Control/MarginContainer/Crosshair"]
 layout_mode = 1
@@ -238,6 +252,15 @@ horizontal_alignment = 1
 [node name="StartWaveLabel" type="Label" parent="Control/MarginContainer/Crosshair/PopUp"]
 layout_mode = 2
 theme = ExtResource("2_g6q3x")
+horizontal_alignment = 1
+
+[node name="FPS" type="Label" parent="Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme = ExtResource("2_g6q3x")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "634"
 horizontal_alignment = 1
 
 [connection signal="timeout" from="Control/MarginContainer/Updatetimer" to="." method="updatetimer_check"]

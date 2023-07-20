@@ -5,10 +5,10 @@ extends Node3D
 @onready var zombiespawns = $ZombieSpawns
 @onready var spawnTimer = $SpawnTimer
 var enemySpawnPoints := []
-@export_category("Enemies")
+@export_group("Enemies")
 @export var zombie:PackedScene
 @export var EnemiesToggle:bool = false
-@export_category("RoundSettings")
+@export_group("RoundSettings")
 @export var spawnSpeed := 1.0
 @export var spawnAmount := 10
 @export var spawnedEnemies := 0
@@ -47,6 +47,7 @@ func spawnEnemy():
 				var enemy = zombie.instantiate()
 				enemy.position = spawnArea.global_position# + Vector2(randf_range(-spawnArea.spawnRadius.x, spawnArea.spawnRadius.x), randf_range(-spawnArea.spawnRadius.z, spawnArea.spawnRadius.z))
 				add_child(enemy)
+				enemy.Exit = spawnArea
 				enemy.look_at(Global.Player.global_position)
 				spawnedEnemies += 1
 			else:

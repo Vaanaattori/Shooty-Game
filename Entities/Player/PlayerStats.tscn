@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckfletct1rwv"]
+
+[ext_resource type="Script" path="res://Entities/Player/PlayerStats.gd" id="1_f0hm4"]
+
+[node name="PlayerStats" type="Node"]
+script = ExtResource("1_f0hm4")

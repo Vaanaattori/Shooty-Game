@@ -1,10 +1,15 @@
-MeshInstance3D
+Timer
+Node
+CollisionShape3D
+Area3D
 Camera3D
+TextureRect
+ColorPicker
+Label
+MeshInstance3D
 SubViewport
 SubViewportContainer
-Label
 ProgressBar
-Timer
 MarginContainer
 HBoxContainer
 VBoxContainer
@@ -15,8 +20,6 @@ PanelContainer
 BoxContainer
 CanvasLayer
 AnimationPlayer
-CollisionShape3D
-Area3D
 CollisionPolygon3D
 Button
 SpotLight3D
@@ -26,7 +29,4 @@ StaticBody3D
 Marker3D
 RigidBody3D
 CharacterBody3D
-TextureRect
 Node3D
-RichTextLabel
-Panel
