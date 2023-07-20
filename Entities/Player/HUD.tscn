@@ -204,14 +204,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -100.0
-offset_right = 100.0
-offset_bottom = 100.0
+offset_left = -41.5
+offset_top = -41.5
+offset_right = 41.5
+offset_bottom = 41.5
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_3qeni")
-stretch_mode = 3
+expand_mode = 1
 
 [node name="PopUp" type="VBoxContainer" parent="Control/MarginContainer/Crosshair"]
 layout_mode = 1

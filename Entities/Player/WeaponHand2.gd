@@ -101,6 +101,7 @@ func selectWeapon(wep):
 				WeaponSwap(WeaponList.PrimaryWeapon)
 			elif Input.is_action_just_pressed("SecondaryWep") and not CurrentWeapon == WeaponList.SecondaryWeapon and weaponCount > 1 or wep == "secondary":
 				WeaponSwap(WeaponList.SecondaryWeapon)
+
 func WeaponSwap(SwappingTo):
 	swapping = true
 	print("Swapping From: ", CurrentWeapon," To: ", SwappingTo)
@@ -110,6 +111,7 @@ func WeaponSwap(SwappingTo):
 		SwappingFrom = CurrentWeapon
 	CurrentWeapon = SwappingTo
 	weaponswap_out_dur.start()
+
 func weaponswap_out_timeout():
 	if replacing:
 		SwappingFrom.queue_free()
@@ -124,6 +126,7 @@ func weaponswap_out_timeout():
 	CurrentWeapon.PlayerAnimation = "Swap-in"
 	CurrentWeapon.weaponOut = true
 	weaponswap_in_dur.start()
+
 func weaponswap_in_timeout():
 	swapping = false
 	CurrentWeapon.weaponOut = true

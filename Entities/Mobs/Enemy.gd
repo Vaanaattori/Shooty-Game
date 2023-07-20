@@ -33,6 +33,7 @@ func _physics_process(delta):
 	if not dead:
 		if not Global.Player.Dead:
 			if not Stunned:
+				print("not stunned")
 #				if PlayerInAttackRange:
 #					Attack()
 				for Player in attack_range.get_overlapping_bodies():

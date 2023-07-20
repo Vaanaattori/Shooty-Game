@@ -1,10 +1,10 @@
 extends Node
 
 @export_group("Stats")
-@export var HPMax:float = 100
-var HP:float = HPMax
+@export var HPMax:int = 100
+@onready var HP:int = HPMax
 @export var MaxStamina:float = 100
-var stamina:float = MaxStamina
+@onready var stamina:float = MaxStamina
 @export var StaminaRecovery:float
 @export var StaminaRecoveryCooldown:float
 @export var BaseSpeed:float = 4

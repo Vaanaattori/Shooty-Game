@@ -22,7 +22,7 @@ func _process(delta):
 	if Flashing:
 		visible = true
 		for Body in stun_area.get_overlapping_bodies():
-			if Body.has_method("Stun"):
+			if Body.has_method("Enemy"):
 				if not Body.Stunned:
 					Body.Stun(Strength)
 	else:
@@ -35,6 +35,4 @@ func Flash():
 
 func Duration_Timeout():
 	CooldownTimer.start()
-
-func Cooldown_Timeout():
 	Flashing = false

@@ -4,3 +4,5 @@
 
 [node name="PlayerStats" type="Node"]
 script = ExtResource("1_f0hm4")
+HPMax = 1000
+MaxStamina = 1000.0
