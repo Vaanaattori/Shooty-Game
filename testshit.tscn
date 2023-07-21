@@ -82,6 +82,7 @@ visible = true
 transform = Transform3D(-0.000361999, 0, 100, 0, 99.9999, 0, -99.9999, 0, -0.000361999, 4.54747e-13, 0, 1.66984)
 
 [node name="M4A1 Animation Tree" parent="M4A1" index="5"]
+parameters/M4A1States/conditions/Idle = false
 parameters/M4A1States/ADS/blend_position = 0
 
 [node name="AnimationTree2" type="AnimationTree" parent="M4A1"]
@@ -92,10 +93,9 @@ parameters/conditions/Swap-in = false
 parameters/conditions/Swap-out = false
 parameters/M4A1States/conditions/ADS = false
 parameters/M4A1States/conditions/HipFire = false
-parameters/M4A1States/conditions/Moving = false
+parameters/M4A1States/conditions/Idle = false
 parameters/M4A1States/conditions/Reload = false
 parameters/M4A1States/ADS/blend_position = 0
-parameters/M4A1States/Movement/blend_position = 0
 
 [node name="m4a1AnimationPlayer2" type="AnimationPlayer" parent="M4A1"]
 playback_default_blend_time = 0.2

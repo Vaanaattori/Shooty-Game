@@ -973,7 +973,6 @@ _data = {
 
 [node name="Glock" type="RigidBody3D"]
 transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 0.852157, -0.53, -0.900204)
-visible = false
 collision_layer = 0
 collision_mask = 17
 script = ExtResource("1_3lsi2")

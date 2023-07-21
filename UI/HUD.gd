@@ -31,7 +31,7 @@ func _process(delta):
 	FPS_Label.text = "FPS: " + str(fps)
 	if fps > 60:
 		FPS_Label.add_theme_color_override("font_color",Color("GREEN"))
-	elif fps < 60:
+	elif fps < 59:
 		FPS_Label.add_theme_color_override("font_color",Color("ORANGE"))
 	elif fps < 30:
 		FPS_Label.add_theme_color_override("font_color",Color("RED"))

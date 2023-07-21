@@ -1,6 +1,8 @@
-[gd_scene load_steps=35 format=3 uid="uid://8db8s7w2pqgq"]
+[gd_scene load_steps=28 format=3 uid="uid://7h6jdtc2utnv"]
 
-[ext_resource type="Script" path="res://Entities/Guns/M4A1.gd" id="1_d6uad"]
+[ext_resource type="Script" path="res://Entities/Guns/M4A1.gd" id="1_7nm6g"]
+[ext_resource type="AnimationLibrary" uid="uid://pl6ay11hvmev" path="res://Entities/Guns/M4A1.res" id="2_5q3jh"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://d1m8d1h2qnup2" path="res://Entities/Guns/M4A1StateMachine.tres" id="3_e6rq1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_slrl7"]
 radius = 0.0774486
@@ -303,334 +305,69 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_fvf7n")
 
-[sub_resource type="Animation" id="Animation_dcj0r"]
+[sub_resource type="Animation" id="Animation_72aoe"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
+tracks/0/path = NodePath("Node3D/Mag:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-2.18525e-18, -3.14159, 1.78233e-10)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.5, -0.53, -0.66)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Node3D/Mag:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(4.54747e-13, 0, 1.66984)]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Node3D/Mag:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node3D/Mag:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 1.5708, 0)]
 }
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_auvw0"]
-_data = {
-"RESET": SubResource("Animation_dcj0r")
-}
-
-[sub_resource type="Animation" id="Animation_6y3wk"]
-resource_name = "ADS"
-length = 5.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, -0.428588, -0.507632), Vector3(0, -0.431, -0.508)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-2.18525e-18, -3.14159, 1.78233e-10)]
-}
-
-[sub_resource type="Animation" id="Animation_43ppk"]
-resource_name = "ADS_Firing"
-length = 0.2
-loop_mode = 1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, -0.429, -0.45), Vector3(0, -0.429, -0.5), Vector3(0, -0.429, -0.45), Vector3(0, -0.429, -0.5)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.00698132, -3.15032, 0), Vector3(0.00523599, -3.14159, 0), Vector3(-0.00698132, -3.13287, 0), Vector3(0.00523599, -3.14159, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_cuq27"]
-resource_name = "ADS_Walk"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.005, -0.445, -0.51), Vector3(0, -0.43, -0.51), Vector3(-0.005, -0.445, -0.51), Vector3(0, -0.427089, -0.51)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, -3.14159, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_1trjc"]
-resource_name = "Idle"
-length = 5.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.5, -0.53, -0.67), Vector3(0.5, -0.54, -0.66)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-2.18525e-18, -3.14159, 1.78233e-10)]
-}
-
-[sub_resource type="Animation" id="Animation_me65l"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0.5, -0.53, -0.67)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-2.18525e-18, -3.14159, 1.78233e-10)]
-}
-
-[sub_resource type="Animation" id="Animation_sh5bh"]
-resource_name = "Reload"
-length = 2.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.7, 0.9, 1.1, 1.4, 1.9, 2.3),
-"transitions": PackedFloat32Array(4, 2, 1, 0.517632, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.5, -0.53, -0.67), Vector3(0.580292, -0.388147, -0.666), Vector3(0.357887, -0.388147, -0.666), Vector3(0.357887, -0.388147, -0.666), Vector3(0.385686, -0.417851, -0.664826), Vector3(0.385686, -0.417851, -0.664826), Vector3(0.389468, -0.421892, -0.664667), Vector3(0.41403, -0.445916, -0.665852)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.7, 0.9, 1.1, 1.4, 1.9, 2.1, 2.3),
-"transitions": PackedFloat32Array(4, 2, 1, 0.517632, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-2.18525e-18, -3.14159, 1.78233e-10), Vector3(-1.31941, -3.07559, -1.0778), Vector3(-1.21318, -2.2588, 0.0190599), Vector3(-1.21318, -2.2588, 0.0190599), Vector3(-0.678065, -2.90879, 0.153026), Vector3(-0.678065, -2.90879, 0.153026), Vector3(-0.60527, -2.99721, 0.17125), Vector3(-0.60527, -2.99721, 0.17125), Vector3(-0.470766, -3.0293, 0.133194)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Node3D/Mag:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.7, 0.728, 0.9, 1.1, 1.4, 1.6, 1.8, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 0.40786, 1, 1, 1),
-"update": 0,
-"values": [Vector3(4.54747e-13, 0, 1.66984), Vector3(4.54747e-13, 0, 1.66984), Vector3(0.157001, -0.418, 1.582), Vector3(0.277926, -1.02966, 1.24798), Vector3(-2.29915, -13.1776, -5.13867), Vector3(2.05025, -4.33358, -1.93507), Vector3(3.39444, -1.10378, -3.7273), Vector3(-1.202, -3.85561, 2.64176), Vector3(-1.202, -3.85561, 2.64176), Vector3(4.54747e-13, 0, 1.66984)]
-}
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Node3D/Mag:rotation")
+tracks/3/path = NodePath(".:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.7, 0.728, 0.9, 1.1, 1.4, 1.6, 1.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 0.40786, 1, 1),
-"update": 0,
-"values": [Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0), Vector3(-0.295073, 1.68423, -0.0147545), Vector3(-0.378261, 1.75821, 0.351603), Vector3(-0.889271, 2.21264, 2.60208), Vector3(-0.889271, 2.21264, 2.60208), Vector3(-0.889271, 2.21264, 2.60208), Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_x71tq"]
-resource_name = "Sprint"
-length = 0.6
-loop_mode = 1
-step = 0.15
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.5, -0.6, -0.67), Vector3(0.4, -0.56, -0.67), Vector3(0.5, -0.6, -0.67), Vector3(0.6, -0.56, -0.67)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.340339, -3.07681, -3.94293e-13)]
-}
-
-[sub_resource type="Animation" id="Animation_6j7lc"]
-resource_name = "Walk"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.5, -0.53, -0.67), Vector3(0.46, -0.5, -0.66), Vector3(0.5, -0.53, -0.67), Vector3(0.54, -0.5, -0.66)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(-2.18525e-18, -3.14159, 1.78233e-10)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_t3uul"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cvm07"]
 _data = {
-"ADS": SubResource("Animation_6y3wk"),
-"ADS_Firing": SubResource("Animation_43ppk"),
-"ADS_Walk": SubResource("Animation_cuq27"),
-"Idle": SubResource("Animation_1trjc"),
-"RESET": SubResource("Animation_me65l"),
-"Reload": SubResource("Animation_sh5bh"),
-"Sprint": SubResource("Animation_x71tq"),
-"Walk": SubResource("Animation_6j7lc")
+"RESET": SubResource("Animation_72aoe")
 }
 
-[node name="RigidBody3D" type="RigidBody3D"]
-transform = Transform3D(-1, 1.78233e-10, -2.53518e-06, 1.78233e-10, 1, 2.18525e-18, 2.53518e-06, -4.49668e-16, -1, 0.5, -0.53, -0.66)
+[node name="M4A1old" type="RigidBody3D"]
+transform = Transform3D(-1, 1.78233e-10, -2.53518e-06, 1.78233e-10, 1, 2.18525e-18, 2.53518e-06, -4.49668e-16, -1, 0.5, -0.53, -0.67)
+visible = false
 collision_layer = 4
-script = ExtResource("1_d6uad")
+collision_mask = 17
+mass = 3.4
+script = ExtResource("1_7nm6g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 7.7486e-07, 0.23583, 0.282099)
@@ -684,24 +421,44 @@ skeleton = NodePath("")
 
 [node name="RearSight002" type="MeshInstance3D" parent="Node3D"]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0.253037, 1.67829, -1.08325)
+visible = false
 mesh = SubResource("ArrayMesh_tsmas")
 skeleton = NodePath("")
 
 [node name="RearSight003" type="MeshInstance3D" parent="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.253038, 1.68174, 3.92876)
+visible = false
 mesh = SubResource("ArrayMesh_yiptb")
 skeleton = NodePath("")
 
 [node name="ADS-Laser" type="RayCast3D" parent="Node3D/RearSight003"]
 transform = Transform3D(0.999922, 0.0121491, 0.00266869, -0.0026677, -9.76407e-05, 0.999996, 0.0121493, -0.999926, -6.52235e-05, -0.252928, 0.359312, -4.76837e-06)
+visible = false
 target_position = Vector3(0, -100, 0)
-collision_mask = 12
+collision_mask = 2
 debug_shape_custom_color = Color(1, 0, 0, 1)
 debug_shape_thickness = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="m4a1AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_default_blend_time = 0.2
 libraries = {
-"": SubResource("AnimationLibrary_auvw0"),
-"M4A1": SubResource("AnimationLibrary_t3uul")
+"": SubResource("AnimationLibrary_cvm07"),
+"M4A1": ExtResource("2_5q3jh")
 }
+
+[node name="M4A1 Animation Tree" type="AnimationTree" parent="."]
+tree_root = ExtResource("3_e6rq1")
+anim_player = NodePath("../m4a1AnimationPlayer")
+parameters/conditions/Swap-in = false
+parameters/conditions/Swap-out = false
+parameters/M4A1States/conditions/ADS = false
+parameters/M4A1States/conditions/HipFire = false
+parameters/M4A1States/conditions/Idle = false
+parameters/M4A1States/conditions/Reload = false
+parameters/M4A1States/ADS/blend_position = 1.99154
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

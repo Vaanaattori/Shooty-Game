@@ -450,10 +450,9 @@ parameters/conditions/Swap-in = false
 parameters/conditions/Swap-out = false
 parameters/M4A1States/conditions/ADS = false
 parameters/M4A1States/conditions/HipFire = false
-parameters/M4A1States/conditions/Moving = false
+parameters/M4A1States/conditions/Idle = false
 parameters/M4A1States/conditions/Reload = false
 parameters/M4A1States/ADS/blend_position = 1.99154
-parameters/M4A1States/Movement/blend_position = 0.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1

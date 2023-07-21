@@ -1,4 +1,5 @@
 extends Node3D
+@onready var hand_animations = $"../../../HandAnimations"
 @onready var body = $"."
 @onready var pick_up_range = $"../../../PickUpRange"
 @onready var Player = $"../../.."
@@ -11,30 +12,24 @@ extends Node3D
 @export_group("Hand Sway")
 @export_range(0.01, .4) var wep_sway
 @export_range(0.01,1) var ads_sway
+
 var sway_left
 var sway_right
 var sway_up
 var sway_down
-#@export var sway_right : Vector3
 var sway_normal
-
-
-#@export var sway_normal : Vector3
-
-##1 = Full sway, 0.01 = No Sway
 
 var mouse_movX
 var mouse_movY
 var sway_treshold = 5
 var sway_lerp = 5
-var footstep_treshold = 5
-var footstep_lerp = 5
 
 var WeaponList = {
 	PrimaryWeapon = null,
 	SecondaryWeapon = null,
 	MeleeWeapon = null,
 }
+
 var replacing: bool = false
 var preloadDictionary = {}
 var CurrentWeapon = null
@@ -43,7 +38,7 @@ var SwappingFrom
 var SwappingSlot
 var swapping:bool = false
 var weaponCount = get_child_count()
-
+var PlayOnce: bool = false
 func _ready():
 	sway_left = Vector3(0, wep_sway, 0)
 	sway_right = Vector3(0, wep_sway * -1, 0)
@@ -64,7 +59,20 @@ func _process(delta):
 		CurrentWeapon.PlayerAnimation = Player.animationtoplay
 	if mouse_movX != null or mouse_movY != null:
 		weaponSway(delta)
-
+	
+	if Player.isMoving == "Walking" and not Player.ADS():
+		hand_animations.play("Walk")
+		hand_animations.speed_scale = Player.Speed / 2
+		PlayOnce = false
+	elif Player.isMoving == "Idle" and not Player.ADS():
+		hand_animations.play("Idle")
+		PlayOnce = false
+	if Player.ADS() and not PlayOnce:
+		PlayOnce = true
+		hand_animations.stop()
+		hand_animations.play("HandRESET")
+		
+	
 func weaponSway(delta):
 	var SwayLeft = sway_left
 	var SwayRight = sway_right

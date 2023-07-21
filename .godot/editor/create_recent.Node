@@ -1,6 +1,7 @@
+Node
+AnimationTree
 GPUParticles3D
 Timer
-Node
 CollisionShape3D
 Area3D
 Camera3D
@@ -25,7 +26,6 @@ CollisionPolygon3D
 Button
 SpotLight3D
 OmniLight3D
-AnimationTree
 StaticBody3D
 Marker3D
 RigidBody3D

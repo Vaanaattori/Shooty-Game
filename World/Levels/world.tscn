@@ -461,8 +461,7 @@ _bundled = {
 script = ExtResource("1_wvfhm")
 zombie = ExtResource("2_r24d2")
 EnemiesToggle = true
-spawnSpeed = 2.0
-spawnAmount = 3
+spawnAmount = 0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_67o5g")
@@ -525,7 +524,6 @@ visible = true
 transform = Transform3D(0.342332, 0.939579, 0, -0.939579, 0.342332, 0, 0, 0, 1, -2.98299, 1.87731, -6.76015)
 
 [node name="Glock" parent="Node3D4" instance=ExtResource("4_quxm6")]
-visible = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.80314, -2.66664)

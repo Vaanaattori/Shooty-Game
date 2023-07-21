@@ -250,6 +250,7 @@ func _on_pick_up_range_body_exited(body):
 func InteractTime_Timeout():
 	if weaponOnGround != null:
 		Weapons.gunPickUp(weaponOnGround)
+		print(weaponOnGround.name)
 		weaponOnGround.PickUp()
 	else:
 		emit_signal("Interact")
