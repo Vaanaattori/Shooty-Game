@@ -33,31 +33,32 @@ func _physics_process(delta):
 	if not dead:
 		if not Global.Player.Dead:
 			if not Stunned:
-				print("not stunned")
-#				if PlayerInAttackRange:
-#					Attack()
-				for Player in attack_range.get_overlapping_bodies():
-					if Player.has_method("ThePlayer"):
-						animation_player.play("Attack")
-						PlayerInAttackRange = true
-					else: PlayerInAttackRange = false
-				if Attacking and not HasAttacked:
-					Global.Player.TakeDamage(Damage)
-					HasAttacked = true
-				elif not Attacking:
-					HasAttacked = false
-				
-				if Playerchase or PermaChase:
-					if not PlayerInAttackRange:
-						animation_player.play("Walk")
-					navagent.set_target_position(Global.Player.global_transform.origin)
-					var next_nav_point = navagent.get_next_path_position()
-					look_at(next_nav_point)
-					rotation_degrees.x = 0
-					rotation_degrees.z = 0
-					velocity = (next_nav_point - global_transform.origin).normalized() * speed
-				elif not PlayerInAttackRange:
-					animation_player.play("Idle")
+				if PlayerInAttackRange or PermaChase:
+					print("not stunned")
+	#				if PlayerInAttackRange:
+	#					Attack()
+					for Player in attack_range.get_overlapping_bodies():
+						if Player.has_method("ThePlayer"):
+							animation_player.play("Attack")
+							PlayerInAttackRange = true
+						else: PlayerInAttackRange = false
+					if Attacking and not HasAttacked:
+						Global.Player.TakeDamage(Damage)
+						HasAttacked = true
+					elif not Attacking:
+						HasAttacked = false
+					
+					if Playerchase or PermaChase:
+						if not PlayerInAttackRange:
+							animation_player.play("Walk")
+						navagent.set_target_position(Global.Player.global_transform.origin)
+						var next_nav_point = navagent.get_next_path_position()
+						look_at(next_nav_point)
+						rotation_degrees.x = 0
+						rotation_degrees.z = 0
+						velocity = (next_nav_point - global_transform.origin).normalized() * speed
+					elif not PlayerInAttackRange:
+						animation_player.play("Idle")
 		else:
 			animation_player.play("Walk")
 			var next_nav_point = navagent.get_next_path_position()
@@ -71,11 +72,11 @@ func _physics_process(delta):
 #	if hitbox.overlaps_area(Player.hip_fire_laser):
 #		print(hitbox.get_overlapping_bodies())
 #		print("eat cheese")
-	if health <= 0:
+	if health <= 0 and not dead:
 		dead = true
 		PlayerStats.money += 100
-		queue_free()
-#		animation_player.play("Death")
+		animation_player.stop()
+		animation_player.play("Death")
 
 func detection_area_body_entered(body):
 	if body.has_method("ThePlayer"):

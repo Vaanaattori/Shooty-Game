@@ -2,15 +2,15 @@
 
 [ext_resource type="Script" path="res://World/Levels/world.gd" id="1_wvfhm"]
 [ext_resource type="PackedScene" uid="uid://c7kn0geb5j34y" path="res://Entities/Mobs/ShadowFigure/NewZombie.tscn" id="2_r24d2"]
-[ext_resource type="Texture2D" uid="uid://b7onuy3fl1edh" path="res://4k JPEG/Grass 03/Grass03_BaseColor.jpg" id="3_40vnh"]
+[ext_resource type="Texture2D" uid="uid://b7onuy3fl1edh" path="res://Downloads/4k JPEG/Grass 03/Grass03_BaseColor.jpg" id="3_gqj7n"]
+[ext_resource type="Texture2D" uid="uid://dxl3c2e3yfdej" path="res://Downloads/4k JPEG/Grass 03/Grass03_Ambient Occlusion.jpg" id="4_m1s7p"]
 [ext_resource type="PackedScene" uid="uid://dp1b2cr4awrn4" path="res://Entities/Guns/Glock.tscn" id="4_quxm6"]
-[ext_resource type="Texture2D" uid="uid://dxl3c2e3yfdej" path="res://4k JPEG/Grass 03/Grass03_Ambient Occlusion.jpg" id="4_ywfrw"]
-[ext_resource type="Texture2D" uid="uid://ckb0jr17nlkg7" path="res://4k JPEG/Grass 03/Grass03_Height.jpg" id="5_cu8wd"]
+[ext_resource type="Texture2D" uid="uid://ckb0jr17nlkg7" path="res://Downloads/4k JPEG/Grass 03/Grass03_Height.jpg" id="5_544vg"]
 [ext_resource type="Script" path="res://World/Objects/EnemySpawn.gd" id="5_uyrs5"]
-[ext_resource type="Texture2D" uid="uid://cc6hlrrso08um" path="res://4k JPEG/Grass 03/Grass03_Metallic.jpg" id="6_i00c0"]
+[ext_resource type="Texture2D" uid="uid://cc6hlrrso08um" path="res://Downloads/4k JPEG/Grass 03/Grass03_Metallic.jpg" id="6_erljo"]
 [ext_resource type="PackedScene" uid="uid://cv80nethatnrh" path="res://World/Objects/Shop.tscn" id="6_v28op"]
-[ext_resource type="Texture2D" uid="uid://bgf2kn26p5ojl" path="res://4k JPEG/Grass 03/Grass03_Normal.jpg" id="7_h0x3e"]
-[ext_resource type="Texture2D" uid="uid://csr24sly3m3x5" path="res://4k JPEG/Grass 03/Grass03_Roughness.jpg" id="8_7xu7w"]
+[ext_resource type="Texture2D" uid="uid://bgf2kn26p5ojl" path="res://Downloads/4k JPEG/Grass 03/Grass03_Normal.jpg" id="7_og0p6"]
+[ext_resource type="Texture2D" uid="uid://csr24sly3m3x5" path="res://Downloads/4k JPEG/Grass 03/Grass03_Roughness.jpg" id="8_lhwe6"]
 [ext_resource type="PackedScene" uid="uid://cvepirpjtcf77" path="res://Entities/Guns/M4A1.tscn" id="9_5w81i"]
 [ext_resource type="Material" uid="uid://uowqbmf20k84" path="res://Entities/Player/ZombieSpawnMarker.tres" id="12_bay7l"]
 [ext_resource type="Script" path="res://Entities/Guns/M4A1.gd" id="14_8pidt"]
@@ -32,16 +32,16 @@ agent_height = 0.1
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mt7ec"]
 diffuse_mode = 3
 specular_mode = 1
-albedo_texture = ExtResource("3_40vnh")
+albedo_texture = ExtResource("3_gqj7n")
 metallic = 1.0
-metallic_texture = ExtResource("6_i00c0")
-roughness_texture = ExtResource("8_7xu7w")
+metallic_texture = ExtResource("6_erljo")
+roughness_texture = ExtResource("8_lhwe6")
 normal_enabled = true
-normal_texture = ExtResource("7_h0x3e")
+normal_texture = ExtResource("7_og0p6")
 ao_enabled = true
-ao_texture = ExtResource("4_ywfrw")
+ao_texture = ExtResource("4_m1s7p")
 heightmap_enabled = true
-heightmap_texture = ExtResource("5_cu8wd")
+heightmap_texture = ExtResource("5_544vg")
 uv1_scale = Vector3(15.735, 15.735, 15.735)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_gu1br"]
@@ -461,8 +461,8 @@ _bundled = {
 script = ExtResource("1_wvfhm")
 zombie = ExtResource("2_r24d2")
 EnemiesToggle = true
-spawnSpeed = 0.1
-spawnAmount = 2
+spawnSpeed = 2.0
+spawnAmount = 3
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_67o5g")
@@ -519,14 +519,12 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -25.16
 transform = Transform3D(0.82374, 0.566967, 0, -0.566967, 0.82374, 0, 0, 0, 1, 0.69844, 2.32603, -3.17581)
 
 [node name="M4A1" parent="Node3D" instance=ExtResource("9_5w81i")]
-transform = Transform3D(-1, 1.78233e-10, -2.53518e-06, 1.78233e-10, 1, 2.18525e-18, 2.53518e-06, -4.49668e-16, -1, 0.5, -0.53, -0.67)
 visible = true
 
 [node name="Node3D4" type="Node3D" parent="."]
 transform = Transform3D(0.342332, 0.939579, 0, -0.939579, 0.342332, 0, 0, 0, 1, -2.98299, 1.87731, -6.76015)
 
 [node name="Glock" parent="Node3D4" instance=ExtResource("4_quxm6")]
-transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 0.852157, -0.53, -0.900204)
 visible = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

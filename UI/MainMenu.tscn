@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://UI/MainMenu.gd" id="1_67j81"]
 [ext_resource type="Script" path="res://Scripts/Ground.gd" id="2_q2m8l"]
-[ext_resource type="Texture2D" uid="uid://b7onuy3fl1edh" path="res://4k JPEG/Grass 03/Grass03_BaseColor.jpg" id="3_5lmun"]
+[ext_resource type="Texture2D" uid="uid://b7onuy3fl1edh" path="res://Downloads/4k JPEG/Grass 03/Grass03_BaseColor.jpg" id="3_5lmun"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pgvpj"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
