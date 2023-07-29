@@ -9,7 +9,7 @@ extends CanvasLayer
 @onready var Player = $"../"
 @onready var updatetimer = $Control/MarginContainer/Updatetimer
 @onready var debuglog = $Control/MarginContainer/DebugLog
-@onready var weapons = $"../Neck/Camera3D/Hands"
+@onready var weapons = $"../Neck/Camera3D/Arms/Hands"
 @onready var prianimation = $Control/MarginContainer/WeaponInfo/PrimaryWeaponInfo/PriAnimation
 @onready var secanimation = $Control/MarginContainer/WeaponInfo/SecondaryWeaponInfo/SecAnimation
 @onready var pri_animation_bool = $Control/MarginContainer/WeaponInfo/PrimaryWeaponInfo/PriAnimationBool

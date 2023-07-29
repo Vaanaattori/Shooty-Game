@@ -1,0 +1,424 @@
+[gd_scene load_steps=24 format=3 uid="uid://bxofw4e1bobas"]
+
+[ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_jpnf2"]
+[ext_resource type="PackedScene" uid="uid://bp7a48krtn5wr" path="res://Entities/Player/HUD.tscn" id="2_ohixm"]
+[ext_resource type="Shape3D" uid="uid://dw8ncesrcwvkc" path="res://Entities/Player/PlayerCapsule.tres" id="3_n2idg"]
+[ext_resource type="Script" path="res://Entities/Player/WeaponHand2.gd" id="4_763rh"]
+[ext_resource type="Shader" path="res://World/Levels/pixel.gdshader" id="4_fr8u2"]
+[ext_resource type="PackedScene" uid="uid://lhwpp33lafwn" path="res://UI/pause_menu.tscn" id="5_b2vlg"]
+[ext_resource type="PackedScene" uid="uid://d4m6tphglupjv" path="res://Flashlight.tscn" id="5_v6g67"]
+[ext_resource type="PackedScene" uid="uid://cvepirpjtcf77" path="res://Entities/Guns/M4A1.tscn" id="7_nvk0f"]
+[ext_resource type="Script" path="res://Entities/Player/PlaceHolder.gd" id="8_h00gn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sxin3"]
+albedo_color = Color(0.27451, 0.490196, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_fcw8c"]
+material = SubResource("StandardMaterial3D_sxin3")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tex2x"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1elus"]
+material = SubResource("StandardMaterial3D_tex2x")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ttlk5"]
+render_priority = -1
+shader = ExtResource("4_fr8u2")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7nstv"]
+material = SubResource("ShaderMaterial_ttlk5")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d1rgm"]
+radius = 0.799345
+height = 1.60888
+
+[sub_resource type="Animation" id="Animation_nn3lo"]
+resource_name = "ADS"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck/Camera3D/Arms/Hands:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck/Camera3D/Arms:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.00152797, -0.136315)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Neck/Camera3D/Arms:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3.14159, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fwo8d"]
+resource_name = "Death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.533457, 0), Vector3(0, -0.5, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -1.5708)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:process_mode")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 4]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HUD:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ndgnq"]
+resource_name = "Idle"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck/Camera3D/Arms/Hands:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.03, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck/Camera3D/Arms:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.724958, -0.213603, -0.557587)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("Neck/Camera3D/Arms:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3.14159, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_65gvl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.533457, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Neck/Camera3D/Arms:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.625723, -0.255562, -0.691327)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:process_mode")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Neck/Camera3D/Arms:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.11554, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Neck/Camera3D/Arms/Hands:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_uugrd"]
+resource_name = "Walk"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck/Camera3D/Arms/Hands:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.05, 0.03, 0), Vector3(0, 0, 0), Vector3(-0.05, 0.03, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck/Camera3D/Arms:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.724958, -0.213603, -0.557587)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_70bu5"]
+_data = {
+"ADS": SubResource("Animation_nn3lo"),
+"Death": SubResource("Animation_fwo8d"),
+"Idle": SubResource("Animation_ndgnq"),
+"RESET": SubResource("Animation_65gvl"),
+"Walk": SubResource("Animation_uugrd")
+}
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_r3tar"]
+
+[node name="Player" type="CharacterBody3D" groups=["Persist"]]
+collision_mask = 18
+script = ExtResource("1_jpnf2")
+
+[node name="HUD" parent="." instance=ExtResource("2_ohixm")]
+layer = 2
+
+[node name="Hitbox" type="CollisionShape3D" parent="."]
+shape = ExtResource("3_n2idg")
+
+[node name="BeanMesh" type="MeshInstance3D" parent="Hitbox"]
+layers = 16
+mesh = SubResource("CapsuleMesh_fcw8c")
+
+[node name="BeanGoggles" type="MeshInstance3D" parent="Hitbox/BeanMesh"]
+transform = Transform3D(0.580903, 0, 0, 0, 0.217956, 0, 0, 0, 0.559805, 0, 0.514024, -0.25154)
+layers = 16
+mesh = SubResource("BoxMesh_1elus")
+
+[node name="Neck" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.533457, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Neck"]
+cull_mask = 1048557
+current = true
+
+[node name="PixelMesh" type="MeshInstance3D" parent="Neck/Camera3D"]
+transform = Transform3D(1.72, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.0793609, -0.0625168)
+mesh = SubResource("PlaneMesh_7nstv")
+skeleton = NodePath("../../..")
+
+[node name="Flashlight" parent="Neck/Camera3D" instance=ExtResource("5_v6g67")]
+visible = false
+
+[node name="StunArea" parent="Neck/Camera3D/Flashlight" index="3"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="HipFire-Laser" type="RayCast3D" parent="Neck/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.57887)
+target_position = Vector3(0, -100, 0)
+collision_mask = 12
+debug_shape_custom_color = Color(1, 1, 0, 1)
+debug_shape_thickness = 1
+
+[node name="Arms" type="Node3D" parent="Neck/Camera3D"]
+transform = Transform3D(-0.999661, 0, -0.0260497, 0, 1, 0, 0.0260497, 0, -0.999661, 0.625723, -0.255562, -0.691327)
+
+[node name="Hands" type="Node3D" parent="Neck/Camera3D/Arms"]
+script = ExtResource("4_763rh")
+wep_sway = 0.05
+ads_sway = 0.2
+
+[node name="M4A1" parent="Neck/Camera3D/Arms/Hands" instance=ExtResource("7_nvk0f")]
+
+[node name="PlaceHolder" type="Node" parent="Neck/Camera3D/Arms/Hands/M4A1"]
+editor_description = "Delete parent on ready"
+script = ExtResource("8_h00gn")
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="SlideTimer" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="SlideCD" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true
+
+[node name="SlideCT" type="Timer" parent="Timers"]
+wait_time = 0.2
+one_shot = true
+
+[node name="WeaponSwapOutDur" type="Timer" parent="Timers"]
+wait_time = 0.6
+one_shot = true
+
+[node name="WeaponSwapInDur" type="Timer" parent="Timers"]
+wait_time = 0.6
+one_shot = true
+
+[node name="RegenerationCD" type="Timer" parent="Timers"]
+wait_time = 3.0
+one_shot = true
+
+[node name="StaminaRecoveryCD" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="InteractTime" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true
+
+[node name="PickUpRange" type="Area3D" parent="."]
+transform = Transform3D(1.98457, 0, 0, 0, 1.98457, 0, 0, 0, 1.98457, 0, 0, 0)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickUpRange"]
+shape = SubResource("CapsuleShape3D_d1rgm")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 4
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(480, 270)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+cull_mask = 1047554
+
+[node name="HandAnimations" type="AnimationPlayer" parent="."]
+playback_default_blend_time = 1.0
+libraries = {
+"": SubResource("AnimationLibrary_70bu5")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendSpace1D_r3tar")
+anim_player = NodePath("../HandAnimations")
+parameters/blend_position = 0
+
+[node name="PauseMenu" parent="." instance=ExtResource("5_b2vlg")]
+
+[connection signal="timeout" from="Timers/SlideTimer" to="." method="on_slide_timeout"]
+[connection signal="timeout" from="Timers/WeaponSwapOutDur" to="Neck/Camera3D/Arms/Hands" method="weaponswap_out_timeout"]
+[connection signal="timeout" from="Timers/WeaponSwapInDur" to="Neck/Camera3D/Arms/Hands" method="weaponswap_in_timeout"]
+[connection signal="timeout" from="Timers/InteractTime" to="." method="InteractTime_Timeout"]
+[connection signal="body_entered" from="PickUpRange" to="." method="_on_pick_up_range_body_entered"]
+[connection signal="body_exited" from="PickUpRange" to="." method="_on_pick_up_range_body_exited"]
+
+[editable path="Neck/Camera3D/Flashlight"]

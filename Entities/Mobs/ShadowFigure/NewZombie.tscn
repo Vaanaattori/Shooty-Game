@@ -1151,6 +1151,7 @@ shape = SubResource("SphereShape3D_3fani")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.18538, -0.234371)
+emitting = false
 amount = 5
 one_shot = true
 speed_scale = 1.25

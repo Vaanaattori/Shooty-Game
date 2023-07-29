@@ -1,18 +1,6 @@
-[gd_scene load_steps=28 format=3 uid="uid://cvepirpjtcf77"]
+[gd_scene load_steps=27 format=3 uid="uid://cvepirpjtcf77"]
 
 [ext_resource type="Script" path="res://Entities/Guns/M4A1.gd" id="1_a36xs"]
-[ext_resource type="AnimationLibrary" uid="uid://pl6ay11hvmev" path="res://Entities/Guns/M4A1.res" id="2_podho"]
-[ext_resource type="AnimationNodeStateMachine" uid="uid://d1m8d1h2qnup2" path="res://Entities/Guns/M4A1StateMachine.tres" id="3_44dsf"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_slrl7"]
-radius = 0.0774486
-height = 1.4314
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_krp6e"]
-size = Vector3(0.155, 0.386, 0.567)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_0wwnf"]
-size = Vector3(0.15471, 0.716736, 0.736566)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6iiho"]
 resource_name = "Mat_Dark"
@@ -305,69 +293,147 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_fvf7n")
 
-[sub_resource type="Animation" id="Animation_72aoe"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_slrl7"]
+radius = 0.0774486
+height = 1.4314
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_krp6e"]
+size = Vector3(0.155, 0.386, 0.567)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0wwnf"]
+size = Vector3(0.15471, 0.716736, 0.736566)
+
+[sub_resource type="Animation" id="Animation_7gi8a"]
+resource_name = "Idle"
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Node3D/Mag:position")
+tracks/0/path = NodePath("MeshNode:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(4.54747e-13, 0, 1.66984)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Node3D/Mag:rotation")
+tracks/1/path = NodePath("MeshNode:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 1.5708, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.5, -0.53, -0.67)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-2.18525e-18, -3.14159, 1.78233e-10)]
+"values": [Vector3(0, 0, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_cvm07"]
+[sub_resource type="Animation" id="Animation_dqxej"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshNode:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshNode:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fmwy3"]
 _data = {
-"RESET": SubResource("Animation_72aoe")
+"Idle": SubResource("Animation_7gi8a"),
+"RESET": SubResource("Animation_dqxej")
 }
 
 [node name="M4A1" type="RigidBody3D"]
-transform = Transform3D(-1, 1.78233e-10, -2.53518e-06, 1.78233e-10, 1, 2.18525e-18, 2.53518e-06, -4.49668e-16, -1, 0.5, -0.53, -0.67)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.428588, 0.222798)
 collision_layer = 4
 collision_mask = 17
 mass = 3.4
 script = ExtResource("1_a36xs")
+WeaponStats = {
+"ammoCount": 120,
+"ammoInMag": 30,
+"damage": 1,
+"fireRate": 15,
+"magSize": 30,
+"maxAmmo": 120,
+"wepName": "M4A1"
+}
+
+[node name="MeshNode" type="Node3D" parent="."]
+transform = Transform3D(0.21, 0, 0, 0, 0.21, 0, 0, 0, 0.21, 0, 0, 0)
+
+[node name="Body" type="MeshInstance3D" parent="MeshNode"]
+transform = Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, 4.68958e-13, 0, 1.66984)
+mesh = SubResource("ArrayMesh_wyngi")
+skeleton = NodePath("")
+
+[node name="Handguard" type="MeshInstance3D" parent="MeshNode"]
+transform = Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, -1.36424e-12, 1.1299, 2.5897)
+mesh = SubResource("ArrayMesh_skp1a")
+skeleton = NodePath("")
+
+[node name="Mag" type="MeshInstance3D" parent="MeshNode"]
+transform = Transform3D(-0.000361998, 0, 99.9999, 0, 99.9998, 0, -99.9996, 0, -0.000361999, 4.54747e-13, 0, 1.66984)
+mesh = SubResource("ArrayMesh_hqyvb")
+skeleton = NodePath("")
+
+[node name="Barrel" type="MeshInstance3D" parent="MeshNode"]
+transform = Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, -9.09495e-13, 1.13566, 2.69328)
+mesh = SubResource("ArrayMesh_p3ead")
+skeleton = NodePath("")
+
+[node name="Stock" type="MeshInstance3D" parent="MeshNode"]
+transform = Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, 4.54747e-13, 0, 1.66984)
+mesh = SubResource("ArrayMesh_v5n1j")
+skeleton = NodePath("")
+
+[node name="RearSight" type="MeshInstance3D" parent="MeshNode"]
+transform = Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, -0.00678778, 1.66213, -0.958928)
+mesh = SubResource("ArrayMesh_28owm")
+skeleton = NodePath("")
+
+[node name="RearSight001" type="MeshInstance3D" parent="MeshNode"]
+transform = Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, -0.00678778, 1.66213, 4.03092)
+mesh = SubResource("ArrayMesh_kfuk4")
+skeleton = NodePath("")
+
+[node name="RearSight002" type="MeshInstance3D" parent="MeshNode"]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0.253037, 1.67829, -1.08325)
+mesh = SubResource("ArrayMesh_tsmas")
+skeleton = NodePath("")
+
+[node name="RearSight003" type="MeshInstance3D" parent="MeshNode"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.253038, 1.68174, 3.92876)
+mesh = SubResource("ArrayMesh_yiptb")
+skeleton = NodePath("")
+
+[node name="ADS-Laser" type="RayCast3D" parent="MeshNode"]
+transform = Transform3D(0.999999, 0, -8.47033e-22, 0, -4.37114e-08, 1, -1.35003e-13, -1, -4.37114e-08, 0.000109543, 2.03971, -0.992329)
+target_position = Vector3(0, -100, 0)
+collision_mask = 2
+debug_shape_custom_color = Color(1, 0, 0, 1)
+debug_shape_thickness = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 7.7486e-07, 0.23583, 0.282099)
@@ -381,78 +447,11 @@ shape = SubResource("BoxShape3D_krp6e")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.051386)
 shape = SubResource("BoxShape3D_0wwnf")
 
-[node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(0.21, 0, 0, 0, 0.21, 0, 0, 0, 0.21, 0, 0, 0)
-
-[node name="Body" type="MeshInstance3D" parent="Node3D"]
-transform = Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, 4.54747e-13, 0, 1.66984)
-mesh = SubResource("ArrayMesh_wyngi")
-skeleton = NodePath("")
-
-[node name="Handguard" type="MeshInstance3D" parent="Node3D"]
-transform = Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, -1.36424e-12, 1.1299, 2.5897)
-mesh = SubResource("ArrayMesh_skp1a")
-skeleton = NodePath("")
-
-[node name="Mag" type="MeshInstance3D" parent="Node3D"]
-transform = Transform3D(-0.000361998, 0, 99.9999, 0, 99.9998, 0, -99.9996, 0, -0.000361999, 4.54747e-13, 0, 1.66984)
-mesh = SubResource("ArrayMesh_hqyvb")
-skeleton = NodePath("")
-
-[node name="Barrel" type="MeshInstance3D" parent="Node3D"]
-transform = Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, -9.09495e-13, 1.13566, 2.69328)
-mesh = SubResource("ArrayMesh_p3ead")
-skeleton = NodePath("")
-
-[node name="Stock" type="MeshInstance3D" parent="Node3D"]
-transform = Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, 4.54747e-13, 0, 1.66984)
-mesh = SubResource("ArrayMesh_v5n1j")
-skeleton = NodePath("")
-
-[node name="RearSight" type="MeshInstance3D" parent="Node3D"]
-transform = Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, -0.00678778, 1.66213, -0.958928)
-mesh = SubResource("ArrayMesh_28owm")
-skeleton = NodePath("")
-
-[node name="RearSight001" type="MeshInstance3D" parent="Node3D"]
-transform = Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, -0.00678778, 1.66213, 4.03092)
-mesh = SubResource("ArrayMesh_kfuk4")
-skeleton = NodePath("")
-
-[node name="RearSight002" type="MeshInstance3D" parent="Node3D"]
-transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0.253037, 1.67829, -1.08325)
-mesh = SubResource("ArrayMesh_tsmas")
-skeleton = NodePath("")
-
-[node name="RearSight003" type="MeshInstance3D" parent="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.253038, 1.68174, 3.92876)
-mesh = SubResource("ArrayMesh_yiptb")
-skeleton = NodePath("")
-
-[node name="ADS-Laser" type="RayCast3D" parent="Node3D/RearSight003"]
-transform = Transform3D(0.999922, 0.0121491, 0.00266869, -0.0026677, -9.76407e-05, 0.999996, 0.0121493, -0.999926, -6.52235e-05, -0.252928, 0.359312, -4.76837e-06)
-target_position = Vector3(0, -100, 0)
-collision_mask = 2
-debug_shape_custom_color = Color(1, 0, 0, 1)
-debug_shape_thickness = 1
-
-[node name="m4a1AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_default_blend_time = 0.2
 libraries = {
-"": SubResource("AnimationLibrary_cvm07"),
-"M4A1": ExtResource("2_podho")
+"": SubResource("AnimationLibrary_fmwy3")
 }
-
-[node name="M4A1 Animation Tree" type="AnimationTree" parent="."]
-tree_root = ExtResource("3_44dsf")
-anim_player = NodePath("../m4a1AnimationPlayer")
-parameters/conditions/Swap-in = false
-parameters/conditions/Swap-out = false
-parameters/M4A1States/conditions/ADS = false
-parameters/M4A1States/conditions/HipFire = false
-parameters/M4A1States/conditions/Idle = false
-parameters/M4A1States/conditions/Reload = false
-parameters/M4A1States/ADS/blend_position = 1.99154
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1

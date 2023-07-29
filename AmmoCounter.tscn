@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cn6d6ti314828"]
+
+[ext_resource type="Script" path="res://AmmoCounter.gd" id="1_hnn5f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1q13k"]
+albedo_color = Color(0.324219, 0.339844, 0.363281, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0p4uf"]
+material = SubResource("StandardMaterial3D_1q13k")
+size = Vector3(0.4, 0.25, 0.01)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kda2u"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yprh3"]
+material = SubResource("StandardMaterial3D_kda2u")
+size = Vector2(0.35, 0.2)
+
+[node name="AmmoCounter" type="MeshInstance3D"]
+layers = 2
+mesh = SubResource("BoxMesh_0p4uf")
+skeleton = NodePath("../MeshNode")
+script = ExtResource("1_hnn5f")
+
+[node name="Screen" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -3.27835e-09, 1, 0, -0.075, -4.37114e-08, 0, 0, -0.0058893)
+layers = 2
+mesh = SubResource("PlaneMesh_yprh3")
+
+[node name="AmmoLabel" type="Label3D" parent="Screen"]
+transform = Transform3D(-1, -1.50996e-07, -6.60024e-15, 0, -4.37114e-08, 1, -1.50996e-07, 1, 4.37114e-08, 0, 0.01, 0.005)
+layers = 2
+double_sided = false
+texture_filter = 0
+modulate = Color(0, 1, 0.0823529, 0.254902)
+text = "30"
+font_size = 47
+outline_size = 0

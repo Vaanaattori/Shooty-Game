@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://dp1b2cr4awrn4"]
+[gd_scene load_steps=69 format=3 uid="uid://dp1b2cr4awrn4"]
 
 [ext_resource type="Script" path="res://Entities/Guns/Glock.gd" id="1_3lsi2"]
 
@@ -295,38 +295,11 @@ animation = &"Glock/ADS_Firing"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4atvf"]
 animation = &"Glock/HipFire"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_inikg"]
+animation = &"Glock/RESET"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pnbey"]
 animation = &"Glock/Reload"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_st5l8"]
-animation = &"Glock/Walk"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8f3lc"]
-animation = &"Glock/Idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yoxgj"]
-animation = &"Glock/Sprint"
-
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_ic44r"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_st5l8")
-blend_point_0/pos = 0.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_8f3lc")
-blend_point_1/pos = -1.0
-blend_point_2/node = SubResource("AnimationNodeAnimation_yoxgj")
-blend_point_2/pos = 1.0
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pxn5f"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ek5bd"]
-xfade_time = 0.1
-advance_mode = 2
-advance_condition = &"ADS"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ktqv7"]
-xfade_time = 0.1
-advance_mode = 2
-advance_condition = &"Moving"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_trfsv"]
 xfade_time = 0.1
@@ -337,28 +310,9 @@ advance_mode = 2
 advance_mode = 2
 advance_condition = &"Shoot"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ral7s"]
-advance_mode = 2
-advance_condition = &"HipFire"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_teypf"]
-xfade_time = 0.1
-switch_mode = 2
-advance_mode = 2
-advance_condition = &"Moving"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b04h3"]
 advance_mode = 2
 advance_condition = &"ADS"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eamxs"]
-advance_mode = 2
-advance_condition = &"Moving"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uvtdk"]
-xfade_time = 0.1
-advance_mode = 2
-advance_condition = &"Reload"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mkwtd"]
 xfade_time = 0.1
@@ -380,17 +334,44 @@ switch_mode = 2
 advance_mode = 2
 advance_condition = &"HipFire"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dfk30"]
-xfade_time = 0.1
-switch_mode = 2
-advance_mode = 2
-advance_condition = &"Moving"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e8u8n"]
 xfade_time = 0.1
 switch_mode = 2
 advance_mode = 2
 advance_condition = &"ADS"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dirx8"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8idtu"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"ADS"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1mhh7"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"HipFire"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_23bdb"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"Reload"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3ny1g"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5h0dw"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f2kbj"]
+xfade_time = 0.1
+advance_mode = 2
+advance_condition = &"Idle"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_rm0ij"]
 states/ADS/node = SubResource("AnimationNodeBlendSpace1D_snen8")
@@ -400,12 +381,12 @@ states/Glock_ADS_Firing/node = SubResource("AnimationNodeAnimation_op2bo")
 states/Glock_ADS_Firing/position = Vector2(549, 223)
 states/Glock_HipFire/node = SubResource("AnimationNodeAnimation_4atvf")
 states/Glock_HipFire/position = Vector2(582, 46)
+states/Glock_RESET/node = SubResource("AnimationNodeAnimation_inikg")
+states/Glock_RESET/position = Vector2(371, 92)
 states/Glock_Reload/node = SubResource("AnimationNodeAnimation_pnbey")
 states/Glock_Reload/position = Vector2(1114, 155)
-states/Movement/node = SubResource("AnimationNodeBlendSpace1D_ic44r")
-states/Movement/position = Vector2(371, 100)
-transitions = ["Start", "Movement", SubResource("AnimationNodeStateMachineTransition_pxn5f"), "Movement", "ADS", SubResource("AnimationNodeStateMachineTransition_ek5bd"), "ADS", "Movement", SubResource("AnimationNodeStateMachineTransition_ktqv7"), "Glock_ADS_Firing", "ADS", SubResource("AnimationNodeStateMachineTransition_trfsv"), "ADS", "Glock_ADS_Firing", SubResource("AnimationNodeStateMachineTransition_k1upj"), "Movement", "Glock_HipFire", SubResource("AnimationNodeStateMachineTransition_ral7s"), "Glock_HipFire", "Movement", SubResource("AnimationNodeStateMachineTransition_teypf"), "Glock_HipFire", "ADS", SubResource("AnimationNodeStateMachineTransition_b04h3"), "Glock_ADS_Firing", "Movement", SubResource("AnimationNodeStateMachineTransition_eamxs"), "Movement", "Glock_Reload", SubResource("AnimationNodeStateMachineTransition_uvtdk"), "Glock_HipFire", "Glock_Reload", SubResource("AnimationNodeStateMachineTransition_mkwtd"), "Glock_ADS_Firing", "Glock_Reload", SubResource("AnimationNodeStateMachineTransition_k6bt6"), "ADS", "Glock_Reload", SubResource("AnimationNodeStateMachineTransition_le4ms"), "Glock_Reload", "Glock_HipFire", SubResource("AnimationNodeStateMachineTransition_7colw"), "Glock_Reload", "Movement", SubResource("AnimationNodeStateMachineTransition_dfk30"), "Glock_Reload", "ADS", SubResource("AnimationNodeStateMachineTransition_e8u8n")]
-graph_offset = Vector2(114, 37)
+transitions = ["Glock_ADS_Firing", "ADS", SubResource("AnimationNodeStateMachineTransition_trfsv"), "ADS", "Glock_ADS_Firing", SubResource("AnimationNodeStateMachineTransition_k1upj"), "Glock_HipFire", "ADS", SubResource("AnimationNodeStateMachineTransition_b04h3"), "Glock_HipFire", "Glock_Reload", SubResource("AnimationNodeStateMachineTransition_mkwtd"), "Glock_ADS_Firing", "Glock_Reload", SubResource("AnimationNodeStateMachineTransition_k6bt6"), "ADS", "Glock_Reload", SubResource("AnimationNodeStateMachineTransition_le4ms"), "Glock_Reload", "Glock_HipFire", SubResource("AnimationNodeStateMachineTransition_7colw"), "Glock_Reload", "ADS", SubResource("AnimationNodeStateMachineTransition_e8u8n"), "Start", "Glock_RESET", SubResource("AnimationNodeStateMachineTransition_dirx8"), "Glock_RESET", "ADS", SubResource("AnimationNodeStateMachineTransition_8idtu"), "Glock_RESET", "Glock_HipFire", SubResource("AnimationNodeStateMachineTransition_1mhh7"), "Glock_RESET", "Glock_Reload", SubResource("AnimationNodeStateMachineTransition_23bdb"), "Glock_HipFire", "Glock_RESET", SubResource("AnimationNodeStateMachineTransition_3ny1g"), "ADS", "Glock_RESET", SubResource("AnimationNodeStateMachineTransition_5h0dw"), "Glock_Reload", "Glock_RESET", SubResource("AnimationNodeStateMachineTransition_f2kbj")]
+graph_offset = Vector2(170, 43)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mpd2o"]
 animation = &"Glock/Swap-In"
@@ -973,8 +954,8 @@ _data = {
 
 [node name="Glock" type="RigidBody3D"]
 transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 0.852157, -0.53, -0.900204)
-collision_layer = 0
-collision_mask = 17
+collision_layer = 4
+collision_mask = 16
 script = ExtResource("1_3lsi2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -1034,11 +1015,10 @@ parameters/conditions/Swap-in = false
 parameters/conditions/Swap-out = false
 parameters/GlockStates/conditions/ADS = false
 parameters/GlockStates/conditions/HipFire = false
-parameters/GlockStates/conditions/Moving = false
+parameters/GlockStates/conditions/Idle = false
 parameters/GlockStates/conditions/Reload = false
 parameters/GlockStates/conditions/Shoot = false
 parameters/GlockStates/ADS/blend_position = 0.0
-parameters/GlockStates/Movement/blend_position = -0.929204
 
 [node name="GlockAnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../GlockAnimationTree")

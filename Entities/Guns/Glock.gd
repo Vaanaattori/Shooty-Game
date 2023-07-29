@@ -39,55 +39,33 @@ func animations():
 	if Input.is_action_just_pressed("Reload") and not Reloading and WeaponStats.ammoInMag < WeaponStats.magSize:
 		Reloading = true
 		animation_tree["parameters/GlockStates/conditions/Reload"] = true
-		animation_tree["parameters/GlockStates/conditions/Moving"] = false
+		animation_tree["parameters/GlockStates/conditions/Idle"] = false
 		animation_tree["parameters/GlockStates/conditions/ADS"] = false
 		animation_tree["parameters/GlockStates/conditions/HipFire"] = false
 		animation_tree["parameters/GlockStates/conditions/Shoot"] = false
 	if not Reloading:
-		if Player.isMoving == "Idle" and not Player.ADS():
-			animation_tree["parameters/GlockStates/conditions/Moving"] = true
-			TweenFunc(animation_tree, -1, "GlockStates/Movement", .1)
-			animation_tree["parameters/GlockStates/conditions/Reload"] = false
-			animation_tree["parameters/GlockStates/conditions/ADS"] = false
+		if not Player.isMoving == "Sprint":
+			if Player.ADS():
+				animation_tree["parameters/GlockStates/conditions/ADS"] = true
+				animation_tree["parameters/GlockStates/conditions/Idle"] = false
+				animation_tree["parameters/GlockStates/conditions/Reload"] = false
+				animation_tree["parameters/GlockStates/conditions/HipFire"] = false
+				animation_tree["parameters/GlockStates/conditions/Shoot"] = false
+			elif Input.is_action_just_pressed("Shoot") and Player.ADS() and not WeaponStats.ammoInMag == 0:
+				animation_tree["parameters/GlockStates/conditions/Shoot"] = true
+				animation_tree["parameters/GlockStates/conditions/ADS"] = false
+				animation_tree["parameters/GlockStates/conditions/Idle"] = false
+				animation_tree["parameters/GlockStates/conditions/Reload"] = false
+				animation_tree["parameters/GlockStates/conditions/HipFire"] = false
+			elif Input.is_action_just_pressed("Shoot") and not Player.ADS():
+				animation_tree["parameters/GlockStates/conditions/HipFire"] = true
+				animation_tree["parameters/GlockStates/conditions/Idle"] = false
+				animation_tree["parameters/GlockStates/conditions/Reload"] = false
+				animation_tree["parameters/GlockStates/conditions/ADS"] = false
+				animation_tree["parameters/GlockStates/conditions/Shoot"] = false
+		else:
 			animation_tree["parameters/GlockStates/conditions/HipFire"] = false
-			animation_tree["parameters/GlockStates/conditions/Shoot"] = false
-		elif Player.isMoving == "Walking" and not Player.ADS():
-			animation_tree["parameters/GlockStates/conditions/Moving"] = true
-			TweenFunc(animation_tree, 0, "GlockStates/Movement", .1)
-			animation_tree["parameters/GlockStates/conditions/Reload"] = false
-			animation_tree["parameters/GlockStates/conditions/ADS"] = false
-			animation_tree["parameters/GlockStates/conditions/HipFire"] = false
-			animation_tree["parameters/GlockStates/conditions/Shoot"] = false
-		elif Player.isMoving == "Sprint" and not Player.ADS():
-			animation_tree["parameters/GlockStates/conditions/Moving"] = true
-			TweenFunc(animation_tree, 1, "GlockStates/Movement", .1)
-			animation_tree["parameters/GlockStates/conditions/Reload"] = false
-			animation_tree["parameters/GlockStates/conditions/ADS"] = false
-			animation_tree["parameters/GlockStates/conditions/HipFire"] = false
-			animation_tree["parameters/GlockStates/conditions/Shoot"] = false
-		elif Player.ADS() and Player.isMoving == "Idle":
-			animation_tree["parameters/GlockStates/conditions/ADS"] = true
-			TweenFunc(animation_tree, 0, "GlockStates/ADS", .1)
-			animation_tree["parameters/GlockStates/conditions/Moving"] = false
-			animation_tree["parameters/GlockStates/conditions/Reload"] = false
-			animation_tree["parameters/GlockStates/conditions/HipFire"] = false
-			animation_tree["parameters/GlockStates/conditions/Shoot"] = false
-		elif Player.ADS() and Player.isMoving == "Walking":
-			animation_tree["parameters/GlockStates/conditions/ADS"] = true
-			TweenFunc(animation_tree, 1, "GlockStates/ADS", .1)
-			animation_tree["parameters/GlockStates/conditions/Moving"] = false
-			animation_tree["parameters/GlockStates/conditions/Reload"] = false
-			animation_tree["parameters/GlockStates/conditions/HipFire"] = false
-			animation_tree["parameters/GlockStates/conditions/Shoot"] = false
-		if Input.is_action_just_pressed("Shoot") and Player.ADS() and not WeaponStats.ammoInMag == 0:
-			animation_tree["parameters/GlockStates/conditions/Shoot"] = true
-			animation_tree["parameters/GlockStates/conditions/ADS"] = false
-			animation_tree["parameters/GlockStates/conditions/Moving"] = false
-			animation_tree["parameters/GlockStates/conditions/Reload"] = false
-			animation_tree["parameters/GlockStates/conditions/HipFire"] = false
-		elif Input.is_action_just_pressed("Shoot") and not Player.ADS():
-			animation_tree["parameters/GlockStates/conditions/HipFire"] = true
-			animation_tree["parameters/GlockStates/conditions/Moving"] = false
+			animation_tree["parameters/GlockStates/conditions/Idle"] = true
 			animation_tree["parameters/GlockStates/conditions/Reload"] = false
 			animation_tree["parameters/GlockStates/conditions/ADS"] = false
 			animation_tree["parameters/GlockStates/conditions/Shoot"] = false
@@ -96,7 +74,7 @@ func wepswap():
 	if PlayerAnimation == "Swap-out":
 		animation_tree["parameters/conditions/Swap-out"] = true
 		animation_tree["parameters/conditions/Swap-in"] = false
-		animation_tree["parameters/GlockStates/conditions/Moving"] = false
+		animation_tree["parameters/GlockStates/conditions/Idle"] = false
 		animation_tree["parameters/GlockStates/conditions/ADS"] = false
 		animation_tree["parameters/GlockStates/conditions/Shoot"] = false
 		animation_tree["parameters/GlockStates/conditions/Reload"] = false
@@ -105,7 +83,7 @@ func wepswap():
 	elif PlayerAnimation == "Swap-in":
 		animation_tree["parameters/conditions/Swap-in"] = true
 		animation_tree["parameters/conditions/Swap-out"] = false
-		animation_tree["parameters/GlockStates/conditions/Moving"] = false
+		animation_tree["parameters/GlockStates/conditions/Idle"] = false
 		animation_tree["parameters/GlockStates/conditions/Shoot"] = false
 		animation_tree["parameters/GlockStates/conditions/ADS"] = false
 		animation_tree["parameters/GlockStates/conditions/Reload"] = false

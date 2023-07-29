@@ -11,7 +11,7 @@ extends CharacterBody3D
 @onready var slidetime = $Timers/SlideTimer
 @onready var slideCD = $Timers/SlideCD
 @onready var slideCT = $Timers/SlideCT
-@onready var Weapons = $Neck/Camera3D/Hands
+@onready var Weapons = $Neck/Camera3D/Arms/Hands
 @onready var weaponswap_dur = $Timers/WeaponSwapDur
 @onready var gunCamera = $CanvasLayer/SubViewportContainer/SubViewport/Camera3D
 @onready var HUD = $HUD
@@ -132,9 +132,12 @@ func _process(delta):
 #		Die()
 #	if Input.is_action_just_pressed("Interact"):
 #		groundPickUp()
-	if Input.is_action_just_pressed("Interact"):
-		InteractTime.start()
-	if not Input.is_action_pressed("Interact"):
+	if HUD.InteractLabel.text != "":
+		if Input.is_action_just_pressed("Interact"):
+			InteractTime.start()
+		if not Input.is_action_pressed("Interact"):
+			InteractTime.stop()
+	else:
 		InteractTime.stop()
 
 func Exhausted():

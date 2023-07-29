@@ -13,17 +13,19 @@ var enemySpawnPoints := []
 @export var spawnAmount := 10
 @export var spawnedEnemies := 0
 @export var CurrentWave: int = 0
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
-	camera_3d.queue_free()
+#	camera_3d.queue_free()
 	add_child(Global.Player)
 	spawnTimer.wait_time = spawnSpeed
 	Global.Player.global_position = player_spawn.global_position
 	if EnemiesToggle:
 		startWave()
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _physics_process(delta):
 	get_tree().call_group("Enemies", "update_target_position", Global.Player.global_transform.origin)
+
+##Starts the next wave
 func startWave():
 	enemySpawnPoints.clear()
 	for spawnpoint in zombiespawns.get_children():
@@ -32,7 +34,7 @@ func startWave():
 	spawnedEnemies = 0
 	CurrentWave += 1
 	spawnTimer.start()
-
+##spawnTimer Timeout
 func spawnEnemy():
 	if spawnedEnemies < spawnAmount:
 		if enemySpawnPoints.size() > 0:

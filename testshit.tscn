@@ -77,12 +77,12 @@ _data = {
 [node name="M4A1" parent="." instance=ExtResource("1_4gn2o")]
 transform = Transform3D(-1, 1.78233e-10, -2.53518e-06, 1.78233e-10, 1, 2.18525e-18, 2.53518e-06, -4.49668e-16, -1, 0.5, -0.53, -0.67)
 visible = true
+Reloading = false
 
 [node name="Mag" parent="M4A1/Node3D" index="2"]
 transform = Transform3D(-0.000361999, 0, 100, 0, 99.9999, 0, -99.9999, 0, -0.000361999, 4.54747e-13, 0, 1.66984)
 
 [node name="M4A1 Animation Tree" parent="M4A1" index="5"]
-parameters/M4A1States/conditions/Idle = false
 parameters/M4A1States/ADS/blend_position = 0
 
 [node name="AnimationTree2" type="AnimationTree" parent="M4A1"]

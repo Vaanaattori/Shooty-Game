@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://bxwd4fqdgusum"]
+[gd_scene load_steps=60 format=3 uid="uid://bxwd4fqdgusum"]
 
 [ext_resource type="Script" path="res://World/Levels/world.gd" id="1_wvfhm"]
 [ext_resource type="PackedScene" uid="uid://c7kn0geb5j34y" path="res://Entities/Mobs/ShadowFigure/NewZombie.tscn" id="2_r24d2"]
@@ -13,9 +13,10 @@
 [ext_resource type="Texture2D" uid="uid://csr24sly3m3x5" path="res://Downloads/4k JPEG/Grass 03/Grass03_Roughness.jpg" id="8_lhwe6"]
 [ext_resource type="PackedScene" uid="uid://cvepirpjtcf77" path="res://Entities/Guns/M4A1.tscn" id="9_5w81i"]
 [ext_resource type="Material" uid="uid://uowqbmf20k84" path="res://Entities/Player/ZombieSpawnMarker.tres" id="12_bay7l"]
-[ext_resource type="Script" path="res://Entities/Guns/M4A1.gd" id="14_8pidt"]
+[ext_resource type="Script" path="res://Entities/Guns/Rifle.gd" id="14_u4ydv"]
 [ext_resource type="AnimationLibrary" uid="uid://pl6ay11hvmev" path="res://Entities/Guns/M4A1.res" id="15_wmeqc"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://d1m8d1h2qnup2" path="res://Entities/Guns/M4A1StateMachine.tres" id="16_byt6b"]
+[ext_resource type="PackedScene" uid="uid://d0b5ku0up3ato" path="res://Entities/Guns/MP5.tscn" id="17_p8nvt"]
 
 [sub_resource type="Environment" id="Environment_67o5g"]
 fog_enabled = true
@@ -450,7 +451,7 @@ _bundled = {
 "node_count": 18,
 "node_paths": [],
 "nodes": PackedInt32Array(-1, -1, 5, 0, -1, 4, 1, 0, 2, 1, 3, 2, 4, 3, 0, 0, 0, 6, 6, -1, 2, 1, 4, 7, 5, 0, 0, 0, 6, 8, -1, 2, 1, 6, 7, 7, 0, 0, 0, 6, 9, -1, 2, 1, 8, 7, 9, 0, 0, 0, 10, 10, -1, 1, 1, 10, 0, 4, 0, 14, 11, -1, 3, 1, 11, 12, 12, 13, 13, 0, 4, 0, 14, 15, -1, 3, 1, 14, 12, 15, 13, 13, 0, 4, 0, 14, 16, -1, 3, 1, 16, 12, 17, 13, 13, 0, 4, 0, 14, 17, -1, 3, 1, 18, 12, 19, 13, 13, 0, 4, 0, 14, 18, -1, 3, 1, 11, 12, 20, 13, 13, 0, 4, 0, 14, 19, -1, 3, 1, 21, 12, 22, 13, 13, 0, 4, 0, 14, 20, -1, 3, 1, 23, 12, 24, 13, 13, 0, 4, 0, 14, 21, -1, 3, 1, 25, 12, 26, 13, 13, 0, 4, 0, 14, 22, -1, 3, 1, 27, 12, 28, 13, 13, 0, 13, 0, 28, 23, -1, 5, 1, 29, 24, 30, 25, 31, 26, 32, 27, 33, 0, 0, 0, 32, 29, -1, 2, 30, 34, 31, 35, 0, 0, 0, 44, 33, -1, 10, 34, 36, 35, 37, 36, 38, 37, 38, 38, 38, 39, 38, 40, 38, 41, 38, 42, 39, 43, 39, 0, 0, 0, 45, 45, -1, 2, 46, 40, 47, 41, 0),
-"variants": [Transform3D(-1, 1.78233e-10, -2.53518e-06, 1.78233e-10, 1, 2.18525e-18, 2.53518e-06, -4.49668e-16, -1, 0.5, -0.53, -0.67), 4, 3.4, ExtResource("14_8pidt"), Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 7.7486e-07, 0.23583, 0.282099), SubResource("CapsuleShape3D_slrl7"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.094, -0.672), SubResource("BoxShape3D_krp6e"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.051386), SubResource("BoxShape3D_0wwnf"), Transform3D(0.21, 0, 0, 0, 0.21, 0, 0, 0, 0.21, 0, 0, 0), Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, 4.54747e-13, 0, 1.66984), SubResource("ArrayMesh_wyngi"), NodePath(""), Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, -1.36424e-12, 1.1299, 2.5897), SubResource("ArrayMesh_skp1a"), Transform3D(-0.000361998, 0, 99.9999, 0, 99.9998, 0, -99.9996, 0, -0.000361999, 4.54747e-13, 0, 1.66984), SubResource("ArrayMesh_hqyvb"), Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, -9.09495e-13, 1.13566, 2.69328), SubResource("ArrayMesh_p3ead"), SubResource("ArrayMesh_v5n1j"), Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, -0.00678778, 1.66213, -0.958928), SubResource("ArrayMesh_28owm"), Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, -0.00678778, 1.66213, 4.03092), SubResource("ArrayMesh_kfuk4"), Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0.253037, 1.67829, -1.08325), SubResource("ArrayMesh_tsmas"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.253038, 1.68174, 3.92876), SubResource("ArrayMesh_yiptb"), Transform3D(0.999922, 0.0121491, 0.00266869, -0.0026677, -9.76407e-05, 0.999996, 0.0121493, -0.999926, -6.52235e-05, -0.252928, 0.359312, -4.76837e-06), Vector3(0, -100, 0), 12, Color(1, 0, 0, 1), 1, 0.2, {
+"variants": [Transform3D(-1, 1.78233e-10, -2.53518e-06, 1.78233e-10, 1, 2.18525e-18, 2.53518e-06, -4.49668e-16, -1, 0.5, -0.53, -0.67), 4, 3.4, ExtResource("14_u4ydv"), Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 7.7486e-07, 0.23583, 0.282099), SubResource("CapsuleShape3D_slrl7"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.094, -0.672), SubResource("BoxShape3D_krp6e"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.051386), SubResource("BoxShape3D_0wwnf"), Transform3D(0.21, 0, 0, 0, 0.21, 0, 0, 0, 0.21, 0, 0, 0), Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, 4.54747e-13, 0, 1.66984), SubResource("ArrayMesh_wyngi"), NodePath(""), Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, -1.36424e-12, 1.1299, 2.5897), SubResource("ArrayMesh_skp1a"), Transform3D(-0.000361998, 0, 99.9999, 0, 99.9998, 0, -99.9996, 0, -0.000361999, 4.54747e-13, 0, 1.66984), SubResource("ArrayMesh_hqyvb"), Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, -9.09495e-13, 1.13566, 2.69328), SubResource("ArrayMesh_p3ead"), SubResource("ArrayMesh_v5n1j"), Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, -0.00678778, 1.66213, -0.958928), SubResource("ArrayMesh_28owm"), Transform3D(-1.19209e-05, 0, 100, 0, 100, 0, -100, 0, -1.19209e-05, -0.00678778, 1.66213, 4.03092), SubResource("ArrayMesh_kfuk4"), Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0.253037, 1.67829, -1.08325), SubResource("ArrayMesh_tsmas"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.253038, 1.68174, 3.92876), SubResource("ArrayMesh_yiptb"), Transform3D(0.999922, 0.0121491, 0.00266869, -0.0026677, -9.76407e-05, 0.999996, 0.0121493, -0.999926, -6.52235e-05, -0.252928, 0.359312, -4.76837e-06), Vector3(0, -100, 0), 12, Color(1, 0, 0, 1), 1, 0.2, {
 "": SubResource("AnimationLibrary_cvm07"),
 "M4A1": ExtResource("15_wmeqc")
 }, ExtResource("16_byt6b"), NodePath("../m4a1AnimationPlayer"), false, 0.0, 0.1, true],
@@ -511,19 +512,16 @@ mesh = SubResource("BoxMesh_ee5mt")
 [node name="PlayerSpawn" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.37928, 0.279157, 2.64243)
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -25.164, 19.5198, 14.5943)
-
 [node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(0.82374, 0.566967, 0, -0.566967, 0.82374, 0, 0, 0, 1, 0.69844, 2.32603, -3.17581)
+transform = Transform3D(0.82374, 0.566967, 0, -0.566967, 0.82374, 0, 0, 0, 1, 0.69844, 1.15461, -3.17581)
 
 [node name="M4A1" parent="Node3D" instance=ExtResource("9_5w81i")]
-visible = true
 
 [node name="Node3D4" type="Node3D" parent="."]
 transform = Transform3D(0.342332, 0.939579, 0, -0.939579, 0.342332, 0, 0, 0, 1, -2.98299, 1.87731, -6.76015)
 
 [node name="Glock" parent="Node3D4" instance=ExtResource("4_quxm6")]
+transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 0.852157, -0.53, -0.900204)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.80314, -2.66664)
@@ -604,6 +602,11 @@ Item = SubResource("PackedScene_shxg8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.88875, 1.22266, -0.549064)
 Item = ExtResource("4_quxm6")
 InitialCost = 150
+
+[node name="Node3D2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.17748, 1.30727, -1.40519)
+
+[node name="MP5" parent="Node3D2" instance=ExtResource("17_p8nvt")]
 
 [connection signal="body_entered" from="ZombieSpawns/Spawn 1/Area3D" to="ZombieSpawns/Spawn 1" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="ZombieSpawns/Spawn 1/Area3D" to="ZombieSpawns/Spawn 1" method="_on_area_3d_body_exited"]
