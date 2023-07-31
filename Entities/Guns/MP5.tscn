@@ -1,7 +1,7 @@
 [gd_scene load_steps=43 format=3 uid="uid://d0b5ku0up3ato"]
 
 [ext_resource type="Script" path="res://Entities/Guns/autofiregun.gd" id="1_ctl4h"]
-[ext_resource type="PackedScene" uid="uid://cn6d6ti314828" path="res://AmmoCounter.tscn" id="2_rgd2m"]
+[ext_resource type="PackedScene" uid="uid://cn6d6ti314828" path="res://Entities/Guns/Attatchments/AmmoCounter.tscn" id="2_rgd2m"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sofvv"]
 resource_name = "Mat_Dark"
@@ -807,12 +807,14 @@ _data = {
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c0dcc"]
 albedo_color = Color(0.1875, 0.191406, 0.203125, 1)
 
-[node name="MP5" type="RigidBody3D"]
+[node name="MP5" type="RigidBody3D" node_paths=PackedStringArray("MeshNode", "animation_player", "ads_laser")]
 transform = Transform3D(1, 0, 1.13687e-13, 0, 1, 0, -1.13687e-13, 0, 1, 0, -0.28, 0.569)
 collision_layer = 4
 collision_mask = 17
 script = ExtResource("1_ctl4h")
 MeshNode = NodePath("MeshNode")
+animation_player = NodePath("AnimationPlayer")
+ads_laser = NodePath("MeshNode/Cylinder_005/RayCast3D")
 WeaponStats = {
 "ammoCount": 120,
 "ammoInMag": 29,
@@ -935,9 +937,10 @@ libraries = {
 wait_time = 0.1
 one_shot = true
 
-[node name="AmmoCounter" parent="." instance=ExtResource("2_rgd2m")]
+[node name="AmmoCounter" parent="." node_paths=PackedStringArray("gun") instance=ExtResource("2_rgd2m")]
 transform = Transform3D(0.241315, -3.06982e-15, 3.83204e-16, 3.05951e-15, 0.240618, -0.0602603, 1.71135e-16, 0.0270024, 0.536979, 0.0940644, 0.0228248, -0.207763)
 material_override = SubResource("StandardMaterial3D_c0dcc")
+gun = NodePath("..")
 
 [node name="AmmoLabel" parent="AmmoCounter/Screen" index="0"]
 transform = Transform3D(-1, -1.50996e-07, -6.60023e-15, 2.84217e-14, -2.38419e-07, 1, -1.50996e-07, 1, 4.37722e-08, 0, 0.0100002, 0.005)

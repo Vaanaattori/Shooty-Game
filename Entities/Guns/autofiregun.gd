@@ -1,14 +1,13 @@
 extends RigidBody3D
 var PlayerAnimation
-@export_node_path("Node3D") var MeshNode
-@onready var Player = Global.Player
-var weaponOut:bool = true
+var weaponOut:bool = false
 var FiringGun:bool = false
-var pickedUp:bool = true
+var pickedUp:bool = false
 var oldposition
-var ads_laser
-var animation_player
 var PlayOnce:bool = false
+@export var MeshNode: Node3D
+@export var animation_player: AnimationPlayer
+@export var ads_laser: RayCast3D
 @export var Reloading:bool = false
 @export var WeaponStats = {
 	wepName = "",
@@ -19,17 +18,18 @@ var PlayOnce:bool = false
 	fireRate = 0,
 	ammoInMag = 0,
 }
+var halfAmmo = WeaponStats.maxAmmo / 2
+@onready var Player = Global.Player
 
-var halfAmmo:int
 
 func _ready():
-	halfAmmo = WeaponStats.maxAmmo / 2
 	WeaponStats.ammoInMag = WeaponStats.magSize
+	WeaponStats.ammoCount = WeaponStats.maxAmmo
 
 func _process(_delta):
 	if pickedUp:
 		if weaponOut:
-			Player.Reloading = Player.Reloading
+			Player.Reloading = Reloading
 			visible = true
 			animations()
 

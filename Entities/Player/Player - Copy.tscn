@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://bxofw4e1bobas"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_jpnf2"]
-[ext_resource type="PackedScene" uid="uid://bp7a48krtn5wr" path="res://Entities/Player/HUD.tscn" id="2_ohixm"]
+[ext_resource type="PackedScene" uid="uid://bp7a48krtn5wr" path="res://UI/HUD.tscn" id="2_ohixm"]
 [ext_resource type="Shape3D" uid="uid://dw8ncesrcwvkc" path="res://Entities/Player/PlayerCapsule.tres" id="3_n2idg"]
 [ext_resource type="Script" path="res://Entities/Player/WeaponHand2.gd" id="4_763rh"]
 [ext_resource type="Shader" path="res://World/Levels/pixel.gdshader" id="4_fr8u2"]

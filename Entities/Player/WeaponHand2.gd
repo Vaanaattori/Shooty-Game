@@ -1,5 +1,5 @@
 extends Node3D
-@onready var hand_animations = $"../../../../HandAnimations"
+@export var hand_animations: AnimationPlayer
 @onready var body = $"."
 @onready var pick_up_range = $"../../../../PickUpRange"
 @onready var Player = $"../../../.."
@@ -32,7 +32,9 @@ var WeaponList = {
 }
 
 var replacing: bool = false
-var preloadDictionary = {}
+@export var preloadDictionary = {
+	Weapon1 = "",
+}
 var CurrentWeapon = null
 var SwappingTo
 var SwappingFrom
@@ -61,17 +63,18 @@ func _process(delta):
 		CurrentWeapon.PlayerAnimation = Player.animationtoplay
 	if mouse_movX != null or mouse_movY != null:
 		weaponSway(delta)
-	
-	if Player.isMoving == "Walking" and not Player.ADS():
-		hand_animations.play("Walk")
-		hand_animations.speed_scale = Player.Speed / 2
-		PlayOnce = false
-	elif Player.isMoving == "Idle" and not Player.ADS():
-		hand_animations.play("Idle")
-		PlayOnce = false
-	if Player.ADS():
-		hand_animations.play("ADS")
-	
+	if not swapping:
+		if not Player.isMoving == "Idle" and not Player.ADS():
+			hand_animations.play("Walk")
+			hand_animations.speed_scale = Player.Speed / 2
+			PlayOnce = false
+		elif Player.isMoving == "Idle" and not Player.ADS():
+			hand_animations.play("Idle")
+			PlayOnce = false
+		if Player.ADS():
+			hand_animations.play("ADS")
+	else:
+		hand_animations.speed_scale = 1
 func weaponSway(delta):
 	var SwayLeft = sway_left
 	var SwayRight = sway_right
@@ -106,20 +109,22 @@ func selectWeapon(wep):
 		if not Player.Reloading:
 			if Input.is_action_just_pressed("PrimaryWep") and not CurrentWeapon == WeaponList.PrimaryWeapon and weaponCount > 1 or wep == "primary":
 				WeaponSwap(WeaponList.PrimaryWeapon)
-			elif Input.is_action_just_pressed("SecondaryWep") and not CurrentWeapon == WeaponList.SecondaryWeapon and weaponCount > 1 or wep == "secondary":
+			elif Input.is_action_just_pressed("SecondaryWep") and not CurrentWeapon == WeaponList.SecondaryWeapon and weaponCount > 2 or wep == "secondary":
 				WeaponSwap(WeaponList.SecondaryWeapon)
 
 func WeaponSwap(SwappingTo):
+	SwappingFrom = CurrentWeapon
+	if SwappingTo != null:
+		CurrentWeapon = SwappingTo
+	print("Swapping From: ", SwappingFrom," To: ", CurrentWeapon)
+	SwappingFrom.weaponOut = false
+	SwappingFrom.visible = true
+	CurrentWeapon.visible = false
 	swapping = true
-	print("Swapping From: ", CurrentWeapon," To: ", SwappingTo)
-	CurrentWeapon.PlayerAnimation = "Swap-out"
-	CurrentWeapon.weaponOut = false
-	if replacing:
-		SwappingFrom = CurrentWeapon
-	CurrentWeapon = SwappingTo
-	weaponswap_out_dur.start()
+	hand_animations.stop()
+	hand_animations.play("Swap-Out")
 
-func weaponswap_out_timeout():
+func Swapping_Out():
 	if replacing:
 		SwappingFrom.queue_free()
 		add_child(CurrentWeapon)
@@ -129,12 +134,11 @@ func weaponswap_out_timeout():
 			WeaponList.SecondaryWeapon = CurrentWeapon
 		CurrentWeapon.PickedUp()
 		replacing = false
+	SwappingFrom.visible = false
 	CurrentWeapon.visible = true
-	CurrentWeapon.PlayerAnimation = "Swap-in"
-	CurrentWeapon.weaponOut = true
-	weaponswap_in_dur.start()
+	hand_animations.play("Swap-In")
 
-func weaponswap_in_timeout():
+func Swapped_In():
 	swapping = false
 	CurrentWeapon.weaponOut = true
 
@@ -147,33 +151,31 @@ func gunPickUp(Gun):
 		gunName = Gun.name
 
 	if WeaponList.PrimaryWeapon == null:
-		if preloadDictionary.has(gunName):
-			WeaponList.PrimaryWeapon = preloadDictionary[gunName].instantiate()
+		if Global.WeaponList.has(gunName):
+			WeaponList.PrimaryWeapon = Global.WeaponList[gunName].instantiate()
 			print("Primary empty adding: ",WeaponList.PrimaryWeapon.name)
 			add_child(WeaponList.PrimaryWeapon)
 			WeaponList.PrimaryWeapon.PickedUp()
 			if CurrentWeapon == null:
 				CurrentWeapon = WeaponList.PrimaryWeapon
 				CurrentWeapon.visible = true
-				CurrentWeapon.PlayerAnimation = "Swap-in"
-				print(CurrentWeapon.PlayerAnimation)
-				weaponswap_in_dur.start()
+				hand_animations.play("Swap-In")
 			else:
 				selectWeapon("primary")
 		else:
 			print(gunName, " Does not exist in preloadDictionary")
 	
 	elif WeaponList.SecondaryWeapon == null:
-		if preloadDictionary.has(gunName):
-			WeaponList.SecondaryWeapon = preloadDictionary[gunName].instantiate()
+		if Global.WeaponList.has(gunName):
+			WeaponList.SecondaryWeapon = Global.WeaponList[gunName].instantiate()
 			add_child(WeaponList.SecondaryWeapon)
 		WeaponList.SecondaryWeapon.PickedUp()
 		selectWeapon("secondary")
 		
 	else:
-		if preloadDictionary.has(gunName):
+		if Global.WeaponList.has(gunName):
 			replacing = true
-			SwappingTo = preloadDictionary[gunName].instantiate()
+			SwappingTo = Global.WeaponList[gunName].instantiate()
 			# swapping to glock
 			if CurrentWeapon == WeaponList.PrimaryWeapon:
 				SwappingSlot = "primary"

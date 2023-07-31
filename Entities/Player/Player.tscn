@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=3 uid="uid://bwavtub8bg7xu"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_jpnf2"]
-[ext_resource type="PackedScene" uid="uid://bp7a48krtn5wr" path="res://Entities/Player/HUD.tscn" id="2_ohixm"]
+[ext_resource type="PackedScene" uid="uid://bp7a48krtn5wr" path="res://UI/HUD.tscn" id="2_ohixm"]
 [ext_resource type="Shape3D" uid="uid://dw8ncesrcwvkc" path="res://Entities/Player/PlayerCapsule.tres" id="3_n2idg"]
 [ext_resource type="Script" path="res://Entities/Player/WeaponHand2.gd" id="4_763rh"]
 [ext_resource type="Shader" path="res://World/Levels/pixel.gdshader" id="4_fr8u2"]
@@ -252,7 +252,7 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id="Animation_c0g5c"]
 resource_name = "Swap-In"
-length = 0.5
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -260,10 +260,10 @@ tracks/0/path = NodePath("Neck/Camera3D/Arms/Hands:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(2, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, -0.5, 0), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -296,10 +296,10 @@ tracks/3/path = NodePath("Neck/Camera3D/Arms/Hands:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(2, 1),
 "update": 0,
-"values": [Vector3(-4.71239, 0, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0.785398, 0, 0), Vector3(0, 0, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -313,10 +313,36 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Neck/Camera3D/Arms/Hands")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"Swapped_In"
+}]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Neck/Camera3D/Arms/Hands:swapping")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_pjpnn"]
 resource_name = "Swap-Out"
-length = 0.5
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -324,10 +350,10 @@ tracks/0/path = NodePath("Neck/Camera3D/Arms/Hands:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 2),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, -0.5, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -360,10 +386,10 @@ tracks/3/path = NodePath("Neck/Camera3D/Arms/Hands:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 2),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-4.71239, 0, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0.785398, 0, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -372,10 +398,36 @@ tracks/4/path = NodePath("Neck/Camera3D/Arms/Hands:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false]
+"values": [true, false]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Neck/Camera3D/Arms/Hands")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"Swapping_Out"
+}]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Neck/Camera3D/Arms/Hands:swapping")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
 }
 
 [sub_resource type="Animation" id="Animation_uugrd"]
@@ -418,9 +470,10 @@ _data = {
 "Walk": SubResource("Animation_uugrd")
 }
 
-[node name="Player" type="CharacterBody3D" groups=["Persist"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("HUD") groups=["Persist"]]
 collision_mask = 18
 script = ExtResource("1_jpnf2")
+HUD = NodePath("HUD")
 
 [node name="HUD" parent="." instance=ExtResource("2_ohixm")]
 layer = 2
@@ -466,10 +519,15 @@ debug_shape_thickness = 1
 [node name="Arms" type="Node3D" parent="Neck/Camera3D"]
 transform = Transform3D(-0.999661, 0, -0.0260497, 0, 1, 0, 0.0260497, 0, -0.999661, 0.625723, -0.255562, -0.691327)
 
-[node name="Hands" type="Node3D" parent="Neck/Camera3D/Arms"]
+[node name="Hands" type="Node3D" parent="Neck/Camera3D/Arms" node_paths=PackedStringArray("hand_animations")]
 script = ExtResource("4_763rh")
+hand_animations = NodePath("../../../../HandAnimations")
 wep_sway = 0.05
 ads_sway = 0.2
+preloadDictionary = {
+"Weapon1": "MP5",
+"Weapon2": "M4A1"
+}
 
 [node name="M4A1" parent="Neck/Camera3D/Arms/Hands" instance_placeholder="res://Entities/Guns/M4A1.tscn"]
 

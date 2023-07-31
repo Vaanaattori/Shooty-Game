@@ -1,3 +1,5 @@
+Node
+AnimationPlayer
 Node3D
 MeshInstance3D
 Label3D
@@ -6,8 +8,6 @@ Decal
 AnimatedSprite2D
 RayCast3D
 RigidBody3D
-Node
-AnimationPlayer
 AnimationTree
 GPUParticles3D
 Timer

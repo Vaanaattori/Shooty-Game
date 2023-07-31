@@ -1,6 +1,6 @@
 extends MeshInstance3D
-@onready var ammo_label = $Screen/AmmoLabel
-@onready var gun = $"../"
+@export var ammo_label = Label3D
+@export var gun = RigidBody3D
 
 func _ready():
 	ammo_label.modulate = Color(0, 255, 0, 65)

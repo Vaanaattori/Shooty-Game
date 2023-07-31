@@ -1,6 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://cvepirpjtcf77"]
+[gd_scene load_steps=28 format=3 uid="uid://cvepirpjtcf77"]
 
 [ext_resource type="Script" path="res://Entities/Guns/autofiregun.gd" id="1_fthjb"]
+[ext_resource type="PackedScene" uid="uid://cn6d6ti314828" path="res://Entities/Guns/Attatchments/AmmoCounter.tscn" id="2_d3mso"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6iiho"]
 resource_name = "Mat_Dark"
@@ -364,12 +365,24 @@ _data = {
 "RESET": SubResource("Animation_dqxej")
 }
 
-[node name="M4A1" type="RigidBody3D"]
+[node name="M4A1" type="RigidBody3D" node_paths=PackedStringArray("MeshNode", "animation_player", "ads_laser")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.428588, 0.222798)
 collision_layer = 4
 collision_mask = 17
 mass = 3.4
 script = ExtResource("1_fthjb")
+MeshNode = NodePath("MeshNode")
+animation_player = NodePath("AnimationPlayer")
+ads_laser = NodePath("MeshNode/ADS-Laser")
+WeaponStats = {
+"ammoCount": 0,
+"ammoInMag": 0,
+"damage": 1,
+"fireRate": 7,
+"magSize": 30,
+"maxAmmo": 120,
+"wepName": "M4A1"
+}
 
 [node name="MeshNode" type="Node3D" parent="."]
 transform = Transform3D(0.21, 0, 0, 0, 0.21, 0, 0, 0, 0.21, 0, 0, 0)
@@ -447,5 +460,9 @@ libraries = {
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="AmmoCounter" parent="." node_paths=PackedStringArray("gun") instance=ExtResource("2_d3mso")]
+transform = Transform3D(0.391443, 0, 0.131112, 0, 0.412817, 0, -0.131112, 0, 0.391443, 0.118369, 0.137444, 0.229306)
+gun = NodePath("..")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

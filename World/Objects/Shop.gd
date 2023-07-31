@@ -4,7 +4,7 @@ extends Area3D
 var Cost = InitialCost
 var Weapon
 var bodyentered:bool = false
-var Player = Global.Player
+@onready var Player = Global.Player
 var action
 @onready var timer = $Timer
 var Interact = Callable(self, "Action")

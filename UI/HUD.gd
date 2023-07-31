@@ -27,14 +27,7 @@ func _ready():
 	health_bar.max_value = PlayerStats.HPMax
 
 func _process(delta):
-	var fps = Engine.get_frames_per_second()
-	FPS_Label.text = "FPS: " + str(fps)
-	if fps > 60:
-		FPS_Label.add_theme_color_override("font_color",Color("GREEN"))
-	elif fps < 59:
-		FPS_Label.add_theme_color_override("font_color",Color("ORANGE"))
-	elif fps < 30:
-		FPS_Label.add_theme_color_override("font_color",Color("RED"))
+	FPScheck()
 	var interacttimer = Player.InteractTime.wait_time - Player.InteractTime.time_left
 	if Player.InteractTime.time_left != 0:
 		interact_progress_bar.visible = true
@@ -54,6 +47,16 @@ func _process(delta):
 		else: 
 			crosshair.visible = true
 		PrimaryWepName.text = weapons.CurrentWeapon.WeaponStats.wepName
+
+func FPScheck():
+	var fps = Engine.get_frames_per_second()
+	FPS_Label.text = "FPS: " + str(fps)
+	if fps > 60:
+		FPS_Label.add_theme_color_override("font_color",Color("GREEN"))
+	elif fps < 59:
+		FPS_Label.add_theme_color_override("font_color",Color("ORANGE"))
+	elif fps < 30:
+		FPS_Label.add_theme_color_override("font_color",Color("RED"))
 
 func updatetimer_check():
 #	
@@ -75,18 +78,14 @@ func updatetimer_check():
 		Player.ADS(),
 		Player.Reloading,
 		Player.animationtoplay,
-		weapons.CurrentWeapon if weapons else null,
+		weapons.CurrentWeapon.weaponOut 
+			if weapons and weapons.CurrentWeapon 
+			else null,
 		weapons.CurrentWeapon.WeaponStats.wepName 
 			if weapons and weapons.CurrentWeapon 
 			else null,
-		weapons.WeaponList.PrimaryWeapon 
-			if weapons and weapons.WeaponList.PrimaryWeapon 
-			else null,
 		weapons.WeaponList.PrimaryWeapon.WeaponStats.wepName 
 			if weapons and weapons.WeaponList.PrimaryWeapon 
-			else null,
-		weapons.WeaponList.SecondaryWeapon 
-			if weapons and weapons.WeaponList.SecondaryWeapon 
 			else null,
 		weapons.WeaponList.SecondaryWeapon.WeaponStats.wepName 
 			if weapons and weapons.WeaponList.SecondaryWeapon 

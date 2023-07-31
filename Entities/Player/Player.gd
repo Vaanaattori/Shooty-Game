@@ -2,24 +2,20 @@ extends CharacterBody3D
 
 @onready var Neck = $Neck
 @onready var camera = $Neck/Camera3D
-@onready var Gun = $Neck/Camera3D/M4A1
-@onready var reload_animation_dur = $Timers/ReloadAnimationDur
-@onready var reload_time = $Timers/ReloadTime
-@onready var ads_laser = $"Neck/Camera3D/M4A1/RearSight003/ADS-Laser"
 @onready var hip_fire_laser = $"/Camera3D/HipFire-Laser"
 @onready var playercapsule = preload("res://Entities/Player/PlayerCapsule.tres")
+@onready var reload_time = $Timers/ReloadTime
 @onready var slidetime = $Timers/SlideTimer
 @onready var slideCD = $Timers/SlideCD
 @onready var slideCT = $Timers/SlideCT
-@onready var Weapons = $Neck/Camera3D/Arms/Hands
 @onready var weaponswap_dur = $Timers/WeaponSwapDur
-@onready var gunCamera = $CanvasLayer/SubViewportContainer/SubViewport/Camera3D
-@onready var HUD = $HUD
 @onready var InteractTime = $Timers/InteractTime
 @onready var stamina_recovery_cd = $Timers/StaminaRecoveryCD
+@onready var Weapons = $Neck/Camera3D/Arms/Hands
+@onready var gunCamera = $CanvasLayer/SubViewportContainer/SubViewport/Camera3D
 
-#var wepName = Weapon.wepName
-signal playerADS(ads)
+@export var HUD: CanvasLayer
+
 signal Interact
 
 var animationtoplay
@@ -187,7 +183,7 @@ func Pose(value):
 	tween.tween_property(playercapsule, "height", value, .2)
 
 func ADS():
-	if Input.is_action_pressed("ADS") and not Reloading and not isRunning(): return true
+	if Input.is_action_pressed("ADS") and not Reloading and not Weapons.swapping and not isRunning(): return true
 	else: return false
 
 func Slide():
@@ -229,7 +225,7 @@ func isRunning():
 		return false
 
 func Die():
-	$ tionPlayer.play("Death")
+	$animationPlayer.play("Death")
 #	get_tree().change_scene_to_file("res://MainMenu.tscn")
 
 func ThePlayer():

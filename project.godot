@@ -18,8 +18,8 @@ config/icon="res://rifle.png"
 
 [autoload]
 
-Global="*res://Global.gd"
 PlayerStats="*res://Entities/Player/PlayerStats.tscn"
+Global="*res://global.tscn"
 
 [display]
 
