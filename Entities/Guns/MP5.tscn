@@ -1,6 +1,6 @@
 [gd_scene load_steps=43 format=3 uid="uid://d0b5ku0up3ato"]
 
-[ext_resource type="Script" path="res://Entities/Guns/MP5.gd" id="1_u8755"]
+[ext_resource type="Script" path="res://Entities/Guns/autofiregun.gd" id="1_ctl4h"]
 [ext_resource type="PackedScene" uid="uid://cn6d6ti314828" path="res://AmmoCounter.tscn" id="2_rgd2m"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sofvv"]
@@ -758,12 +758,24 @@ tracks/5/path = NodePath(".")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(1.6),
+"times": PackedFloat32Array(1.7),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"reload"
 }]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:Reloading")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_1q648"]
@@ -799,10 +811,11 @@ albedo_color = Color(0.1875, 0.191406, 0.203125, 1)
 transform = Transform3D(1, 0, 1.13687e-13, 0, 1, 0, -1.13687e-13, 0, 1, 0, -0.28, 0.569)
 collision_layer = 4
 collision_mask = 17
-script = ExtResource("1_u8755")
+script = ExtResource("1_ctl4h")
+MeshNode = NodePath("MeshNode")
 WeaponStats = {
 "ammoCount": 120,
-"ammoInMag": 30,
+"ammoInMag": 29,
 "damage": 1,
 "fireRate": 13,
 "magSize": 30,

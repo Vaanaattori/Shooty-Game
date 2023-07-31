@@ -1,6 +1,6 @@
 [gd_scene load_steps=28 format=3 uid="uid://7h6jdtc2utnv"]
 
-[ext_resource type="Script" path="res://Entities/Guns/Rifle.gd" id="1_7nm6g"]
+[ext_resource type="Script" path="res://Entities/Guns/autofiregun.gd" id="1_7nm6g"]
 [ext_resource type="AnimationLibrary" uid="uid://pl6ay11hvmev" path="res://Entities/Guns/M4A1.res" id="2_5q3jh"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://d1m8d1h2qnup2" path="res://Entities/Guns/M4A1StateMachine.tres" id="3_e6rq1"]
 

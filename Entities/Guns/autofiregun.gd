@@ -1,6 +1,6 @@
 extends RigidBody3D
 var PlayerAnimation
-@onready var MeshNode = $MeshNode
+@export_node_path("Node3D") var MeshNode
 @onready var Player = Global.Player
 var weaponOut:bool = true
 var FiringGun:bool = false
@@ -20,13 +20,24 @@ var PlayOnce:bool = false
 	ammoInMag = 0,
 }
 
+var halfAmmo:int
+
 func _ready():
+	halfAmmo = WeaponStats.maxAmmo / 2
 	WeaponStats.ammoInMag = WeaponStats.magSize
+
+func _process(_delta):
+	if pickedUp:
+		if weaponOut:
+			Player.Reloading = Player.Reloading
+			visible = true
+			animations()
 
 func TweenFunc(object, value, parameters, time):
 	var tween = create_tween()
 	tween.tween_property(object, parameters, value, time)
 
+## Plays weapon animations
 func animations():
 	if not Input.is_action_pressed("Shoot"):
 		animation_player.speed_scale = 1
@@ -49,6 +60,8 @@ func animations():
 		elif not PlayOnce:
 			animation_player.play("RESET_2")
 			PlayOnce = true
+
+## Reloads weapons magazine
 func reload():
 	var reloadAmo = WeaponStats.magSize - WeaponStats.ammoInMag
 	if reloadAmo >= WeaponStats.ammoCount:
@@ -57,8 +70,12 @@ func reload():
 	else:
 		WeaponStats.ammoInMag = WeaponStats.magSize
 		WeaponStats.ammoCount -= reloadAmo
-	
 
+## Player.Reloading = true
+func reloaded():
+	Player.Reloading = true
+
+## Shoots a bullet everytime its called as long as theres ammo in the magazine
 func shoot():
 	if not WeaponStats.ammoInMag <= 0:
 		if FiringGun == false:
@@ -73,6 +90,7 @@ func shoot():
 		Player.Neck.rotation.x += .02
 		$Timer.start()
 
+## Tells the gun that its been picked up by the player
 func PickedUp():
 	pickedUp = true
 #	animation_tree.active = true
@@ -87,9 +105,11 @@ func PickedUp():
 func Gun():
 	pass
 
+## If gun is on ground it will despawn
 func PickUp():
 	queue_free()
 
+## Turns recoil back
 func _on_timer_timeout():
 	print("return")
 	if oldposition < Player.Neck.rotation.x:

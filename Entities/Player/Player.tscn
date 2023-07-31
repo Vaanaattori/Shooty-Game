@@ -7,8 +7,6 @@
 [ext_resource type="Shader" path="res://World/Levels/pixel.gdshader" id="4_fr8u2"]
 [ext_resource type="PackedScene" uid="uid://lhwpp33lafwn" path="res://UI/pause_menu.tscn" id="5_b2vlg"]
 [ext_resource type="PackedScene" uid="uid://d4m6tphglupjv" path="res://Flashlight.tscn" id="5_v6g67"]
-[ext_resource type="PackedScene" uid="uid://cvepirpjtcf77" path="res://Entities/Guns/M4A1.tscn" id="7_nvk0f"]
-[ext_resource type="Script" path="res://Entities/Player/PlaceHolder.gd" id="8_h00gn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sxin3"]
 albedo_color = Color(0.27451, 0.490196, 1, 1)
@@ -239,6 +237,146 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Neck/Camera3D/Arms/Hands:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_c0g5c"]
+resource_name = "Swap-In"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck/Camera3D/Arms/Hands:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck/Camera3D/Arms:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.724958, -0.213603, -0.557587)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Neck/Camera3D/Arms:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3.14159, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Neck/Camera3D/Arms/Hands:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-4.71239, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Neck/Camera3D/Arms/Hands:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_pjpnn"]
+resource_name = "Swap-Out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck/Camera3D/Arms/Hands:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck/Camera3D/Arms:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.724958, -0.213603, -0.557587)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Neck/Camera3D/Arms:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3.14159, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Neck/Camera3D/Arms/Hands:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-4.71239, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Neck/Camera3D/Arms/Hands:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_uugrd"]
 resource_name = "Walk"
@@ -275,6 +413,8 @@ _data = {
 "Death": SubResource("Animation_fwo8d"),
 "Idle": SubResource("Animation_ndgnq"),
 "RESET": SubResource("Animation_65gvl"),
+"Swap-In": SubResource("Animation_c0g5c"),
+"Swap-Out": SubResource("Animation_pjpnn"),
 "Walk": SubResource("Animation_uugrd")
 }
 
@@ -331,11 +471,7 @@ script = ExtResource("4_763rh")
 wep_sway = 0.05
 ads_sway = 0.2
 
-[node name="M4A1" parent="Neck/Camera3D/Arms/Hands" instance=ExtResource("7_nvk0f")]
-
-[node name="PlaceHolder" type="Node" parent="Neck/Camera3D/Arms/Hands/M4A1"]
-editor_description = "Delete parent on ready"
-script = ExtResource("8_h00gn")
+[node name="M4A1" parent="Neck/Camera3D/Arms/Hands" instance_placeholder="res://Entities/Guns/M4A1.tscn"]
 
 [node name="Timers" type="Node" parent="."]
 

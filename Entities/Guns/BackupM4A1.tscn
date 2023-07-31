@@ -1,6 +1,6 @@
 [gd_scene load_steps=35 format=3 uid="uid://8db8s7w2pqgq"]
 
-[ext_resource type="Script" path="res://Entities/Guns/Rifle.gd" id="1_d6uad"]
+[ext_resource type="Script" path="res://Entities/Guns/autofiregun.gd" id="1_d6uad"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_slrl7"]
 radius = 0.0774486

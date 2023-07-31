@@ -1,14 +1,16 @@
-res://Entities/Player/Player - Copy.tscn
+res://Entities/Guns/MP5.tscn
 res://World/Levels/pixel.gdshader
 res://Entities/Player/ZombieSpawnMarker.tres
 res://Entities/Guns/M4A1StateMachine.tres
 res://Entities/Player/PS1.gdshader
+res://Entities/Guns/Rifle.gd
+res://Entities/Guns/MP5.gd
+res://World/Levels/world.tscn
 res://Entities/Player/PlayerStats.tscn
 res://Entities/Guns/Glock.tscn
 res://Entities/Mobs/ShadowFigure/NewZombie.tscn
-res://World/Levels/world.tscn
 res://World/Objects/Shop.tscn
-res://Entities/Guns/MP5.tscn
 res://Entities/Guns/M4A1.tscn
 res://AmmoCounter.tscn
 res://Entities/Player/Player.tscn
+res://Entities/Guns/M4A1.gd

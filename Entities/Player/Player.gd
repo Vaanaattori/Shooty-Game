@@ -229,7 +229,7 @@ func isRunning():
 		return false
 
 func Die():
-	$AnimationPlayer.play("Death")
+	$ tionPlayer.play("Death")
 #	get_tree().change_scene_to_file("res://MainMenu.tscn")
 
 func ThePlayer():
