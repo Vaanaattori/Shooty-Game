@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bwavtub8bg7xu"]
+[gd_scene load_steps=31 format=3 uid="uid://bwavtub8bg7xu"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_jpnf2"]
 [ext_resource type="PackedScene" uid="uid://bp7a48krtn5wr" path="res://UI/HUD.tscn" id="2_ohixm"]
@@ -7,6 +7,13 @@
 [ext_resource type="Shader" path="res://World/Levels/pixel.gdshader" id="4_fr8u2"]
 [ext_resource type="PackedScene" uid="uid://lhwpp33lafwn" path="res://UI/pause_menu.tscn" id="5_b2vlg"]
 [ext_resource type="PackedScene" uid="uid://d4m6tphglupjv" path="res://Flashlight.tscn" id="5_v6g67"]
+[ext_resource type="Script" path="res://Entities/Player/Footsteps.gd" id="8_b3t5w"]
+[ext_resource type="AudioStream" uid="uid://dulvdfa8on32i" path="res://Sounds/Footsteps/Forest Walk/Forest Walk-01.wav" id="9_nu2iw"]
+[ext_resource type="AudioStream" uid="uid://btmbrcqd88n5r" path="res://Sounds/Footsteps/Forest Walk/Forest Walk-02.wav" id="10_vr47p"]
+[ext_resource type="AudioStream" uid="uid://vuo0ofr4vkj5" path="res://Sounds/Footsteps/Forest Walk/Forest Walk-03.wav" id="11_aevs8"]
+[ext_resource type="AudioStream" uid="uid://dgjcjjebkutww" path="res://Sounds/Footsteps/Forest Walk/Forest Walk-05.wav" id="12_7hce7"]
+[ext_resource type="AudioStream" uid="uid://bo8cp35rau2v8" path="res://Sounds/Footsteps/Forest Walk/Forest Walk-06.wav" id="13_2nis2"]
+[ext_resource type="AudioStream" uid="uid://dukoorh7m84g8" path="res://Sounds/Footsteps/Forest Walk/Forest Walk-04.wav" id="19_ucnyl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sxin3"]
 albedo_color = Color(0.27451, 0.490196, 1, 1)
@@ -20,12 +27,12 @@ albedo_color = Color(0, 0, 0, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_1elus"]
 material = SubResource("StandardMaterial3D_tex2x")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ttlk5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a7k2w"]
 render_priority = -1
 shader = ExtResource("4_fr8u2")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7nstv"]
-material = SubResource("ShaderMaterial_ttlk5")
+material = SubResource("ShaderMaterial_a7k2w")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d1rgm"]
 radius = 0.799345
@@ -432,7 +439,7 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id="Animation_uugrd"]
 resource_name = "Walk"
-length = 1.6
+length = 2.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -441,7 +448,7 @@ tracks/0/path = NodePath("Neck/Camera3D/Arms/Hands:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
+"times": PackedFloat32Array(0, 0.6, 1.2, 1.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0.05, 0.03, 0), Vector3(0, 0, 0), Vector3(-0.05, 0.03, 0), Vector3(0, 0, 0)]
@@ -458,10 +465,86 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0.724958, -0.213603, -0.557587)]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Footsteps")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6, 1.8),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"Footstep"
+}, {
+"args": [],
+"method": &"Footstep"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_vf0dd"]
+resource_name = "ADS_Walk"
+length = 2.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck/Camera3D/Arms/Hands:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck/Camera3D/Arms:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.00152797, -0.136315)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Footsteps")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6, 1.8),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"Footstep"
+}, {
+"args": [],
+"method": &"Footstep"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Neck/Camera3D/Arms:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3.14159, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_70bu5"]
 _data = {
 "ADS": SubResource("Animation_nn3lo"),
+"ADS_Walk": SubResource("Animation_vf0dd"),
 "Death": SubResource("Animation_fwo8d"),
 "Idle": SubResource("Animation_ndgnq"),
 "RESET": SubResource("Animation_65gvl"),
@@ -502,10 +585,11 @@ transform = Transform3D(1.72, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 
 mesh = SubResource("PlaneMesh_7nstv")
 skeleton = NodePath("../../..")
 
-[node name="Flashlight" parent="Neck/Camera3D" instance=ExtResource("5_v6g67")]
+[node name="UVFlashlight" parent="Neck/Camera3D" node_paths=PackedStringArray("flashlight") instance=ExtResource("5_v6g67")]
 visible = false
+flashlight = NodePath("../Arms/Hands/Flashlight")
 
-[node name="StunArea" parent="Neck/Camera3D/Flashlight" index="3"]
+[node name="StunArea" parent="Neck/Camera3D/UVFlashlight" index="3"]
 collision_layer = 0
 collision_mask = 2
 
@@ -530,6 +614,12 @@ preloadDictionary = {
 }
 
 [node name="M4A1" parent="Neck/Camera3D/Arms/Hands" instance_placeholder="res://Entities/Guns/M4A1.tscn"]
+
+[node name="Flashlight" type="SpotLight3D" parent="Neck/Camera3D/Arms/Hands"]
+transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0.742165, 0.203278, -0.557589)
+light_energy = 7.222
+shadow_enabled = true
+spot_range = 16.4883
 
 [node name="Timers" type="Node" parent="."]
 
@@ -601,6 +691,33 @@ libraries = {
 
 [node name="PauseMenu" parent="." instance=ExtResource("5_b2vlg")]
 
+[node name="Footsteps" type="Node" parent="."]
+script = ExtResource("8_b3t5w")
+
+[node name="AudioStreamPlayer1" type="AudioStreamPlayer" parent="Footsteps"]
+stream = ExtResource("9_nu2iw")
+volume_db = -20.0
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Footsteps"]
+stream = ExtResource("10_vr47p")
+volume_db = -20.0
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="Footsteps"]
+stream = ExtResource("11_aevs8")
+volume_db = -20.0
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="Footsteps"]
+stream = ExtResource("19_ucnyl")
+volume_db = -20.0
+
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="Footsteps"]
+stream = ExtResource("12_7hce7")
+volume_db = -20.0
+
+[node name="AudioStreamPlayer6" type="AudioStreamPlayer" parent="Footsteps"]
+stream = ExtResource("13_2nis2")
+volume_db = -20.0
+
 [connection signal="timeout" from="Timers/SlideTimer" to="." method="on_slide_timeout"]
 [connection signal="timeout" from="Timers/WeaponSwapOutDur" to="Neck/Camera3D/Arms/Hands" method="weaponswap_out_timeout"]
 [connection signal="timeout" from="Timers/WeaponSwapInDur" to="Neck/Camera3D/Arms/Hands" method="weaponswap_in_timeout"]
@@ -608,4 +725,4 @@ libraries = {
 [connection signal="body_entered" from="PickUpRange" to="." method="_on_pick_up_range_body_entered"]
 [connection signal="body_exited" from="PickUpRange" to="." method="_on_pick_up_range_body_exited"]
 
-[editable path="Neck/Camera3D/Flashlight"]
+[editable path="Neck/Camera3D/UVFlashlight"]

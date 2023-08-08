@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://bxwd4fqdgusum"]
+[gd_scene load_steps=69 format=3 uid="uid://bxwd4fqdgusum"]
 
 [ext_resource type="Script" path="res://World/Levels/world.gd" id="1_wvfhm"]
 [ext_resource type="PackedScene" uid="uid://c7kn0geb5j34y" path="res://Entities/Mobs/ShadowFigure/NewZombie.tscn" id="2_r24d2"]
@@ -12,11 +12,19 @@
 [ext_resource type="Texture2D" uid="uid://bgf2kn26p5ojl" path="res://Downloads/4k JPEG/Grass 03/Grass03_Normal.jpg" id="7_og0p6"]
 [ext_resource type="Texture2D" uid="uid://csr24sly3m3x5" path="res://Downloads/4k JPEG/Grass 03/Grass03_Roughness.jpg" id="8_lhwe6"]
 [ext_resource type="PackedScene" uid="uid://cvepirpjtcf77" path="res://Entities/Guns/M4A1.tscn" id="9_5w81i"]
+[ext_resource type="Shader" path="res://World/Levels/pixel.gdshader" id="9_m001v"]
+[ext_resource type="PackedScene" uid="uid://d4m6tphglupjv" path="res://Flashlight.tscn" id="10_c4v63"]
+[ext_resource type="Script" path="res://Entities/Player/WeaponHand2.gd" id="11_2s2tr"]
 [ext_resource type="Material" uid="uid://uowqbmf20k84" path="res://Entities/Player/ZombieSpawnMarker.tres" id="12_bay7l"]
+[ext_resource type="PackedScene" uid="uid://bmwkv4o3ykwsr" path="res://PlaceHolder.tscn" id="12_g5bve"]
 [ext_resource type="Script" path="res://Entities/Guns/autofiregun.gd" id="14_1t1vi"]
+[ext_resource type="PackedScene" uid="uid://crro6xec4cmjw" path="res://EnemySpawn.tscn" id="15_qf3a4"]
 [ext_resource type="AnimationLibrary" uid="uid://pl6ay11hvmev" path="res://Entities/Guns/M4A1.res" id="15_wmeqc"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://d1m8d1h2qnup2" path="res://Entities/Guns/M4A1StateMachine.tres" id="16_byt6b"]
 [ext_resource type="PackedScene" uid="uid://d0b5ku0up3ato" path="res://Entities/Guns/MP5.tscn" id="17_p8nvt"]
+[ext_resource type="PackedScene" uid="uid://c0ip22kyc3xnf" path="res://LowpolyForestPack/TreeScene/dead_oak_2.tscn" id="18_j1rdt"]
+[ext_resource type="PackedScene" uid="uid://cuf3rimb6bw7k" path="res://LowpolyForestPack/TreeScene/dead_oak_1.tscn" id="19_giyj5"]
+[ext_resource type="PackedScene" uid="uid://bhb6bak84mudo" path="res://LowpolyForestPack/TreeScene/dead_oak_3.tscn" id="20_etps8"]
 
 [sub_resource type="Environment" id="Environment_67o5g"]
 fog_enabled = true
@@ -61,6 +69,13 @@ size = Vector3(0.222491, 4.90906, 5.29535)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ee5mt"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ttlk5"]
+render_priority = -1
+shader = ExtResource("9_m001v")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jxg4m"]
+material = SubResource("ShaderMaterial_ttlk5")
+
 [sub_resource type="SphereMesh" id="SphereMesh_oj01q"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_s0k6y"]
@@ -81,9 +96,6 @@ radius = 0.99306
 [sub_resource type="BoxMesh" id="BoxMesh_jjsc3"]
 material = ExtResource("12_bay7l")
 size = Vector3(1, 50, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_dv1m0"]
-size = Vector3(1.5, 3, 1.5)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_slrl7"]
 radius = 0.0774486
@@ -468,13 +480,18 @@ spawnAmount = 0
 environment = SubResource("Environment_67o5g")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.509071, 0.860724, 0, -0.860724, 0.509071, 0, 15.565, 15.7367)
+transform = Transform3D(0.735423, 0.391291, -0.553213, 0, 0.81642, 0.577459, 0.677608, -0.424677, 0.600414, 0, 15.565, 15.7367)
+light_energy = 0.0
+shadow_enabled = true
+shadow_bias = 0.05
+shadow_opacity = 0.74
+shadow_blur = 5.0
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_kid4w")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
-collision_layer = 16
+collision_layer = 19
 collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
@@ -487,7 +504,7 @@ shape = SubResource("BoxShape3D_cr8ni")
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="NavigationRegion3D"]
 transform = Transform3D(0.957566, -0.288213, 0, 0.288213, 0.957566, 0, 0, 0, 1, -5.11957, 0, -5.76923)
-collision_layer = 0
+collision_layer = 19
 collision_mask = 16
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D2"]
@@ -499,7 +516,7 @@ shape = SubResource("BoxShape3D_q3gsa")
 
 [node name="StaticBody3D3" type="StaticBody3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2.37395, 0.602023)
-collision_layer = 0
+collision_layer = 3
 collision_mask = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D3"]
@@ -512,6 +529,52 @@ mesh = SubResource("BoxMesh_ee5mt")
 [node name="PlayerSpawn" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.37928, 0.279157, 2.64243)
 
+[node name="Camera3D" type="Camera3D" parent="PlayerSpawn"]
+transform = Transform3D(-0.149018, 0, -0.988835, 0, 1, 0, 0.988835, 0, -0.149018, 0, 1.54142, -7.98471)
+cull_mask = 1048557
+current = true
+
+[node name="PixelMesh" type="MeshInstance3D" parent="PlayerSpawn/Camera3D"]
+transform = Transform3D(1.72, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.0793609, -0.0625168)
+mesh = SubResource("PlaneMesh_jxg4m")
+skeleton = NodePath("../../..")
+
+[node name="UVFlashlight" parent="PlayerSpawn/Camera3D" instance=ExtResource("10_c4v63")]
+visible = false
+
+[node name="StunArea" parent="PlayerSpawn/Camera3D/UVFlashlight" index="3"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="HipFire-Laser" type="RayCast3D" parent="PlayerSpawn/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.57887)
+target_position = Vector3(0, -100, 0)
+collision_mask = 12
+debug_shape_custom_color = Color(1, 1, 0, 1)
+debug_shape_thickness = 1
+
+[node name="Arms" type="Node3D" parent="PlayerSpawn/Camera3D"]
+transform = Transform3D(-0.999661, 0, -0.0260497, 0, 1, 0, 0.0260497, 0, -0.999661, 0.625723, -0.255562, -0.691327)
+
+[node name="Hands" type="Node3D" parent="PlayerSpawn/Camera3D/Arms"]
+script = ExtResource("11_2s2tr")
+wep_sway = 0.05
+ads_sway = 0.2
+preloadDictionary = {
+"Weapon1": "MP5",
+"Weapon2": "M4A1"
+}
+
+[node name="M4A1" parent="PlayerSpawn/Camera3D/Arms/Hands" instance_placeholder="res://Entities/Guns/M4A1.tscn"]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="PlayerSpawn/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.292444, -0.425709, -1.40782)
+light_energy = 7.222
+shadow_enabled = true
+spot_range = 16.4883
+
+[node name="PlaceHolder" parent="PlayerSpawn/Camera3D" instance=ExtResource("12_g5bve")]
+
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(0.82374, 0.566967, 0, -0.566967, 0.82374, 0, 0, 0, 1, 0.69844, 1.15461, -3.17581)
 
@@ -521,6 +584,7 @@ transform = Transform3D(0.82374, 0.566967, 0, -0.566967, 0.82374, 0, 0, 0, 1, 0.
 transform = Transform3D(0.342332, 0.939579, 0, -0.939579, 0.342332, 0, 0, 0, 1, -2.98299, 1.87731, -6.76015)
 
 [node name="Glock" parent="Node3D4" instance=ExtResource("4_quxm6")]
+transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 0.852157, -0.53, -0.900204)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.80314, -2.66664)
@@ -550,22 +614,12 @@ shape = SubResource("SphereShape3D_hod27")
 
 [node name="ZombieSpawns" type="Marker3D" parent="."]
 
-[node name="Spawn 1" type="Marker3D" parent="ZombieSpawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.399, 0, -21.548)
-script = ExtResource("5_uyrs5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ZombieSpawns/Spawn 1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, 0)
-mesh = SubResource("BoxMesh_jjsc3")
-
-[node name="Area3D" type="Area3D" parent="ZombieSpawns/Spawn 1"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ZombieSpawns/Spawn 1/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-shape = SubResource("BoxShape3D_dv1m0")
+[node name="Spawn 1" parent="ZombieSpawns" instance=ExtResource("15_qf3a4")]
+visible = false
 
 [node name="Spawn 2" type="Marker3D" parent="ZombieSpawns"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5009, 0, -16.8628)
+visible = false
 script = ExtResource("5_uyrs5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ZombieSpawns/Spawn 2"]
@@ -579,6 +633,7 @@ shape = SubResource("SphereShape3D_hod27")
 
 [node name="Spawn 3" type="Marker3D" parent="ZombieSpawns"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7916, 0, 4.42349)
+visible = false
 script = ExtResource("5_uyrs5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ZombieSpawns/Spawn 3"]
@@ -607,10 +662,49 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.17748, 1.30727, -1.40519)
 
 [node name="MP5" parent="Node3D2" instance=ExtResource("17_p8nvt")]
 
-[connection signal="body_entered" from="ZombieSpawns/Spawn 1/Area3D" to="ZombieSpawns/Spawn 1" method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="ZombieSpawns/Spawn 1/Area3D" to="ZombieSpawns/Spawn 1" method="_on_area_3d_body_exited"]
+[node name="DeadOak2" parent="." instance=ExtResource("18_j1rdt")]
+transform = Transform3D(0.760553, 0, 0.649276, 0, 1, 0, -0.649276, 0, 0.760553, 9.71658, 0, 3.61168)
+
+[node name="DeadOak3" parent="." instance=ExtResource("20_etps8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1046, 0, -5.31364)
+
+[node name="DeadOak4" parent="." instance=ExtResource("18_j1rdt")]
+transform = Transform3D(0.584802, 0, -0.811176, 0, 1, 0, 0.811176, 0, 0.584802, 2.85682, 0, -7.62751)
+
+[node name="DeadOak1" parent="." instance=ExtResource("19_giyj5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.655, 0, -1.341)
+
+[node name="DeadOak5" parent="." instance=ExtResource("18_j1rdt")]
+transform = Transform3D(0.59169, 0, -0.806166, 0, 1, 0, 0.806166, 0, 0.59169, 5.39517, 0, 9.01149)
+
+[node name="DeadOak6" parent="." instance=ExtResource("18_j1rdt")]
+transform = Transform3D(0.857607, 0, 0.514305, 0, 1, 0, -0.514305, 0, 0.857607, -5.79766, 0, 17.291)
+
+[node name="DeadOak7" parent="." instance=ExtResource("18_j1rdt")]
+transform = Transform3D(0.914579, 0, -0.404407, 0, 1, 0, 0.404407, 0, 0.914579, -19.0177, 0, 19.84)
+
+[node name="DeadOak8" parent="." instance=ExtResource("19_giyj5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1856, 0, 21.962)
+
+[node name="DeadOak9" parent="." instance=ExtResource("19_giyj5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7672, 0, -12.1545)
+
+[node name="DeadOak10" parent="." instance=ExtResource("18_j1rdt")]
+transform = Transform3D(0.414503, 0, -0.910048, 0, 1, 0, 0.910048, 0, 0.414503, -6.68408, 0, -17.6616)
+
+[node name="DeadOak11" parent="." instance=ExtResource("18_j1rdt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.8388, 0, 6.96222)
+
+[node name="DeadOak12" parent="." instance=ExtResource("20_etps8")]
+transform = Transform3D(-0.114937, 0, 0.993373, 0, 1, 0, -0.993373, 0, -0.114937, -10.484, 0, 21.8294)
+
+[node name="DeadOak13" parent="." instance=ExtResource("19_giyj5")]
+transform = Transform3D(0.999227, 0, 0.0393121, 0, 1, 0, -0.0393121, 0, 0.999227, 16, 0, -15)
+
 [connection signal="body_entered" from="ZombieSpawns/Spawn 2/Area3D" to="ZombieSpawns/Spawn 2" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="ZombieSpawns/Spawn 2/Area3D" to="ZombieSpawns/Spawn 2" method="_on_area_3d_body_exited"]
 [connection signal="body_entered" from="ZombieSpawns/Spawn 3/Area3D" to="ZombieSpawns/Spawn 3" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="ZombieSpawns/Spawn 3/Area3D" to="ZombieSpawns/Spawn 3" method="_on_area_3d_body_exited"]
 [connection signal="timeout" from="SpawnTimer" to="." method="spawnEnemy"]
+
+[editable path="PlayerSpawn/Camera3D/UVFlashlight"]

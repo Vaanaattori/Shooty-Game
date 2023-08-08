@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://crro6xec4cmjw"]
+
+[ext_resource type="Script" path="res://World/Objects/EnemySpawn.gd" id="1_i7bwb"]
+[ext_resource type="Material" uid="uid://uowqbmf20k84" path="res://Entities/Player/ZombieSpawnMarker.tres" id="2_172qh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jjsc3"]
+material = ExtResource("2_172qh")
+size = Vector3(1, 50, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dv1m0"]
+size = Vector3(1.5, 3, 1.5)
+
+[node name="Spawn 1" type="Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.399, 0, -21.548)
+script = ExtResource("1_i7bwb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, 0)
+mesh = SubResource("BoxMesh_jjsc3")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_dv1m0")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

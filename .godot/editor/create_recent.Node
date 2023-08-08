@@ -1,9 +1,14 @@
+AudioStreamPlayer
 Node
+AudioStreamPlayer2D
+SpotLight3D
+CollisionShape3D
+StaticBody3D
+GridMap
 AnimationPlayer
 Node3D
 MeshInstance3D
 Label3D
-CollisionShape3D
 Decal
 AnimatedSprite2D
 RayCast3D
@@ -25,8 +30,3 @@ VBoxContainer
 Control
 TextureProgressBar
 Container
-PanelContainer
-BoxContainer
-CanvasLayer
-CollisionPolygon3D
-Button

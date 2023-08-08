@@ -4,6 +4,8 @@ extends SpotLight3D
 @onready var DurationTimer = $DurationTimer
 @onready var stun_area = $StunArea
 
+@export var flashlight: SpotLight3D
+
 @export var Charges:int = 5
 @export var Duration:int = 2
 @export var CoolDown:int = 3
@@ -18,6 +20,11 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("Flashlight") and CooldownTimer.time_left == 0:
 		Flash()
+	if flashlight:
+		if visible:
+			flashlight.visible = false
+		else:
+			flashlight.visible = true
 	
 	if Flashing:
 		visible = true

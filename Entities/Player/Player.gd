@@ -40,6 +40,7 @@ var Dead:bool = false
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
+	
 	Speed = PlayerStats.BaseSpeed
 	Sprint = Speed * PlayerStats.SprintMultiplier
 	actualsens = PlayerStats.sensitivity  * 0.01
@@ -176,6 +177,7 @@ func Pose(value):
 	if str(value) == "stand":
 		value = 2
 	if str(value) == "crouch":
+		$Footsteps.Footstep()
 		value = 1
 	if str(value) == "prone":
 		value = .25

@@ -8,6 +8,12 @@ func _ready():
 func _process(delta):
 	ammo_label.visible = true
 	ammo_label.text = str(gun.WeaponStats.ammoInMag)
+	if gun.pickedUp:
+		set_layer_mask_value(1, false)
+		set_layer_mask_value(2, true)
+	else:
+		set_layer_mask_value(1, true)
+		set_layer_mask_value(2, false)
 	if gun.halfAmmo > gun.WeaponStats.ammoCount:
 		#green
 		ammo_label.modulate = Color(255, 125, 0, 100)
