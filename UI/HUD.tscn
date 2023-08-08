@@ -96,6 +96,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_sjhhx")
 value = 100.0
 
 [node name="AmmoContainer" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
@@ -127,21 +128,10 @@ theme_override_constants/separation = 20
 [node name="PrimaryWeaponInfo" type="VBoxContainer" parent="Control/MarginContainer/WeaponInfo"]
 layout_mode = 2
 
-[node name="PriAnimationBool" type="Label" parent="Control/MarginContainer/WeaponInfo/PrimaryWeaponInfo"]
-layout_mode = 2
-text = "Animation"
-horizontal_alignment = 1
-
-[node name="PriAnimation" type="Label" parent="Control/MarginContainer/WeaponInfo/PrimaryWeaponInfo"]
-layout_mode = 2
-text = "Animation"
-horizontal_alignment = 1
-
 [node name="Weapon" type="Label" parent="Control/MarginContainer/WeaponInfo/PrimaryWeaponInfo"]
 layout_mode = 2
 theme = ExtResource("2_g6q3x")
-text = "PRIMARY 
-WEAPON:"
+text = "PRIMARY:"
 horizontal_alignment = 1
 
 [node name="PrimaryWeaponName" type="Label" parent="Control/MarginContainer/WeaponInfo/PrimaryWeaponInfo"]
@@ -154,21 +144,10 @@ vertical_alignment = 1
 [node name="SecondaryWeaponInfo" type="VBoxContainer" parent="Control/MarginContainer/WeaponInfo"]
 layout_mode = 2
 
-[node name="SecAnimationBool" type="Label" parent="Control/MarginContainer/WeaponInfo/SecondaryWeaponInfo"]
-layout_mode = 2
-text = "Animation"
-horizontal_alignment = 1
-
-[node name="SecAnimation" type="Label" parent="Control/MarginContainer/WeaponInfo/SecondaryWeaponInfo"]
-layout_mode = 2
-text = "Animation"
-horizontal_alignment = 1
-
 [node name="Weapon" type="Label" parent="Control/MarginContainer/WeaponInfo/SecondaryWeaponInfo"]
 layout_mode = 2
 theme = ExtResource("2_g6q3x")
-text = "SECONDARY
-WEAPON:"
+text = "SECONDARY:"
 horizontal_alignment = 1
 
 [node name="SecondaryWeaponName" type="Label" parent="Control/MarginContainer/WeaponInfo/SecondaryWeaponInfo"]

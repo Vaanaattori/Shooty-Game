@@ -7,10 +7,11 @@ func _ready():
 
 func _process(delta):
 	ammo_label.visible = true
+	print(gun.WeaponStats.ammoCount)
 	ammo_label.text = str(gun.WeaponStats.ammoInMag)
 	if gun.halfAmmo > gun.WeaponStats.ammoCount:
 		#green
 		ammo_label.modulate = Color(255, 125, 0, 100)
-	elif gun.WeaponStats.ammoCount == 0:
+	if gun.WeaponStats.ammoCount <= 0:
 		#red
 		ammo_label.modulate = Color(255, 0, 0, 100)

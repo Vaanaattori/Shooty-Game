@@ -18,7 +18,7 @@ var PlayOnce:bool = false
 	fireRate = 0,
 	ammoInMag = 0,
 }
-var halfAmmo = WeaponStats.maxAmmo / 2
+@onready var halfAmmo = WeaponStats.maxAmmo / 2
 @onready var Player = Global.Player
 
 
@@ -47,15 +47,15 @@ func animations():
 		animation_player.stop()
 		animation_player.play("Reload")
 	if not Player.Reloading:
-		if Player.ADS():
-			if not Input.is_action_pressed("Shoot") or WeaponStats.ammoInMag <= 0:
-				print("idle ads")
-				animation_player.speed_scale = 1
-				animation_player.play("ADS_Idle")
-			elif Input.is_action_pressed("Shoot") and not WeaponStats.ammoInMag <= 0:
-				print("firing ads")
-				animation_player.speed_scale = WeaponStats.fireRate
-				animation_player.play("ADS_Fire")
+#		if Player.ADS():
+		if not Input.is_action_pressed("Shoot") or WeaponStats.ammoInMag <= 0:
+			print("idle ads")
+			animation_player.speed_scale = 1
+			animation_player.play("ADS_Idle")
+		elif Input.is_action_pressed("Shoot") and not WeaponStats.ammoInMag <= 0:
+			print("firing ads")
+			animation_player.speed_scale = WeaponStats.fireRate
+			animation_player.play("ADS_Fire")
 			PlayOnce = false
 		elif not PlayOnce:
 			animation_player.play("RESET_2")

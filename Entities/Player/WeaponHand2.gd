@@ -71,8 +71,10 @@ func _process(delta):
 		elif Player.isMoving == "Idle" and not Player.ADS():
 			hand_animations.play("Idle")
 			PlayOnce = false
-		if Player.ADS():
+		if Player.ADS() and Player.isMoving == "Idle":
 			hand_animations.play("ADS")
+		elif Player.ADS():
+			hand_animations.play("ADS_Walk")
 	else:
 		hand_animations.speed_scale = 1
 func weaponSway(delta):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cvepirpjtcf77"]
+[gd_scene load_steps=30 format=3 uid="uid://cvepirpjtcf77"]
 
 [ext_resource type="Script" path="res://Entities/Guns/autofiregun.gd" id="1_fthjb"]
 [ext_resource type="PackedScene" uid="uid://cn6d6ti314828" path="res://Entities/Guns/Attatchments/AmmoCounter.tscn" id="2_d3mso"]
@@ -304,32 +304,79 @@ size = Vector3(0.155, 0.386, 0.567)
 [sub_resource type="BoxShape3D" id="BoxShape3D_0wwnf"]
 size = Vector3(0.15471, 0.716736, 0.736566)
 
-[sub_resource type="Animation" id="Animation_7gi8a"]
-resource_name = "Idle"
-length = 0.001
+[sub_resource type="Animation" id="Animation_qj6ay"]
+resource_name = "ADS_Fire"
+length = 2.0
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshNode:position")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(0, -0.43, 0.2), Vector3(0, -0.43, 0.22), Vector3(0, -0.43, 0.2), Vector3(0, -0.43, 0.22)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeshNode:rotation")
+tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(0, 1.13687e-13, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_7gi8a"]
+resource_name = "ADS_Idle"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -0.43, 0.22), Vector3(0, -0.425, 0.22)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.13687e-13, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_dqxej"]
@@ -337,36 +384,156 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshNode:position")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(0, -0.428474, 0.22397)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeshNode:rotation")
+tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(0, 1.13687e-13, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshNode/Mag:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(4.54747e-13, 0, 1.66984)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MeshNode/Mag:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_unox7"]
+resource_name = "Reload"
+length = 1.7
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.428474, 0.22397), Vector3(-0.311405, -0.0217808, 0.215855), Vector3(-0.08661, -0.0217808, 0.221713), Vector3(-0.08661, -0.0217808, 0.221713)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.13687e-13, 0), Vector3(-1.19149, -0.89545, -0.0654197), Vector3(-1.19149, 0.347189, -0.0654197), Vector3(-1.19149, 0.347189, -0.0654197)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshNode/Mag:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.45, 0.5, 0.55, 0.9, 1, 1.1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 0.75, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(4.54747e-13, 0, 1.66984), Vector3(4.54747e-13, 0, 1.66984), Vector3(0.837897, -0.746193, 1.63071), Vector3(1.91602, -0.799054, 1.32205), Vector3(5.55956, -4.46613, -4.86389), Vector3(5.55956, -4.46613, -4.86389), Vector3(-34.4731, -109.575, 19.6583), Vector3(4.54747e-13, 0, 1.66984)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MeshNode/Mag:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.45, 0.55, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 0.75, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0), Vector3(-1.17275, 1.49773, -0.024671), Vector3(-1.02393, -3.07966, 2.38021), Vector3(-1.02393, -3.07966, 2.38021), Vector3(0, 1.5708, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MeshNode/Mag:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.5, 1.7),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"reload"
+}, {
+"args": [],
+"method": &"reloaded"
+}]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:Reloading")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fmwy3"]
 _data = {
-"Idle": SubResource("Animation_7gi8a"),
-"RESET": SubResource("Animation_dqxej")
+"ADS_Fire": SubResource("Animation_qj6ay"),
+"ADS_Idle": SubResource("Animation_7gi8a"),
+"RESET": SubResource("Animation_dqxej"),
+"Reload": SubResource("Animation_unox7")
 }
 
 [node name="M4A1" type="RigidBody3D" node_paths=PackedStringArray("MeshNode", "animation_player", "ads_laser")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.428588, 0.222798)
+transform = Transform3D(1, 0, 1.13687e-13, 0, 1, 0, -1.13687e-13, 0, 1, 0, -0.428474, 0.22397)
 collision_layer = 4
 collision_mask = 17
 mass = 3.4
@@ -377,8 +544,8 @@ ads_laser = NodePath("MeshNode/ADS-Laser")
 WeaponStats = {
 "ammoCount": 0,
 "ammoInMag": 0,
-"damage": 1,
-"fireRate": 7,
+"damage": 10,
+"fireRate": 12,
 "magSize": 30,
 "maxAmmo": 120,
 "wepName": "M4A1"

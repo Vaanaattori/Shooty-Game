@@ -6,14 +6,11 @@ extends CanvasLayer
 @onready var total_ammo_left = $Control/MarginContainer/HBoxContainer/AmmoContainer/TotalAmmoLeft
 @onready var crosshair = $Control/MarginContainer/Crosshair/CrosshairTexture
 @onready var PrimaryWepName = $Control/MarginContainer/WeaponInfo/PrimaryWeaponInfo/PrimaryWeaponName
+@onready var SecondaryWepName = $Control/MarginContainer/WeaponInfo/SecondaryWeaponInfo/SecondaryWeaponName
 @onready var Player = $"../"
 @onready var updatetimer = $Control/MarginContainer/Updatetimer
 @onready var debuglog = $Control/MarginContainer/DebugLog
 @onready var weapons = $"../Neck/Camera3D/Arms/Hands"
-@onready var prianimation = $Control/MarginContainer/WeaponInfo/PrimaryWeaponInfo/PriAnimation
-@onready var secanimation = $Control/MarginContainer/WeaponInfo/SecondaryWeaponInfo/SecAnimation
-@onready var pri_animation_bool = $Control/MarginContainer/WeaponInfo/PrimaryWeaponInfo/PriAnimationBool
-@onready var sec_animation_bool = $Control/MarginContainer/WeaponInfo/SecondaryWeaponInfo/SecAnimationBool
 @onready var InteractLabel = $Control/MarginContainer/Crosshair/PopUp/InteractLabel
 @onready var money_count = $Control/MarginContainer/HBoxContainer/VBoxContainer/MoneyCount
 @onready var interact_progress_bar = $Control/MarginContainer/Crosshair/PopUp/InteractProgressBar
@@ -46,8 +43,10 @@ func _process(delta):
 			crosshair.visible = false
 		else: 
 			crosshair.visible = true
-		PrimaryWepName.text = weapons.CurrentWeapon.WeaponStats.wepName
-
+		if weapons.WeaponList.PrimaryWeapon:
+			PrimaryWepName.text = weapons.WeaponList.PrimaryWeapon.WeaponStats.wepName
+		if weapons.WeaponList.SecondaryWeapon:
+			SecondaryWepName.text = weapons.WeaponList.SecondaryWeapon.WeaponStats.wepName
 func FPScheck():
 	var fps = Engine.get_frames_per_second()
 	FPS_Label.text = "FPS: " + str(fps)
@@ -93,15 +92,3 @@ func updatetimer_check():
 		weapons.swapping,
 		Player.firing
 		])
-	if weapons.WeaponList.PrimaryWeapon != null:
-		if weapons.WeaponList.PrimaryWeapon.PlayerAnimation != null:
-			pri_animation_bool.text = str(weapons.WeaponList.PrimaryWeapon.weaponOut)
-			prianimation.text = weapons.WeaponList.PrimaryWeapon.PlayerAnimation
-	if weapons.WeaponList.SecondaryWeapon != null:
-		if weapons.WeaponList.SecondaryWeapon.PlayerAnimation != null:
-			secanimation.text = weapons.WeaponList.SecondaryWeapon.PlayerAnimation
-			sec_animation_bool.text = str(weapons.WeaponList.SecondaryWeapon.weaponOut)
-#	print("Pose: ", pose, "    IsmMoving: ", isMoving, "    isADS(): ", ADS(), "    IsReloading: ", Reloading, "    AnimationPlaying: ", animationtoplay, "    WeaponOut: ", PlayerStats.weaponout)
-
-#func PopUp(Item, Cost):
-

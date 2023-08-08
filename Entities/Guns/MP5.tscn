@@ -817,9 +817,9 @@ animation_player = NodePath("AnimationPlayer")
 ads_laser = NodePath("MeshNode/Cylinder_005/RayCast3D")
 WeaponStats = {
 "ammoCount": 120,
-"ammoInMag": 29,
-"damage": 1,
-"fireRate": 13,
+"ammoInMag": 0,
+"damage": 5,
+"fireRate": 12,
 "magSize": 30,
 "maxAmmo": 120,
 "wepName": "MP5"
@@ -904,6 +904,7 @@ skeleton = NodePath("")
 [node name="RayCast3D" type="RayCast3D" parent="MeshNode/Cylinder_005"]
 transform = Transform3D(1, 0, -1.69407e-21, 0, 1, -1.42109e-14, 1.35525e-20, 1.42109e-14, 1, 4.26613e-09, 0.0261852, 0.0133469)
 target_position = Vector3(0, -250, 0)
+collision_mask = 2
 debug_shape_thickness = 1
 
 [node name="Rail" type="MeshInstance3D" parent="MeshNode"]
